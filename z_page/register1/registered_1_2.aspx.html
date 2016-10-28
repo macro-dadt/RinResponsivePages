@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://192.168.1.13/registered_1_2.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+
+</title>
+    <style type="text/css">
+         #header{
+background-color:#ea9494;
+width: 100%;
+height:80px;
+text-align:center;
+line-height:80px;
+position: fixed;
+top:0;
+left: 0;
+z-index: 9999;
+}
+.icon_right{
+    display: none
+}
+#div_sidebar_right{
+    display:none;
+}
+#sidebar_right{
+    display: none;
+}
+.topnav_right{
+        position: relative;
+     bottom: .5em;  
+    }
+.main{
+    position: relative;
+    margin: 100px auto;
+}
+ #Label_logo{
+        display: block;
+        position: relative;
+        bottom: .2em;
+    }
+    img {
+    width: 100%;
+    height: auto;
+}
+@media (max-width: 680px){
+.main{
+    position: relative;
+    margin: 80px auto;
+}
+#header{
+        height: 60px;
+    }
+#div_sidebar_right{
+    width: 100px;
+    height: 100%;
+    position: relative;
+    float: right;
+    z-index: 9997;
+    display: none; 
+    }
+#sidebar_right{
+width: 100%;
+background-color:#e7e7e7;
+z-index: 9998;
+text-align:left;
+position: fixed;
+top: 1em;
+display: block;
+}
+#Label_logo{
+        display: block;
+        position: relative;
+        bottom: 0.5em;
+    }
+.icon_right{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -1em;
+    }
+.topnav_right{
+        display: none;
+    }
+
+
+}/*--------------------------end media*/
+        .textbox { 
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+  } 
+          input:focus 
+  {
+      border: 2px solid #AA88FF;
+    background-color: #ff7575;
+    }   
+        </style> 
+    <link rel="stylesheet" href="./registered_1_2.aspx_files/file-upload.css" type="text/css">
+      <script src="./registered_1_2.aspx_files/jquery-1.12.4.js.download"></script>
+  <script src="./registered_1_2.aspx_files/jquery-ui.js.download"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $("#accordion").accordion({
+                collapsible: true, active: false
+            });
+        });
+
+        function UploadFile(fileUpload) {
+            if (fileUpload.value != '') {
+                document.getElementById("btnUploadDoc").click();
+            }
+        }
+
+        function UploadFile1(fileUpload1) {
+            if (fileUpload1.value != '') {
+                document.getElementById("btnUploadDoc1").click();
+            }
+        }
+
+        function UploadFile2(fileUpload2) {
+            if (fileUpload2.value != '') {
+                document.getElementById("btnUploadDoc2").click();
+            }
+        }
+
+
+        // 顯示讀取遮罩
+        function ShowProgressBar() {
+            displayProgress();
+            displayMaskFrame();
+        }
+
+        // 隱藏讀取遮罩
+        function HideProgressBar() {
+            var progress = $('#divProgress');
+            var maskFrame = $("#divMaskFrame");
+            progress.hide();
+            maskFrame.hide();
+        }
+        // 顯示讀取畫面
+        function displayProgress() {
+            var w = $(document).width();
+            var h = $(window).height();
+            var progress = $('#divProgress');
+            progress.css({ "z-index": 999999, "top": (h / 2) - (progress.height() / 2), "left": (w / 2) - (progress.width() / 2) });
+            progress.show();
+        }
+        // 顯示遮罩畫面
+        function displayMaskFrame() {
+            var w = $(window).width();
+            var h = $(document).height();
+            var maskFrame = $("#divMaskFrame");
+            maskFrame.css({ "z-index": 999998, "opacity": 0.7, "width": w, "height": h });
+            maskFrame.show();
+        }
+
+    </script>
+</head>
+<body>
+    <form method="post" action="http://192.168.1.13/registered_1_2.aspx" id="form1" enctype="multipart/form-data">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="BGajG42FLURug49cKMT36ucPq+lEEBzcDTNCyD2B9IvkhzRGeFQflVhC+s9pg9q4qqFg2a31Wy89eIAUjpFVpHPKpF5acdRntcXW2FdTGncBR8UxRpNTWZxN07WHko55rOYcwXAA/GlrqnlYUb0aKEZc/2H0ImYnkL+zIfQ4iiUX1n6dA3qBe1gpsBxsAerc2XcGrXhe4CZ/MRxnMrknKyhLQ5swhcq5j7+/zqO5oWtNUTPyuvZe5dggZDuwgTeB">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="17CF9ED5">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="LpNwyVMrKKUbA27OUzYAZF+IL0gbTaTrQG4RFDPbsknmB+ft12Ne4ox39EVCaOnugsXIYoh/y81Cf/BwOKTmtMNNErLcUA7Fq3UUMEZD874mt6ZF5uDhN4JjUF64xFqSTKdvvwWGocPxrpYW0UIjD9DAR6KhPfpEZIPKh7hqPe6jucTOC41KbZCeHrGLOVuciOdpdNExithN5jALOasxUBywSFOaxyDfJuJKxMTym412ifoL0aMi+nEo2n2so8j/g+PjS1wS5Jm1aW9f33G3/+sFozpClo04Y/vtcQ/S5o62a57QHzcmA/xA2AOvP2HEejFnxdIqKxNYKaNxR+pMesFoE6799Ki7re89de+fAZaWBTMMlBp76ny/RlWl6NttIH1lIBr+Ap+/WY7qEz8vzg==">
+</div>
+                 <div id="header">
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="left" width="15%">
+                                
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="5%">&nbsp;</td>
+                                        <td><span id="Label_logo" onclick="javascript:self.location=&#39;home.aspx&#39;;" style="color:White;font-family:Arial Black;font-size:XX-Large;font-weight:bold;cursor:pointer;">RiN</span></td>
+                                    </tr>
+                                </tbody></table>
+                            </td><!--rin end-->
+                            <td width="55%">
+                                &nbsp;</td>
+                            <td class="header-right">
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td class="topnav_right">
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">マイへ一ン</button>
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">メッセ一ジ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog_m()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">お知らせ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">ヘルプ</button>
+                                        </td>
+                                         <td class="icon_right"><i class="fa fa-bell-o" style="font-size:30px; color: white;cursor: pointer;" onclick="ShowSidebarRight()"></i>
+                                         </td>
+
+
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    </div>
+
+
+
+ <div id="div_sidebar_right">
+    <div id="sidebar_right">
+        <table style="width: 100%; margin-top: 4em;">
+            <tbody>
+                <tr>
+                    <td>
+                         <button type="button" style="border-style: none; background-color:#E7E7E7 ;  cursor: pointer;">マイへ一ン</button>
+                    </td>
+                </tr> 
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">メッセ一ジ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">お知らせ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7; cursor: pointer;">ヘルプ</button>
+                    </td>
+                </tr>     
+            </tbody>
+         </table>
+</div><!--End sidebar_right--> 
+</div><!--End div_sidebar_right-->
+
+    <div>
+    
+        <table class="main" style="width:100%;">
+            <tbody><tr>
+                <td style="width: 25%">&nbsp;</td>
+                <td align="center" class="style1" width="50%">
+                    <img id="Image1" src="./registered_1_2.aspx_files/3.PNG">
+                </td>
+                <td style="width: 25%">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td colspan="3" align="center">
+                                <br>
+                                <span id="Label1" style="color:#FF5050;font-weight:bold;">書類提出</span>
+                                    <br>
+                                    <br>
+                                    </td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">
+                            </td>
+                            <td>
+<div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
+  <h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+<table style="width:100%;">
+          <tbody><tr>
+              <td style="width: 15%"> 
+      <img id="Image5" src="./registered_1_2.aspx_files/checked1.png"></td>
+              <td align="center" style="width: 70%">ご本人の身分証明書&nbsp; <span id="Label12" style="color:#FF5050;font-size:XX-Small;">※必須</span>
+                                    <span id="image_Label" style="color:Red;font-weight:bold;"></span>
+                                    </td>
+              <td style="width: 15%">
+                                <a id="hy" href="javascript:void(0);" target="_blank" style="font-size:Small;text-decoration:none;">詳しく見る</a>
+                                                </td>
+          </tr>
+      </tbody></table>
+    </h3>
+  <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 176px;">
+    <p>
+        </p><table style="width:100%;">
+            <tbody><tr>
+                <td style="width: 80%"><img id="Image2" src="./registered_1_2.aspx_files/1.PNG"></td>
+                <td align="center" style="width: 20%">
+                    <label class="file-upload">
+            <span><strong>アップロード</strong></span>
+            <input type="file" name="fuDocument" id="fuDocument" onchange="UploadFile(this);">
+             </label>
+                             <br>
+                                <input type="submit" name="btnUploadDoc" value="Upload" onclick="ShowProgressBar();" id="btnUploadDoc" style="display: none;">
+                                
+                                <img id="type0_Image" src="http://192.168.1.13/registered_1_2.aspx" style="height:100px;width:150px;">
+                               
+                                 <br>
+                               
+                                <br>
+                </td>
+            </tr>
+        </tbody></table>
+      <p></p>
+  </div>
+  <h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+     <table style="width:100%;">
+          <tbody><tr>
+              <td style="width: 15%"> 
+      <img id="Image7" src="./registered_1_2.aspx_files/checked1.png"></td>
+              <td align="center" style="width: 70%">颜写真1枚&nbsp;
+                                <span id="Label13" style="color:#FF5050;font-size:XX-Small;">※必須</span>
+                                    <span id="image_Label0" style="color:Red;font-weight:bold;"></span>
+                                    </td>
+              <td style="width: 15%">
+                                <a id="hy0" href="javascript:void(0);" target="_blank" style="font-size:Small;text-decoration:none;">詳しく見る</a>
+                                                </td>
+          </tr>
+      </tbody></table>
+    </h3>
+  <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 176px;">
+    <p>
+        </p><table style="width:100%;">
+            <tbody><tr>
+                <td style="width: 80%"><img id="Image3" src="./registered_1_2.aspx_files/2.PNG" style="height:78px;width:261px;"></td>
+                <td align="center" style="width: 20%">
+                    <label class="file-upload">
+            <span><strong>アップロード</strong></span>
+            <input type="file" name="fuDocument1" id="fuDocument1" onchange="UploadFile1(this);">
+             </label>
+                             <br>
+                                <input type="submit" name="btnUploadDoc1" value="Upload" onclick="ShowProgressBar();" id="btnUploadDoc1" style="display: none;">
+                                
+                                <img id="type1_Image" src="http://192.168.1.13/registered_1_2.aspx" style="height:100px;width:100px;">
+                               
+                                 <br>
+                               
+                                <br>
+                </td>
+            </tr>
+        </tbody></table>
+      <p></p>
+  </div>
+    <h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-5" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+     <table style="width:100%;">
+          <tbody><tr>
+              <td style="width: 15%"> 
+      <img id="Image11" src="./registered_1_2.aspx_files/checked1.png"></td>
+              <td align="center" style="width: 70%">資格者証&nbsp;
+                                <span id="Label2" style="color:#FF5050;font-size:XX-Small;">※必須</span>
+                                    <span id="image_Label1" style="color:Red;font-weight:bold;"></span>
+                                    </td>
+              <td style="width: 15%">
+                                <a id="hy1" href="javascript:void(0);" target="_blank" style="font-size:Small;text-decoration:none;">詳しく見る</a>
+                                                </td>
+          </tr>
+      </tbody></table>
+    </h3>
+  <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none; height: 176px;">
+    <p>
+        </p><table style="width:100%;">
+            <tbody><tr>
+                <td style="width: 80%"><img id="Image12" src="./registered_1_2.aspx_files/1.PNG" style="height:78px;width:261px;"></td>
+                <td align="center" style="width: 20%">
+                    <label class="file-upload">
+            <span><strong>アップロード</strong></span>
+            <input type="file" name="fuDocument2" id="fuDocument2" onchange="UploadFile2(this);">
+             </label>
+                             <br>
+                                <input type="submit" name="btnUploadDoc2" value="Upload" onclick="ShowProgressBar();" id="btnUploadDoc2" style="display: none;">
+                                
+                                <img id="type2_Image" src="http://192.168.1.13/registered_1_2.aspx" style="height:100px;width:100px;">
+                               
+                                 <br>
+                               
+                                <br>
+                </td>
+            </tr>
+        </tbody></table>
+      <p></p>
+  </div>
+</div>
+                                &nbsp;</td>
+                            <td style="width:10%;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td align="center">
+                                <span id="Label10" style="color:#FF5050;font-weight:bold;">報酬のお支払い先</span>
+                                &nbsp;
+                                <span id="Label11" style="color:#FF5050;font-size:XX-Small;">※必須</span>
+                                            <br>
+                                            <br>
+                                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                             <td>&nbsp;</td>
+                            <td style="position:relative;display:block">
+                                <div style="position:absolute;background-color: #000;z-index: 999998; opacity: 0.8; width: 100%; height: 100%;text-align: center;">
+                                   <br><br><br><br>
+                                     <span style="color:white;">クローズドβ 版では直接ご当人同士でお支払いください。</span>
+                                </div>
+                                <div style="background-color: #CCCCCC">
+                                    <table style="width: 100%;">
+                                        <tbody><tr>
+                                            <td style="width: 5%; height: 5%">&nbsp;</td>
+                                            <td style="height: 5%">&nbsp;</td>
+                                            <td style="width: 5%; height: 5%">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+
+                                    <table style="width:100%;">
+                                        <tbody><tr>
+                                            <td style="width: 20%" valign="top">
+                                                <span id="Label14">種類</span>
+                                                <br>
+                                            </td>
+                                            <td style="width: 40%" valign="top">
+                                                <table id="bank_type_RadioButtonList">
+	<tbody><tr>
+		<td><input id="bank_type_RadioButtonList_0" type="radio" name="bank_type_RadioButtonList" value="銀行"><label for="bank_type_RadioButtonList_0">銀行</label></td><td><input id="bank_type_RadioButtonList_1" type="radio" name="bank_type_RadioButtonList" value="ゆうちょ"><label for="bank_type_RadioButtonList_1">ゆうちょ</label></td>
+	</tr>
+</tbody></table>
+                                    <span id="bank_type_Label" style="color:Red;font-weight:bold;"></span>
+                                            </td>
+                                            <td style="width: 40%" valign="top">
+                                                <table style="width:100%;">
+                                                    <tbody><tr>
+                                                        <td style="width: 10%">(</td>
+                                                        <td>
+                                                <table id="bank_type_detail_RadioButtonList">
+	<tbody><tr>
+		<td><input id="bank_type_detail_RadioButtonList_0" type="radio" name="bank_type_detail_RadioButtonList" value="普通"><label for="bank_type_detail_RadioButtonList_0">普通</label></td><td><input id="bank_type_detail_RadioButtonList_1" type="radio" name="bank_type_detail_RadioButtonList" value="当座"><label for="bank_type_detail_RadioButtonList_1">当座</label></td>
+	</tr>
+</tbody></table>
+                                                        </td>
+                                                        <td style="width: 10%">)</td>
+                                                    </tr>
+                                                </tbody></table>
+                                    <span id="bank_type_detail_Label" style="color:Red;font-weight:bold;"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top">
+                                                <span id="Label15">金融機関名</span>
+                                                <br>
+                                            </td>
+                                            <td valign="top">
+                                <input name="bank_name_TextBox" type="text" id="bank_name_TextBox" class="textbox" placeholder="例) はてな銀行" style="height:20px;width:90%;">
+                                                <br>
+                                    <span id="bank_name_Label" style="color:Red;font-weight:bold;"></span>
+                                            </td>
+                                            <td valign="top">
+                                                <table style="width:100%;">
+                                                    <tbody><tr>
+                                                        <td style="width: 35%">
+                                                <span id="Label18">支店名</span>
+                                                        </td>
+                                                        <td style="width: 65%">
+                                <input name="bank_name_detail_TextBox" type="text" id="bank_name_detail_TextBox" class="textbox" placeholder="例) 新宿支店" style="height:20px;width:100%;">
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                    <span id="bank_name_detail_Label" style="color:Red;font-weight:bold;"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top">
+                                                <span id="Label16">口座番号</span>
+                                                <br>
+                                            </td>
+                                            <td colspan="2" valign="top">
+                                <input name="bank_number_TextBox" type="text" id="bank_number_TextBox" class="textbox" placeholder="番号をハイフン無しで記入" style="height:20px;width:100%;">
+                                                <br>
+                                    <span id="bank_number_Label" style="color:Red;font-weight:bold;"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top">
+                                                <span id="Label17">名義人</span>
+                                                <br>
+                                            </td>
+                                            <td colspan="2" valign="top">
+                                <input name="bank_person_TextBox" type="text" id="bank_person_TextBox" class="textbox" placeholder="例) タナカ トーリム             ※全角カタカナ" style="height:20px;width:100%;">
+                                                <br>
+                                    <span id="bank_person_Label" style="color:Red;font-weight:bold;"></span>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 5%; height: 5%">&nbsp;</td>
+                                            <td style="height: 5%">&nbsp;</td>
+                                            <td style="width: 5%; height: 5%">&nbsp;</td>
+                                        </tr>
+                                    </tbody></table>
+
+                                </div>
+                                
+                             </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                             <td>&nbsp;</td>
+                            <td align="center">
+                                <br>
+                                    <span id="result_Label" style="color:Red;font-weight:bold;"></span>
+                                <br>
+                                <input type="submit" name="Button2" value="保存して次へ" onclick="ShowProgressBar();" id="Button2" class="file-upload" style="width:50%;">
+                                <br>
+                             </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody></table>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody></table>
+    
+    </div>
+        <div id="divProgress" style="text-align:center; display: none; position: fixed; top: 50%;  left: 50%;">
+    <img id="imgLoading" src="./registered_1_2.aspx_files/loading.gif">
+    <br>
+    <font color="#1B3563" size="2px">資料処理中</font>
+</div>
+<div id="divMaskFrame" style="background-color: #F2F4F7; display: none; left: 0px;
+    position: absolute; top: 0px;">
+</div>
+    </form>
+
+
+<div class="selection_bubble_root" style="display: none;"></div>
+
+<script>
+   function ShowSidebarRight(){
+        var div = document.getElementById('div_sidebar_right');
+         if (div.style.display == 'block') {
+            div.setAttribute("style", "display:none");
+
+        }
+        else {
+            div.setAttribute("style", "display:block; ");
+        }
+    }
+</script>
+</body></html>

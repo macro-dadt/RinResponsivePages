@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0039)http://192.168.1.13/registered_1_1.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+
+</title>
+    <style type="text/css">
+          #header{
+background-color:#ea9494;
+width: 100%;
+height:80px;
+text-align:center;
+line-height:80px;
+position: fixed;
+top:0;
+left: 0;
+z-index: 9999;
+}
+.icon_right{
+    display: none
+}
+#div_sidebar_right{
+    display:none;
+}
+#sidebar_right{
+    display: none;
+}
+.topnav_right{
+        position: relative;
+     bottom: .3em;  
+    }
+.main{
+    position: relative;
+    margin: 100px auto;
+}
+ #Label_logo{
+        display: block;
+        position: relative;
+        bottom: .2em;
+    }
+    img {
+    width: 100%;
+    height: auto;
+}
+@media (max-width: 680px){
+.main{
+    position: relative;
+    margin: 80px auto;
+}
+#header{
+        height: 60px;
+    }
+.style1{
+    display: none;
+}
+#div_sidebar_right{
+    width: 100px;
+    height: 100%;
+    position: relative;
+    float: right;
+    z-index: 9997;
+    display: none; 
+    }
+#sidebar_right{
+width: 100%;
+background-color:#e7e7e7;
+z-index: 9998;
+text-align:left;
+position: fixed;
+top: 1em;
+display: block;
+}
+#Label_logo{
+        display: block;
+        position: relative;
+        bottom: 0.5em;
+    }
+.icon_right{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 1em;
+    }
+.topnav_right{
+        display: none;
+    }
+
+
+}/*--------------------------end media*/
+        .textbox { 
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+  } 
+          input:focus 
+  {
+      border: 2px solid #AA88FF;
+    background-color: #ff7575;
+    }   
+    </style> 
+<link rel="stylesheet" href="./registered_1_1.aspx_files/file-upload.css" type="text/css"><link rel="stylesheet" href="./registered_1_1.aspx_files/jquery-ui.css">
+      <script src="./registered_1_1.aspx_files/jquery-1.12.4.js.download"></script>
+  <script src="./registered_1_1.aspx_files/jquery-ui.js.download"></script>
+    <script type="text/javascript">
+
+        function UploadFile(fileUpload) {
+            if (fileUpload.value != '') {
+                document.getElementById("btnUploadDoc").click();
+            }
+        }
+        // 顯示讀取遮罩
+        function ShowProgressBar() {
+            displayProgress();
+            displayMaskFrame();
+        }
+
+        // 隱藏讀取遮罩
+        function HideProgressBar() {
+            var progress = $('#divProgress');
+            var maskFrame = $("#divMaskFrame");
+            progress.hide();
+            maskFrame.hide();
+        }
+        // 顯示讀取畫面
+        function displayProgress() {
+            var w = $(document).width();
+            var h = $(window).height();
+            var progress = $('#divProgress');
+            progress.css({ "z-index": 999999, "top": (h / 2) - (progress.height() / 2), "left": (w / 2) - (progress.width() / 2) });
+            progress.show();
+        }
+        // 顯示遮罩畫面
+        function displayMaskFrame() {
+            var w = $(window).width();
+            var h = $(document).height();
+            var maskFrame = $("#divMaskFrame");
+            maskFrame.css({ "z-index": 999998, "opacity": 0.7, "width": w, "height": h });
+            maskFrame.show();
+        }
+
+    </script>
+</head>
+<body>
+    <form method="post" action="http://192.168.1.13/registered_1_1.aspx" id="form1" enctype="multipart/form-data">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="TfJGTvCIaWYV4O2eyXu2RC0mv4oG+Vo8qxz2Cumnf3vkGgFKhN8fyzarO1C7pND6k7o9F8SYj5Tiah6kiwNCKuWo3eQHq/SdWiXGJKtJZ5DIGmJL190/OKfaUXtTsrP60GolBNsW70WEOEj24Z4f2gD47TDaVrOy57Ly11vJEqN6eOgf+anioR0zJv5ttiUpQ3FAS3Pfk+saxJ9aX7vS1gkMlnxDHUtHGYAPDrnRhId3Sj2uMVQY0eZnqgaJeKh3">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="8B671A5A">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Tf5HX6GA2vEf5fr839jtD4mYYJQcygrlKYAbxHU96MX5PGAI+L9fdns95NwAIG7xFgCLnTEzS4EfVtyBpq1yRJcjI7GtL9VzWXJy7Yibr5rKPqu+OK+i/yj8Gt0TQjy9/nR5oHdvnPPG7C27YZog27q/DlRc+1Q6Zdhdd/Q3vh72AAgfFK/8Lj96ICWXzyaz">
+</div>
+                 <div id="header">
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="left" width="15%">
+                                
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="5%">&nbsp;</td>
+                                        <td><span id="Label_logo" onclick="javascript:self.location=&#39;home.aspx&#39;;" style="color:White;font-family:Arial Black;font-size:XX-Large;font-weight:bold;cursor:pointer;">RiN</span></td>
+                                    </tr>
+                                </tbody></table>
+                            </td><!--rin end-->
+                            <td width="55%">
+                                &nbsp;</td>
+                            <td class="header-right">
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td class="topnav_right">
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">マイへ一ン</button>
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">メッセ一ジ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog_m()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">お知らせ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">ヘルプ</button>
+                                        </td>
+                                         <td class="icon_right"><i class="fa fa-bell-o" style="font-size:30px; color: white;cursor: pointer;" onclick="ShowSidebarRight()"></i>
+                                         </td>
+
+
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    </div>
+
+
+ <div id="div_sidebar_right">
+    <div id="sidebar_right">
+        <table style="width: 100%; margin-top: 4em;">
+            <tbody>
+                <tr>
+                    <td>
+                         <button type="button" style="border-style: none; background-color:#E7E7E7 ;  cursor: pointer;">マイへ一ン</button>
+                    </td>
+                </tr> 
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">メッセ一ジ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">お知らせ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7; cursor: pointer;">ヘルプ</button>
+                    </td>
+                </tr>     
+            </tbody>
+         </table>
+</div><!--End sidebar_right--> 
+</div><!--End div_sidebar_right-->
+
+    <div>
+        <table class="main" class="main_table" style="width:100%;">
+            <tbody><tr>
+                <td class="style1" class="space">
+                </td>
+                <td align="center" class="style1" width="50%">
+                    <img id="Image1" src="./registered_1_1.aspx_files/2.PNG">
+                </td>
+                <td class="style1" class="space">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="center">
+                                <br>
+                                <span id="Label1" style="color:#FF5050;font-weight:bold;">預かりの様子がわかる写真のアップ口ード</span>
+                                    <br>
+                                    <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="border-style: solid; border-width: thin">
+                                 <label class="file-upload">
+            <span><strong>アップロード</strong></span>
+            <input type="file" multiple="multiple" name="fuDocument" id="fuDocument" onchange="UploadFile(this);">
+             </label>
+                             <br>
+                                <input type="submit" name="btnUploadDoc" value="Upload" onclick="ShowProgressBar();" id="btnUploadDoc" style="display: none;">
+                                
+                                 <div id="Panel1" style="height:100px;overflow:auto;">
+	
+                                 
+</div>
+                               
+                                 <br>
+                                 <span id="Label25" style="font-size:XX-Small;">もしくは 画像 を ドロップ</span>
+                               
+                                 <br>
+                               
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <br>
+                                <span id="Label2" style="color:#FF5050;font-weight:bold;">自己紹介文の作成</span>
+                                    <br>
+                                    <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span id="Label3">ひと言コメント</span>
+                                <br>
+                                <input name="title_TextBox" type="text" id="title_TextBox" class="textbox" placeholder="例)3人の子育て経験!乳幼児も見れます" style="height:20px;width:100%;">
+                                    <br><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span id="Label4">自己総会文</span>
+                                <br>
+                                <textarea name="myself_content_TextBox" rows="2" cols="20" id="myself_content_TextBox" class="textbox" placeholder="例) はじめまして、この度自分の子どもが大学生になったので、時間 に余裕ができました。子どもが好きなので子どもに関わる仕事をした いと思って今回参加させて頂きあmした。子育て経験豊富で、乳幼児 の預りも可能です。ぜひご連絡ください。" style="height:80px;width:100%;"></textarea>
+                                    <br><br>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td style="width:10%;">
+                            </td>
+                            <td>
+
+                                &nbsp;</td>
+                            <td style="width:10%;">
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>&nbsp;</td>
+                            <td align="center">
+                                    <span id="result_Label" style="color:Red;font-weight:bold;"></span>
+                                <br>
+                                <input type="submit" name="Button2" value="保存して次へ" onclick="ShowProgressBar();" id="Button2" class="file-upload" style="width:50%;">
+                                <br>
+                             </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody></table>
+                </td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+        </tbody></table>
+    
+    </div>
+        <div id="divProgress" style="text-align:center; display: none; position: fixed; top: 50%;  left: 50%;">
+    <img id="imgLoading" src="./registered_1_1.aspx_files/loading.gif">
+    <br>
+    <font color="#1B3563" size="2px">資料処理中</font>
+</div>
+<div id="divMaskFrame" style="background-color: #F2F4F7; display: none; left: 0px;
+    position: absolute; top: 0px;">
+</div>
+    </form>
+
+
+<div class="selection_bubble_root" style="display: none;"></div>
+<script>
+   function ShowSidebarRight(){
+        var div = document.getElementById('div_sidebar_right');
+         if (div.style.display == 'block') {
+            div.setAttribute("style", "display:none");
+
+        }
+        else {
+            div.setAttribute("style", "display:block;");
+        }
+    }
+</script>
+
+</body></html>

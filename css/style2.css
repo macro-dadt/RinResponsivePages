@@ -1,0 +1,237 @@
+@charset "UTF-8";
+/*
+ * jQuery File Upload Plugin CSS Example
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+body {
+  padding-top: 60px;
+}
+#sitebody{
+width:100%;
+height:100%;
+margin:0 auto;
+font-size:13px;
+}
+#header{
+background-color:#ea9494;
+position: fixed;
+height:80px;
+text-align:center;
+line-height:70px;
+}
+#sidebar_left{
+background-color:#e7e7e7;
+position: fixed;
+width:15%;
+height:100%;
+text-align:left;
+line-height:20px;
+float:left;
+}
+#sidebar_right{
+background-color:#F2FFF2;
+position: fixed;
+width:20%;
+height:100%;
+text-align:center;
+float:right;
+}
+#content{
+margin-left:15%;
+margin-right:20%;
+height:100%;
+background-color:#FFFFFF;
+text-align:left;
+}
+@media (max-width: 680px){
+
+    #sidebar_left{
+    display: none;
+    }
+    #sidebar_right{
+    display: none;
+    }
+    tr td.topbar_right{
+        display: none;
+    }
+    tr td.icon{
+        display:initial;
+    }
+    table.topbar_right{
+        display: none;
+    }
+}
+.input-search{
+    margin-left:15%;
+    margin-right:30%;
+}
+.navbar-toggle {
+  background-color: transparent;
+  border-color: transparent;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  color: white;
+  font-size: 12px;
+}
+.navbar-header{
+    height:80px !important;
+}
+.navbar-brand{
+    font-size:12px !important;
+    padding-top:10px !important; padding-bottom:10px !important;
+    height:40px !important;
+}
+.navbar-nav  li  a {padding-top:10px !important; padding-bottom:10px !important;}
+.navbar {min-height:40px !important}
+.navbar-toggle{
+    padding:5px !important;
+}
+
+            #white-background{
+                display: none;
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                background-color: #fefefe;
+                opacity: 0.7;
+                z-index: 9999;
+            }
+
+            #dlgbox{
+                /*initially dialog box is hidden*/
+                display: none;
+                position: fixed;
+                width: 480px;
+                z-index: 9999;
+                border-radius: 10px;
+                background-color: #7c7d7e;
+            }
+            
+            #dlg-header{
+                background-color: #f48686;
+                color: white;
+                font-size: 20px;
+                padding: 10px;
+                margin: 10px 10px 0px 10px;
+            }
+            
+            #dlg-body{
+                background-color: white;
+                color: black;
+                font-size: 14px;
+                padding: 10px;
+                margin: 0px 10px 0px 10px;
+            }
+            
+            #dlg-footer{
+                background-color: #f2f2f2;
+                text-align: center;
+                padding: 10px;
+                margin: 0px 10px 10px 10px;
+            }
+            
+            #dlg-footer button{
+                background-color: #f48686;
+                color: white;
+                padding: 5px;
+                border: 0px;
+            }
+
+
+
+            #dlgbox1{
+                /*initially dialog box is hidden*/
+                display: none;
+                position: fixed;
+                width: 480px;
+                z-index: 9999;
+                border-radius: 10px;
+                background-color: #7c7d7e;
+            }
+            
+            #dlg-header1{
+                background-color: #f48686;
+                color: white;
+                font-size: 20px;
+                padding: 10px;
+                margin: 10px 10px 0px 10px;
+            }
+            
+            #dlg-body1{
+                background-color: white;
+                color: black;
+                font-size: 14px;
+                padding: 10px;
+                margin: 0px 10px 0px 10px;
+            }
+            
+            #dlg-footer1{
+                background-color: #f2f2f2;
+                text-align: center;
+                padding: 10px;
+                margin: 0px 10px 10px 10px;
+            }
+            
+            #dlg-footer1 button{
+                background-color: #f48686;
+                color: white;
+                padding: 5px;
+                border: 0px;
+            }
+
+
+             #dlgbox_login{
+                /*initially dialog box is hidden*/
+                display: none;
+                position: fixed;
+                width: 480px;
+                z-index: 9999;
+                border-radius: 10px;
+                background-color: #7c7d7e;
+            }
+            
+            #dlg-header_login{
+                background-color: #ffffff;
+                color: white;
+                font-size: 20px;
+                padding: 10px;
+                margin: 10px 10px 0px 10px;
+            }
+            
+            #dlg-body_login{
+                background-color: white;
+                color: black;
+                text-align: center;
+                font-size: 14px;
+                padding: 10px;
+                margin: 0px 10px 0px 10px;
+            }
+            
+            #dlg-footer_login{
+                background-color: #f2f2f2;
+                text-align: center;
+                padding: 10px;
+                margin: 0px 10px 10px 10px;
+            }
+            
+            #dlg-footer_login button{
+                background-color: #f48686;
+                color: white;
+                padding: 5px;
+                border: 0px;
+            }
+            #second_login_d{
+                /*initially dialog box is hidden*/
+                display: none;
+            }
+        
+

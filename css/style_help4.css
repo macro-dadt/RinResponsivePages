@@ -1,0 +1,286 @@
+#header{
+background-color:#ea9494;
+position: relative;
+top: 0;
+z-index: 99999;
+height:7rem;
+width: 100%;
+text-align:center;
+line-height:70px;
+}
+
+#div_sidebar_right{
+    display:none;
+}
+#sidebar_right{
+    display: none;
+}
+.topnav_right{
+       line-height: 100%;
+    }
+
+
+#sidebar_right{
+
+background-color:#e7e7e7;
+width:100%;
+height:100%;
+z-index: 9998;
+text-align:center;
+position: fixed;
+
+}
+#menu_right{
+top: 6em;
+background-color:#e7e7e7;
+position: fixed;
+display: none;
+}
+.table_menu_left{
+    width: 100%;
+    margin-top: 1em;
+}
+ .rin{
+    position: absolute;
+    top: 0%;
+    left: 10px;
+ }
+#map{    
+}
+
+#content{
+margin-top: 40px;
+margin-left:15%;
+margin-right:20%;
+height:100%;
+background-color:#FFFFFF;
+text-align:left;
+}
+#menu_list{
+    vertical-align: middle;
+    list-style-type: none;
+    display: inline;
+}
+#menu_list li{
+	
+    display: inline;
+}
+#menu_list li button{
+    width: 15%;
+    margin-right: 5px;
+}
+#menu_list li button:hover{
+    background-color: blue
+}
+.table_menu_left_leave{
+    display:none;
+}
+td.header-right{
+    width: 50%;
+    white-space: nowrap;
+}
+td.header-midle{
+	width: 40%;
+}
+
+ td.header-midle input{
+      height: 50%;
+      width: 60%;   
+    }
+td.header-left{
+    width: 30%;
+}
+h3{
+    color:#ea9494;
+}
+
+td.icon_right{
+    display: none
+}
+td.icon_map{
+        display: none;
+    }
+.breadcrumb {
+    background-color: transparent;
+    color: white;
+    margin-top: 20px;
+    display: none
+}
+ .breadcrumb > li + li:before {
+background-color: transparent;
+   color: #CCCCCC;
+   content: "＞ ";
+   padding: 0 5px;
+}
+.breakcrumb_cover{
+	display: none;
+   
+}
+.main_left tr td button{
+    	
+    }
+.main{
+	}
+.cover_searchbox{
+		position: relative;
+		height: 100px;
+        
+		top:2em;
+		background-color: #555;
+
+	}
+ .button_side {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    width: 100%;
+    height: 60px;
+    border-top: .5px solid #555555;
+    border-bottom: .5px solid #555555;
+    border-radius: 2px;
+    border-left: 0px solid #555555;
+    border-right: 0px solid #555555;
+
+}
+
+.button_side:hover {
+    background-color:  #555555;
+    color: white;
+}
+.main_left{
+	position: fixed;
+	top: 0em;
+	min-width: 130px;
+	width: 15%;	
+}
+.icon_left{
+	display: none;
+}
+.預かりに関して .システムに関して .料金に関して .トラブルに関して .お問わせ{
+    display:none;
+}
+
+ol{
+  display: block;
+    list-style-type: circle;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;  
+}
+
+@media (max-width: 680px){
+    #sitebody{
+        font-size:10px;
+        overflow: scroll;
+    }
+    #header{
+        min-width: 200px;
+        height: 60px;
+    }
+.breadcrumb {
+    display: block;
+}
+#div_sidebar_right{
+    background-color:#e7e7e7;
+    width: 100px;
+    float: right;
+    display: none; 
+    }
+#sidebar_right{
+height: 300px;
+width: 100%;
+background-color:#e7e7e7;
+z-index: 9998;
+text-align:left;
+position: fixed;
+display: block;
+top: -3em;
+}
+.content{
+    display: none;
+}
+    #menu_list{
+        display: none;
+    }
+    #menu_list li{
+        margin: 5px auto;
+        float: right;
+        display: inline-block;
+        
+    }
+    #map{
+        display: none;
+    }
+    #content{
+        margin-top: 20px;
+        margin-left:0;
+        margin-right:0;
+        min-width: 480px;
+        width: 100%;
+    }
+    .rin{
+    position: absolute;
+    left: 40px;
+    top: 45%;
+   
+    }
+    .breakcrumb_cover{
+	display: inline-block;
+     background-color: #DDDD;
+}
+.cover_searchbox{
+	top: -20px;
+}
+    td.icon_left{
+       display:block;
+       position: absolute;
+       left: 0;
+       top: 35%;
+    }
+    td.header-left{
+        line-height: 100%;
+        width: 20%
+    
+    }
+    td.header-midle{
+    width: 60%;
+    position: absolute; 
+    top: 1px
+    }
+
+    td.header-right{
+        width: 20%
+    }
+    
+    td.header-midle input{
+        margin-left: 15%;
+      height: 20%;
+      width: 70%;
+     
+    
+    }
+    
+    td.icon_right{
+        display:block;
+        position:  absolute;
+        right: 2px;
+        top: 2px
+ 
+     
+        
+    }
+    
+    td.icon_map{
+        display:block;
+        position:  absolute;
+        right: 10%;
+        top: 2px
+ 
+    }
+
+    td.topnav_right{
+        display: none;
+    }
+}

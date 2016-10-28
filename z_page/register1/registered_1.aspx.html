@@ -1,0 +1,1188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://192.168.1.13/registered_1.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+
+</title>
+    <style type="text/css">
+         #header{
+background-color:#ea9494;
+width: 100%;
+height:80px;
+text-align:center;
+line-height:80px;
+position: fixed;
+top:0;
+left: 0;
+z-index: 9999;
+}
+.icon_right{
+    display: none
+}
+#div_sidebar_right{
+    display:none;
+}
+#sidebar_right{
+    display: none;
+}
+.topnav_right{
+        position: relative;
+     bottom: .3em;  
+    }
+.main{
+    position: relative;
+    margin: 100px auto;
+}
+ #Label_logo{
+        display: block;
+        position: relative;
+        bottom: .2em;
+    }
+img {
+    width: 100%;
+    height: auto;
+}
+.space{
+    width: 25%;
+}
+@media (max-width: 680px){
+.main{
+    position: relative;
+    margin: 80px auto;
+}
+.space{
+    display: none;
+}
+#header{
+        height: 60px;
+    }
+#div_sidebar_right{
+    width: 100px;
+    height: 100%;
+    position: relative;
+    float: right;
+    z-index: 9997;
+    display: none; 
+    }
+#sidebar_right{
+width: 100%;
+background-color:#e7e7e7;
+z-index: 9998;
+text-align:left;
+position: fixed;
+top: 1em;
+display: block;
+}
+#Label_logo{
+        display: block;
+        position: relative;
+        bottom: 0.5em;
+    }
+.icon_right{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 1em;
+    }
+.topnav_right{
+        display: none;
+    }
+
+
+}/*--------------------------end media*/
+        .textbox { 
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+  } 
+          input:focus 
+  {
+      border: 2px solid #AA88FF;
+    background-color: #ff7575;
+    }   
+        .auto-style1
+        {
+            height: 26px;
+        }
+    </style> 
+<link rel="stylesheet" href="./registered_1.aspx_files/file-upload.css" type="text/css"><link rel="stylesheet" href="./registered_1.aspx_files/jquery-ui.css">
+      <script src="./registered_1.aspx_files/jquery-1.12.4.js.download"></script>
+  <script src="./registered_1.aspx_files/jquery-ui.js.download"></script>
+    <script type="text/javascript">
+
+        // 顯示讀取遮罩
+        function ShowProgressBar() {
+            displayProgress();
+            displayMaskFrame();
+        }
+
+        // 隱藏讀取遮罩
+        function HideProgressBar() {
+            var progress = $('#divProgress');
+            var maskFrame = $("#divMaskFrame");
+            progress.hide();
+            maskFrame.hide();
+        }
+        // 顯示讀取畫面
+        function displayProgress() {
+            var w = $(document).width();
+            var h = $(window).height();
+            var progress = $('#divProgress');
+            progress.css({ "z-index": 999999, "top": (h / 2) - (progress.height() / 2), "left": (w / 2) - (progress.width() / 2) });
+            progress.show();
+        }
+        // 顯示遮罩畫面
+        function displayMaskFrame() {
+            var w = $(window).width();
+            var h = $(document).height();
+            var maskFrame = $("#divMaskFrame");
+            maskFrame.css({ "z-index": 999998, "opacity": 0.7, "width": w, "height": h });
+            maskFrame.show();
+        }
+
+    </script>
+</head>
+<body>
+    <form method="post" action="http://192.168.1.13/registered_1.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="gjucJSYdvwDCkGxOblalGlwgOacXNP31IQeKgFH2+f0R9TG4oDWzvp5fc1gp8f+nQU3/Juf6SAK3k4NPxUnBEQZ9XEBHu3YaOpO8xko8ODJXQc+TOxH9NWChcTU3md4qsise+G1HYdqOAlXxwf9Of1wX4ZLP3X3Sq1GM1JBkN2PoyatFYIcNHMJTTydjpdwTArKIkR/9TtkJlx1LfvajH67EQ52pl3dGYHBlxyOeJTcfqFIZguMJlngOfuClm2oeCLDE6rhlZj2cy4IbMhGEvx4yQBI2OIV7+hViS9W99onJ1uWnUtRwYlSMQDZ/a551fmBhSkVeZ9Cd43ViDHH2OhWmht9jExSiKVeSn2f1vSJ7IjiJQ4Cg3RMuRL8/+3DmZEv0vumzCmtGx/6izYz2g/bPWSwsIVaAIDyA2kD/3sk1WkdteLy2AMMUSqmqLZstI8caoWxTmAPVDQpSJEGNFjKxuMKLXLyE164Erwn/nQTowh+fYOj+oifXqcnFFcXXO+PgNH7t8/Xc6cVzZIXJPPi8oVKumGk3MAKUxRA+/pxgFCQzmAglMmxVhsCAf/KuPomvXwN148KDWiLzQ6wFEmZScCEOm+ydh24E+nb/ubnv4uOIMwmuOma1btkpociTWlGT6lX1OcqYaQHghIiqXvxqbXn+G+Vp+EhlYjs2O3XyqjURCFTSsaaUIhKlhVdTMA4y7HSnx/4U/3H1iDzNg7Z4cqfpwhtOJDLRYuFq3ygYOV7e7OIe/qdMELsma6JzTMazsT0aMH6/ybx/AvczzE5uTt8Spc8eRUzu7vCoQPiLNljQLCJgiouuY0U1Rg16JnI/eAn8xMBSsuEYdFc1RWw27D8EEyKwcFQTOHtliSt/ZfV2kda2TBDXB9zTwmmy">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="E360B719">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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">
+</div>
+        <div id="header">
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="left" width="15%">
+                                
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="5%">&nbsp;</td>
+                                        <td><span id="Label_logo" onclick="javascript:self.location=&#39;home.aspx&#39;;" style="color:White;font-family:Arial Black;font-size:XX-Large;font-weight:bold;cursor:pointer;">RiN</span></td>
+                                    </tr>
+                                </tbody></table>
+                            </td><!--rin end-->
+                            <td width="55%">
+                                &nbsp;</td>
+                            <td class="header-right">
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td class="topnav_right">
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">マイへ一ン</button>
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">メッセ一ジ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog_m()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">お知らせ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">ヘルプ</button>
+                                        </td>
+                                         <td class="icon_right"><i class="fa fa-bell-o" style="font-size:30px; color: white;cursor: pointer;" onclick="ShowSidebarRight()"></i>
+                                         </td>
+
+
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    </div>
+
+
+ <div id="div_sidebar_right">
+    <div id="sidebar_right">
+        <table style="width: 100%; margin-top: 4em;">
+            <tbody>
+                <tr>
+                    <td>
+                         <button type="button" style="border-style: none; background-color:#E7E7E7 ;  cursor: pointer;">マイへ一ン</button>
+                    </td>
+                </tr> 
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">メッセ一ジ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">お知らせ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7; cursor: pointer;">ヘルプ</button>
+                    </td>
+                </tr>     
+            </tbody>
+         </table>
+</div><!--End sidebar_right--> 
+</div><!--End div_sidebar_right-->
+
+    <div>
+    
+        <table class="main" style="width:100%;">
+            <tbody><tr>
+                <td class="space">
+                    &nbsp;</td>
+                <td width="50%" align="center">
+                    <img id="Image1" src="./registered_1.aspx_files/1.PNG">
+                </td>
+                <td class="space">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="space">
+                    &nbsp;</td>
+                <td width="50%">
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td colspan="2" align="center">
+                                <span id="Label1" style="color:#FF5050;font-weight:bold;">サポートできる内容をお選びください</span>
+                                    &nbsp;<span id="Label9" style="color:#FF5050;font-size:XX-Small;">※複数可</span>
+                                    <br>
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">
+                                &nbsp;</td>
+                            <td>
+                                <table id="CheckBoxList1">
+	<tbody><tr>
+		<td><input id="CheckBoxList1_0" type="checkbox" name="CheckBoxList1$0" value="送迎"><label for="CheckBoxList1_0">送迎</label></td><td><input id="CheckBoxList1_1" type="checkbox" name="CheckBoxList1$1" value="利用宅で預かる"><label for="CheckBoxList1_1">利用宅で預かる</label></td>
+	</tr><tr>
+		<td><input id="CheckBoxList1_2" type="checkbox" name="CheckBoxList1$2" value="自宅で預かる"><label for="CheckBoxList1_2">自宅で預かる</label></td><td><input id="CheckBoxList1_3" type="checkbox" name="CheckBoxList1$3" value="乳児預かり"><label for="CheckBoxList1_3">乳児預かり</label></td>
+	</tr>
+</tbody></table>
+                                <br>
+                                <br>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                        <hr>
+                        <table style="width:100%;">
+                        <tbody><tr>
+                        <td width="20%">
+                                &nbsp;</td>
+                            <td width="30%" align="left">
+                            <br>
+                                <span id="Label10">同時受入れ人数</span>
+                                </td>
+                            <td width="50%">
+                                <select name="howmany_DropDownList" id="howmany_DropDownList" class="textbox" style="height:20px;">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+
+</select>
+                                <span id="Label12">人</span>
+                                </td>
+                        </tr>
+                        <tr>
+                         <td width="20%">
+                                &nbsp;</td>
+                            <td align="left">
+                            <br>
+                                <span id="Label11">サポートできる年齢</span>
+                                <br>
+                                <br>
+                                </td>
+                            <td valign="middle">
+                                <select name="age_range_start_year_DropDownList" id="age_range_start_year_DropDownList" class="textbox" style="height:20px;">
+	<option value="0">0</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+
+</select>
+
+                                <span id="Label68">歳</span>
+
+                                <select name="age_range_start_month_DropDownList" id="age_range_start_month_DropDownList" class="textbox" style="height:20px;">
+	<option value="0">0</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+
+</select>
+
+                                <span id="Label13">ヶ月  ~</span>
+
+                                <select name="age_range_end_year_DropDownList" id="age_range_end_year_DropDownList" class="textbox" style="height:20px;">
+	<option value="0">0</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+
+</select>
+
+                                <span id="Label69">歳</span>
+
+                                <select name="age_range_end_month_DropDownList" id="age_range_end_month_DropDownList" class="textbox" style="height:20px;">
+	<option value="0">0</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+
+</select>
+
+                                <span id="Label70">ヶ月</span>
+
+                                </td>
+                        </tr>
+                        </tbody></table>
+                        <hr>
+                        <table style="width:100%;">
+                        <tbody><tr>
+                            <td colspan="2" align="center">
+                            <br>
+                                <span id="Label2" style="color:#FF5050;font-weight:bold;">ご経験と資格をお選びください</span>
+                                    &nbsp;<span id="Label3" style="color:#FF5050;font-size:XX-Small;">※複数可</span>
+                                    <br>
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">
+                                &nbsp;</td>
+                            <td>
+                                <table id="CheckBoxList2">
+	<tbody><tr>
+		<td><input id="CheckBoxList2_0" type="checkbox" name="CheckBoxList2$0" value="子育て経験"><label for="CheckBoxList2_0">子育て経験</label></td><td><input id="CheckBoxList2_1" type="checkbox" name="CheckBoxList2$1" value="障害児の預かり経験"><label for="CheckBoxList2_1">障害児の預かり経験</label></td>
+	</tr><tr>
+		<td><input id="CheckBoxList2_2" type="checkbox" name="CheckBoxList2$2" value="保育士資格"><label for="CheckBoxList2_2">保育士資格</label></td><td><input id="CheckBoxList2_3" type="checkbox" name="CheckBoxList2$3" value="幼稚園教諭資格"><label for="CheckBoxList2_3">幼稚園教諭資格</label></td>
+	</tr><tr>
+		<td><input id="CheckBoxList2_4" type="checkbox" name="CheckBoxList2$4" value="小学校教員資格"><label for="CheckBoxList2_4">小学校教員資格</label></td><td><input id="CheckBoxList2_5" type="checkbox" name="CheckBoxList2$5" value="医師．看護士資格"><label for="CheckBoxList2_5">医師．看護士資格</label></td>
+	</tr>
+</tbody></table>
+                                <br>
+                                <br>
+                                </td>
+                        </tr>
+                        </tbody></table>
+                        <hr>
+                        <table style="width:100%;">
+                        <tbody><tr>
+                            <td colspan="3" align="center">
+                            <br>
+                                <span id="Label4" style="color:#FF5050;font-weight:bold;">その他の特徴をお選びください</span>
+                                    &nbsp;<span id="Label5" style="color:#FF5050;font-size:XX-Small;">※複数可</span>
+                                    <br>
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td width="15%">
+                                &nbsp;</td>
+                            <td width="30%" valign="top">
+                                <table id="CheckBoxList3">
+	<tbody><tr>
+		<td><input id="CheckBoxList3_0" type="checkbox" name="CheckBoxList3$0" value="ペットあり"><label for="CheckBoxList3_0">ペットあり</label></td>
+	</tr><tr>
+		<td><input id="CheckBoxList3_1" type="checkbox" name="CheckBoxList3$1" value="自家用車送迎可"><label for="CheckBoxList3_1">自家用車送迎可</label></td>
+	</tr>
+</tbody></table>
+                                </td>
+                            <td valign="top">
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="15%">
+                                <span id="Label15">(</span>
+                                        </td>
+                                        <td width="70%">
+                                <table id="CheckBoxList4">
+	<tbody><tr>
+		<td><input id="CheckBoxList4_0" type="checkbox" name="CheckBoxList4$0" value="室內"><label for="CheckBoxList4_0">室內</label></td><td><input id="CheckBoxList4_1" type="checkbox" name="CheckBoxList4$1" value="室外"><label for="CheckBoxList4_1">室外</label></td>
+	</tr>
+</tbody></table>
+                                        </td>
+                                        <td width="15%">
+                                <span id="Label17">)</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                <span id="Label16">(</span>
+                                        </td>
+                                        <td>
+                                <input id="CheckBox1" type="checkbox" name="CheckBox1"><label for="CheckBox1">チャイルドシートあり</label>
+                                        </td>
+                                        <td>
+                                <span id="Label18">)</span>
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                        <br>
+                        <hr>
+                        <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="center">
+                            <br>
+                                <span id="Label6" style="color:#FF5050;font-weight:bold;">ルールを決めてください</span>
+                                    &nbsp;<br>
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span id="Label19">ルール</span>
+                                <br><br>
+                                <textarea name="baby_rule_TextBox" rows="2" cols="20" id="baby_rule_TextBox" class="textbox" placeholder="例) - お着替えを2着持ってきてください。 - お迎えが遅れる場合は連絡をください。" style="height:200px;width:100%;"></textarea>
+                                    <br><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span id="Label20">特記事項</span>
+                                <br><br>
+                                <textarea name="baby_notice_TextBox" rows="2" cols="20" id="baby_notice_TextBox" class="textbox" placeholder="例) - 家には猫がいます。 -熱が出た場合には大事のないようにお迎えに来てく ださい" style="height:100px;width:100%;"></textarea>
+                                    <br><br>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                    <hr>
+                        <table style="width:100%;">
+                        <tbody><tr>
+                            <td colspan="3" align="center">
+                            <br>
+                                <span id="Label14" style="color:#FF5050;font-weight:bold;">報酬金額を設定してください</span>
+                                    &nbsp;<br>
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">
+                                &nbsp;</td>
+                            <td width="60%">
+                                <br>
+                                <input name="money_TextBox" type="text" id="money_TextBox" style="height:100%;width:90%;">
+                                <br>
+                                </td>
+                            <td width="20%" valign="middle">
+                                <br>
+                                <span id="Label71">円 / 時間</span>
+                                <br>
+                            </td>
+
+                        </tr>
+                            <tr>
+                            <td width="20%">
+                                &nbsp;</td>
+                            <td colspan="2">
+                                <br>
+                                    <span id="money_Label" style="color:Red;font-weight:bold;"></span>
+
+                                <br>
+                                <span id="Label72" style="color:#999999;">相場は1時間800円~1200円となっております</span>
+                                <br>
+
+                        </td></tr>
+                        </tbody></table>
+                        <br>
+                        <hr>
+
+                        <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="center">
+                            <br>
+                                <span id="Label7" style="color:#FF5050;font-weight:bold;">サポート可能日</span>
+                                    &nbsp;<br>
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <span id="Label21">サポートできる曜日に✔マークをつけて時間を選択してください</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <br>
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td align="right">
+                                            <input id="week_of_day_CheckBox0" type="checkbox" name="week_of_day_CheckBox0"><label for="week_of_day_CheckBox0">月</label>
+                                        </td>
+                                        <td align="center">
+                                <select name="start_hour_DropDownList0" id="start_hour_DropDownList0" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label23">時</span>
+                                <select name="start_minute_DropDownList0" id="start_minute_DropDownList0" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label38">分  ~</span>
+                                <select name="end_hour_DropDownList0" id="end_hour_DropDownList0" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label46">時</span>
+                                <select name="end_minute_DropDownList0" id="end_minute_DropDownList0" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label54">分</span>
+                                        </td>
+                                        <td>
+                                            &nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">
+                                            <input id="week_of_day_CheckBox1" type="checkbox" name="week_of_day_CheckBox1"><label for="week_of_day_CheckBox1">火</label>
+                                        </td>
+                                        <td align="center">
+                                <select name="start_hour_DropDownList1" id="start_hour_DropDownList1" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label24">時</span>
+                                <select name="start_minute_DropDownList1" id="start_minute_DropDownList1" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label61">分  ~</span>
+                                <select name="end_hour_DropDownList1" id="end_hour_DropDownList1" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label47">時</span>
+                                <select name="end_minute_DropDownList1" id="end_minute_DropDownList1" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label55">分</span>
+                                        </td>
+                                        <td>
+                                            &nbsp;</td>
+                                    </tr>
+                                     <tr>
+                                        <td align="right">
+                                            <input id="week_of_day_CheckBox2" type="checkbox" name="week_of_day_CheckBox2"><label for="week_of_day_CheckBox2">水</label>
+                                         </td>
+                                        <td align="center">
+                                <select name="start_hour_DropDownList2" id="start_hour_DropDownList2" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label25">時</span>
+                                <select name="start_minute_DropDownList2" id="start_minute_DropDownList2" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label62">分  ~</span>
+                                <select name="end_hour_DropDownList2" id="end_hour_DropDownList2" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label48">時</span>
+                                <select name="end_minute_DropDownList2" id="end_minute_DropDownList2" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label56">分</span>
+                                         </td>
+                                        <td>
+                                            &nbsp;</td>
+                                    </tr>
+                                     <tr>
+                                        <td align="right">
+                                            <input id="week_of_day_CheckBox3" type="checkbox" name="week_of_day_CheckBox3"><label for="week_of_day_CheckBox3">木</label>
+                                         </td>
+                                        <td align="center">
+                                <select name="start_hour_DropDownList3" id="start_hour_DropDownList3" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label26">時</span>
+                                <select name="start_minute_DropDownList3" id="start_minute_DropDownList3" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label63">分  ~</span>
+                                <select name="end_hour_DropDownList3" id="end_hour_DropDownList3" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label49">時</span>
+                                <select name="end_minute_DropDownList3" id="end_minute_DropDownList3" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label57">分</span>
+                                         </td>
+                                        <td>
+                                            &nbsp;</td>
+                                    </tr>
+                                     <tr>
+                                        <td align="right">
+                                            <input id="week_of_day_CheckBox4" type="checkbox" name="week_of_day_CheckBox4"><label for="week_of_day_CheckBox4">金</label>
+                                         </td>
+                                        <td align="center">
+                                <select name="start_hour_DropDownList4" id="start_hour_DropDownList4" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label27">時</span>
+                                <select name="start_minute_DropDownList4" id="start_minute_DropDownList4" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label64">分  ~</span>
+                                <select name="end_hour_DropDownList4" id="end_hour_DropDownList4" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label50">時</span>
+                                <select name="end_minute_DropDownList4" id="end_minute_DropDownList4" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label58">分</span>
+                                         </td>
+                                        <td>
+                                            &nbsp;</td>
+                                    </tr>
+                                     <tr>
+                                        <td align="right">
+                                            <input id="week_of_day_CheckBox5" type="checkbox" name="week_of_day_CheckBox5"><label for="week_of_day_CheckBox5">土</label>
+                                         </td>
+                                        <td align="center">
+                                <select name="start_hour_DropDownList5" id="start_hour_DropDownList5" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label28">時</span>
+                                <select name="start_minute_DropDownList5" id="start_minute_DropDownList5" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label65">分  ~</span>
+                                <select name="end_hour_DropDownList5" id="end_hour_DropDownList5" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label51">時</span>
+                                <select name="end_minute_DropDownList5" id="end_minute_DropDownList5" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label59">分</span>
+                                         </td>
+                                        <td>
+                                            &nbsp;</td>
+                                    </tr>
+                                     <tr>
+                                        <td align="right" class="auto-style1">
+                                            <input id="week_of_day_CheckBox6" type="checkbox" name="week_of_day_CheckBox6"><label for="week_of_day_CheckBox6">日</label>
+                                         </td>
+                                        <td align="center" class="auto-style1">
+                                <select name="start_hour_DropDownList6" id="start_hour_DropDownList6" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label29">時</span>
+                                <select name="start_minute_DropDownList6" id="start_minute_DropDownList6" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label66">分  ~</span>
+                                <select name="end_hour_DropDownList6" id="end_hour_DropDownList6" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+
+</select>
+                                            <span id="Label52">時</span>
+                                <select name="end_minute_DropDownList6" id="end_minute_DropDownList6" class="textbox" style="height:20px;">
+	<option value="00">00</option>
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="45">45</option>
+
+</select>
+                                            <span id="Label60">分</span>
+                                         </td>
+                                        <td class="auto-style1">
+                                            </td>
+                                    </tr>
+                                </tbody></table>
+                                <br>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                        <br>
+                        <hr>
+                        <table style="width:100%;">
+                        <tbody><tr>
+                            <td colspan="2" align="center">
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                        <td width="20%">
+                                &nbsp;</td>
+                            <td>
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                    <span id="result_Label" style="color:Red;font-weight:bold;"></span>
+                                    <br>
+                                <input type="submit" name="Button2" value="保存して次へ" onclick="ShowProgressBar();" id="Button2" class="file-upload" style="width:50%;">
+                             </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+                <td class="space">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="space">
+                    &nbsp;</td>
+                <td width="50%">
+                    &nbsp;</td>
+                <td class="space">
+                    &nbsp;</td>
+            </tr>
+        </tbody></table>
+    
+    </div>
+                <div id="divProgress" style="text-align:center; display: none; position: fixed; top: 50%;  left: 50%;">
+    <img id="imgLoading" src="./registered_1.aspx_files/loading.gif">
+    <br>
+    <font color="#1B3563" size="2px">資料処理中</font>
+</div>
+<div id="divMaskFrame" style="background-color: #F2F4F7; display: none; left: 0px;
+    position: absolute; top: 0px;">
+</div>
+    </form>
+
+
+<div class="selection_bubble_root" style="display: none;"></div>
+<script>
+   function ShowSidebarRight(){
+        var div = document.getElementById('div_sidebar_right');
+         if (div.style.display == 'block') {
+            div.setAttribute("style", "display:none");
+
+        }
+        else {
+            div.setAttribute("style", "display:block; ");
+        }
+    }
+</script>
+
+
+</body></html>

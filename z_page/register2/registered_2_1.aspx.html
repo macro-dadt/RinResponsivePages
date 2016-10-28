@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://192.168.1.13/registered_2_1.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+
+</title>
+    <style type="text/css">
+         #header{
+background-color:#ea9494;
+width: 100%;
+height:80px;
+text-align:center;
+line-height:80px;
+position: fixed;
+margin-top:0 auto;
+top: 0;
+left: 0;
+z-index: 9999;
+}
+.icon_right{
+    display: none
+}
+#div_sidebar_right{
+    display:none;
+}
+#sidebar_right{
+    display: none;
+}
+.topnav_right{
+     position: relative;
+     bottom: .5em;  
+    }
+.main{
+    position: relative;
+    margin: 100px auto;
+}
+ #Label_logo{
+        display: block;
+        position: relative;
+        bottom: .2em;
+    }
+    img {
+    width: 100%;
+    height: auto;
+}
+@media (max-width: 680px){
+#header{
+        height: 60px;
+    }
+#div_sidebar_right{
+    width: 100px;
+    height: 100%;
+    position: relative;
+    float: right;
+    z-index: 9997;
+    display: none; 
+    }
+#sidebar_right{
+width: 100%;
+background-color:#e7e7e7;
+z-index: 9998;
+text-align:left;
+position: fixed;
+top: 1em;
+display: block;
+}
+#Label_logo{
+        display: block;
+        position: relative;
+        bottom: 0.5em;
+    }
+.icon_right{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -1em;
+    }
+.topnav_right{
+        display: none;
+    }
+
+
+}/*--------------------------end media*/
+.icon_right{
+    display: none
+}
+#div_sidebar_right{
+    display:none;
+}
+#sidebar_right{
+    display: none;
+}
+.topnav_right{
+       line-height: 100%;
+    }
+.main{
+    position: relative;
+    margin: 100px auto;
+}
+@media (max-width: 680px){
+#header{
+        height: 60px;
+    }
+#div_sidebar_right{
+    width: 100px;
+    height: 100%;
+    position: relative;
+    float: right;
+    z-index: 9997;
+    display: none; 
+    }
+#sidebar_right{
+width: 100%;
+background-color:#e7e7e7;
+z-index: 9998;
+text-align:left;
+position: fixed;
+top: 1em;
+display: block;
+}
+#Label_logo{
+        display: block;
+        position: relative;
+        bottom: 0.5em;
+    }
+.icon_right{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -1em;
+    }
+.topnav_right{
+        display: none;
+    }
+
+
+}/*--------------------------end media*/
+        .textbox { 
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+  } 
+          input:focus 
+  {
+      border: 2px solid #AA88FF;
+    background-color: #ff7575;
+    }   
+        </style> 
+    <link rel="stylesheet" href="./registered_2_1.aspx_files/file-upload.css" type="text/css"><link rel="stylesheet" href="./registered_2_1.aspx_files/jquery-ui.css">
+      <script src="./registered_2_1.aspx_files/jquery-1.12.4.js.download"></script>
+  <script src="./registered_2_1.aspx_files/jquery-ui.js.download"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $("#accordion").accordion({
+                collapsible: true, active: false, icons: false
+            });
+        });
+
+        function UploadFile(fileUpload) {
+            if (fileUpload.value != '') {
+                document.getElementById("btnUploadDoc").click();
+            }
+        }
+
+        function UploadFile1(fileUpload1) {
+            if (fileUpload1.value != '') {
+                document.getElementById("btnUploadDoc1").click();
+            }
+        }
+        function PopulateDays() {
+
+            var ddlMonth = document.getElementById("ddlMonth");
+                var ddlYear = document.getElementById("ddlYear");
+                var ddlDay = document.getElementById("ddlDay");
+                var y = ddlYear.options[ddlYear.selectedIndex].value;
+                var m = ddlMonth.options[ddlMonth.selectedIndex].value != 0;
+                if (ddlMonth.options[ddlMonth.selectedIndex].value != 0 && ddlYear.options[ddlYear.selectedIndex].value != 0) {
+                    var dayCount = 32 - new Date(ddlYear.options[ddlYear.selectedIndex].value, ddlMonth.options[ddlMonth.selectedIndex].value - 1, 32).getDate();
+                    ddlDay.options.length = 0;
+                    for (var i = 1; i <= dayCount; i++) {
+                        AddOption(ddlDay, i, i);
+                    }
+                }
+            }
+
+            function AddOption(ddl, text, value) {
+                var opt = document.createElement("OPTION");
+                opt.text = text;
+                opt.value = value;
+                ddl.options.add(opt);
+            }
+
+            function Validate(sender, args) {
+                var ddlMonth = document.getElementById("ddlMonth");
+        var ddlYear = document.getElementById("ddlYear");
+        var ddlDay = document.getElementById("ddlDay");
+        args.IsValid = (ddlDay.selectedIndex != 0 && ddlMonth.selectedIndex != 0 && ddlYear.selectedIndex != 0)
+    }
+
+        // 顯示讀取遮罩
+        function ShowProgressBar() {
+            displayProgress();
+            displayMaskFrame();
+        }
+
+        // 隱藏讀取遮罩
+        function HideProgressBar() {
+            var progress = $('#divProgress');
+            var maskFrame = $("#divMaskFrame");
+            progress.hide();
+            maskFrame.hide();
+        }
+        // 顯示讀取畫面
+        function displayProgress() {
+            var w = $(document).width();
+            var h = $(window).height();
+            var progress = $('#divProgress');
+            progress.css({ "z-index": 999999, "top": (h / 2) - (progress.height() / 2), "left": (w / 2) - (progress.width() / 2) });
+            progress.show();
+        }
+        // 顯示遮罩畫面
+        function displayMaskFrame() {
+            var w = $(window).width();
+            var h = $(document).height();
+            var maskFrame = $("#divMaskFrame");
+            maskFrame.css({ "z-index": 999998, "opacity": 0.7, "width": w, "height": h });
+            maskFrame.show();
+        }
+
+    </script>
+</head>
+<body>
+    <form method="post" action="http://192.168.1.13/registered_2_1.aspx" id="form1" enctype="multipart/form-data">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="081B8395">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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">
+</div>
+                <div id="header">
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="left" width="15%">
+                                
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="5%">&nbsp;</td>
+                                        <td><span id="Label_logo" onclick="javascript:self.location=&#39;home.aspx&#39;;" style="color:White;font-family:Arial Black;font-size:XX-Large;font-weight:bold;cursor:pointer;">RiN</span></td>
+                                    </tr>
+                                </tbody></table>
+                            </td><!--rin end-->
+                            <td width="55%">
+                                &nbsp;</td>
+                            <td class="header-right">
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td class="topnav_right">
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">マイへ一ン</button>
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">メッセ一ジ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog_m()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">お知らせ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">ヘルプ</button>
+                                        </td>
+                                         <td class="icon_right"><i class="fa fa-bell-o" style="font-size:30px; color: white;cursor: pointer;" onclick="ShowSidebarRight()"></i>
+                                         </td>
+
+
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    </div>
+
+
+     <div id="div_sidebar_right">
+    <div id="sidebar_right">
+        <table style="width: 100%; margin-top: 4em;">
+            <tbody>
+                <tr>
+                    <td>
+                         <button type="button" style="border-style: none; background-color:#E7E7E7 ;  cursor: pointer;">マイへ一ン</button>
+                    </td>
+                </tr> 
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">メッセ一ジ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">お知らせ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7; cursor: pointer;">ヘルプ</button>
+                    </td>
+                </tr>     
+            </tbody>
+         </table>
+</div><!--End sidebar_right--> 
+</div><!--End div_sidebar_right-->
+    <div>
+    
+        <table class="main" style="width:100%;">
+            <tbody><tr>
+                <td style="width: 25%">&nbsp;</td>
+                <td align="center" class="style1" width="50%">
+                    <img id="Image1" src="./registered_2_1.aspx_files/2.PNG">
+                </td>
+                <td style="width: 25%">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td colspan="3" align="center">
+                                <br>
+                                <span id="Label1" style="color:#FF5050;font-weight:bold;">書類提出</span>
+                                    &nbsp;<span id="Label19" style="color:#FF5050;font-size:XX-Small;">※必須</span>
+                                    <br>
+                                    <br>
+                                    </td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">
+                            </td>
+                            <td>
+<div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
+  <h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0">
+<table style="width:100%;">
+          <tbody><tr>
+              <td style="width: 15%"> 
+      <img id="Image5" src="./registered_2_1.aspx_files/checked1.png"></td>
+              <td align="center" style="width: 70%">ご本人の身分証明書<span id="image_Label" style="color:Red;font-weight:bold;"></span>
+                                    </td>
+              <td style="width: 15%">
+                                <a id="hy" href="javascript:void(0);" target="_blank" style="font-size:Small;text-decoration:none;">詳しく見る</a>
+                                                </td>
+          </tr>
+      </tbody></table>
+    </h3>
+  <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 208.889px;">
+    <p>
+        </p><table style="width:100%;">
+            <tbody><tr>
+                <td style="width: 80%"><img id="Image2" src="./registered_2_1.aspx_files/1.PNG"></td>
+                <td align="center" style="width: 20%">
+                    <label class="file-upload">
+            <span><strong>アップロード</strong></span>
+            <input type="file" name="fuDocument" id="fuDocument" onchange="UploadFile(this);">
+             </label>
+                             <br>
+                                <input type="submit" name="btnUploadDoc" value="Upload" onclick="ShowProgressBar();" id="btnUploadDoc" style="display: none;">
+                                
+                                <img id="type0_Image" src="http://192.168.1.13/registered_2_1.aspx" style="height:100px;width:150px;">
+                               
+                                 <br>
+                               
+                                <br>
+                </td>
+            </tr>
+        </tbody></table>
+      <p></p>
+  </div>
+  <h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1">
+     <table style="width:100%;">
+          <tbody><tr>
+              <td style="width: 15%"> 
+      <img id="Image7" src="./registered_2_1.aspx_files/checked1.png"></td>
+              <td align="center" style="width: 70%">颜写真1枚<span id="image_Label0" style="color:Red;font-weight:bold;"></span>
+                                    </td>
+              <td style="width: 15%">
+                                <a id="hy0" href="javascript:void(0);" target="_blank" style="font-size:Small;text-decoration:none;">詳しく見る</a>
+                                                </td>
+          </tr>
+      </tbody></table>
+    </h3>
+  <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 208.889px;">
+    <p>
+        </p><table style="width:100%;">
+            <tbody><tr>
+                <td style="width: 80%"><img id="Image3" src="./registered_2_1.aspx_files/2(1).PNG" style="height:78px;width:261px;"></td>
+                <td align="center" style="width: 20%">
+                    <label class="file-upload">
+            <span><strong>アップロード</strong></span>
+            <input type="file" name="fuDocument1" id="fuDocument1" onchange="UploadFile1(this);">
+             </label>
+                             <br>
+                                <input type="submit" name="btnUploadDoc1" value="Upload" onclick="ShowProgressBar();" id="btnUploadDoc1" style="display: none;">
+                                
+                                <img id="type1_Image" src="http://192.168.1.13/registered_2_1.aspx" style="height:100px;width:100px;">
+                               
+                                 <br>
+                               
+                                <br>
+                </td>
+            </tr>
+        </tbody></table>
+      <p></p>
+  </div>
+</div>
+                                &nbsp;</td>
+                            <td style="width:10%;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td align="center">
+                                <span id="Label10" style="color:#FF5050;font-weight:bold;">クレジットカードのご登録</span>
+                                &nbsp;
+                                <span id="Label11" style="color:#FF5050;font-size:XX-Small;">※必須</span>
+                                            <br>
+                                            <br>
+                                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                             <td>&nbsp;</td>
+                            <td style="position:relative;display:block">
+                                <div style="position:absolute;background-color: #000;z-index: 99; opacity: 0.8; width: 100%; height: 100%;text-align: center;">
+                                   <br><br><br><br>
+                                     <span style="color:white;">クローズドβ 版では直接ご当人同士でお支払いください。</span>
+                                </div>
+                                <div style="background-color: #CCCCCC">
+                                    <table style="width: 100%;">
+                                        <tbody><tr>
+                                            <td style="width: 5%; height: 5%">&nbsp;</td>
+                                            <td style="height: 5%">&nbsp;</td>
+                                            <td style="width: 5%; height: 5%">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+
+                                    <table style="width:100%;">
+
+                                        <tbody><tr>
+                                            <td style="width: 20%">
+                                                <span id="Label16">カード番号</span>
+                                                <br>
+                                                <br>
+                                            </td>
+                                            <td colspan="2">
+                                <input name="bank_number_TextBox" type="text" id="bank_number_TextBox" class="textbox" placeholder="カード番号をハイフン無しで記入" style="height:20px;width:100%;">
+                                                <br>
+                                    <span id="bank_number_Label" style="color:Red;font-weight:bold;"></span>
+                                                <br>
+                                            </td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>
+                                                <span id="Label15">有効期限</span>
+                                                <br>
+                                                <br>
+                                            </td>
+                                            <td style="width: 30%" valign="top">
+                                                <select name="ddlYear" id="ddlYear" class="textbox" onchange="PopulateDays()" style="height:20px;">
+	<option value="2116">2116</option>
+	<option value="2115">2115</option>
+	<option value="2114">2114</option>
+	<option value="2113">2113</option>
+	<option value="2112">2112</option>
+	<option value="2111">2111</option>
+	<option value="2110">2110</option>
+	<option value="2109">2109</option>
+	<option value="2108">2108</option>
+	<option value="2107">2107</option>
+	<option value="2106">2106</option>
+	<option value="2105">2105</option>
+	<option value="2104">2104</option>
+	<option value="2103">2103</option>
+	<option value="2102">2102</option>
+	<option value="2101">2101</option>
+	<option value="2100">2100</option>
+	<option value="2099">2099</option>
+	<option value="2098">2098</option>
+	<option value="2097">2097</option>
+	<option value="2096">2096</option>
+	<option value="2095">2095</option>
+	<option value="2094">2094</option>
+	<option value="2093">2093</option>
+	<option value="2092">2092</option>
+	<option value="2091">2091</option>
+	<option value="2090">2090</option>
+	<option value="2089">2089</option>
+	<option value="2088">2088</option>
+	<option value="2087">2087</option>
+	<option value="2086">2086</option>
+	<option value="2085">2085</option>
+	<option value="2084">2084</option>
+	<option value="2083">2083</option>
+	<option value="2082">2082</option>
+	<option value="2081">2081</option>
+	<option value="2080">2080</option>
+	<option value="2079">2079</option>
+	<option value="2078">2078</option>
+	<option value="2077">2077</option>
+	<option value="2076">2076</option>
+	<option value="2075">2075</option>
+	<option value="2074">2074</option>
+	<option value="2073">2073</option>
+	<option value="2072">2072</option>
+	<option value="2071">2071</option>
+	<option value="2070">2070</option>
+	<option value="2069">2069</option>
+	<option value="2068">2068</option>
+	<option value="2067">2067</option>
+	<option value="2066">2066</option>
+	<option value="2065">2065</option>
+	<option value="2064">2064</option>
+	<option value="2063">2063</option>
+	<option value="2062">2062</option>
+	<option value="2061">2061</option>
+	<option value="2060">2060</option>
+	<option value="2059">2059</option>
+	<option value="2058">2058</option>
+	<option value="2057">2057</option>
+	<option value="2056">2056</option>
+	<option value="2055">2055</option>
+	<option value="2054">2054</option>
+	<option value="2053">2053</option>
+	<option value="2052">2052</option>
+	<option value="2051">2051</option>
+	<option value="2050">2050</option>
+	<option value="2049">2049</option>
+	<option value="2048">2048</option>
+	<option value="2047">2047</option>
+	<option value="2046">2046</option>
+	<option value="2045">2045</option>
+	<option value="2044">2044</option>
+	<option value="2043">2043</option>
+	<option value="2042">2042</option>
+	<option value="2041">2041</option>
+	<option value="2040">2040</option>
+	<option value="2039">2039</option>
+	<option value="2038">2038</option>
+	<option value="2037">2037</option>
+	<option value="2036">2036</option>
+	<option value="2035">2035</option>
+	<option value="2034">2034</option>
+	<option value="2033">2033</option>
+	<option value="2032">2032</option>
+	<option value="2031">2031</option>
+	<option value="2030">2030</option>
+	<option value="2029">2029</option>
+	<option value="2028">2028</option>
+	<option value="2027">2027</option>
+	<option value="2026">2026</option>
+	<option value="2025">2025</option>
+	<option value="2024">2024</option>
+	<option value="2023">2023</option>
+	<option value="2022">2022</option>
+	<option value="2021">2021</option>
+	<option value="2020">2020</option>
+	<option value="2019">2019</option>
+	<option value="2018">2018</option>
+	<option value="2017">2017</option>
+	<option selected="selected" value="2016">2016</option>
+
+</select>
+                                 &nbsp;/&nbsp;<select name="ddlMonth" id="ddlMonth" class="textbox" onchange="PopulateDays()" style="height:20px;">
+	<option value="1">01</option>
+	<option value="2">02</option>
+	<option value="3">03</option>
+	<option value="4">04</option>
+	<option value="5">05</option>
+	<option value="6">06</option>
+	<option value="7">07</option>
+	<option value="8">08</option>
+	<option value="9">09</option>
+	<option selected="selected" value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+
+</select>
+                                                <br>
+                                                
+                                                <br>
+                                            </td>
+                                            <td style="width: 50%" valign="top">
+                                                <table style="width:100%;">
+                                                    <tbody><tr>
+                                                        <td style="width: 40%" valign="top">
+                                                <span id="Label18">確認コード</span>
+                                                            <br>
+                                                        </td>
+                                                        <td style="width: 60%" valign="top">
+                                <input name="bank_second_number_TextBox" type="text" id="bank_second_number_TextBox" class="textbox" style="height:20px;width:100%;">
+                                                            <br>
+                                    <span id="bank_second_number_Label" style="color:Red;font-weight:bold;"></span>
+                                                            <br>
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span id="Label17">名義人</span>
+                                                <br>
+                                                <br>
+                                            </td>
+                                            <td colspan="2" align="center">
+                                <input name="bank_person_TextBox" type="text" id="bank_person_TextBox" class="textbox" placeholder="カードの名義人を入力" style="height:20px;width:100%;">
+                                                <br>
+                                                <span id="Label21" style="color:#666666;font-size:Small;">※力一ドに記載してあるとリ入力してください</span>
+                                                <br>
+                                    <span id="bank_person_Label" style="color:Red;font-weight:bold;"></span>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 5%; height: 5%">&nbsp;</td>
+                                            <td style="height: 5%">&nbsp;</td>
+                                            <td style="width: 5%; height: 5%">&nbsp;</td>
+                                        </tr>
+                                    </tbody></table>
+
+                                </div>
+                             </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                             <td>&nbsp;</td>
+                            <td align="center">
+                                <br>
+                                    <span id="result_Label" style="color:Red;font-weight:bold;"></span>
+                                <br>
+                                <input type="submit" name="Button2" value="保存して次へ" onclick="ShowProgressBar();" id="Button2" class="file-upload" style="width:50%;">
+                                <br>
+                             </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody></table>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody></table>
+    
+    </div>
+        <div id="divProgress" style="text-align:center; display: none; position: fixed; top: 50%;  left: 50%;">
+    <img id="imgLoading" src="./registered_2_1.aspx_files/loading.gif">
+    <br>
+    <font color="#1B3563" size="2px">資料処理中</font>
+</div>
+<div id="divMaskFrame" style="background-color: #F2F4F7; display: none; left: 0px;
+    position: absolute; top: 0px;">
+</div>
+    </form>
+
+
+<div class="selection_bubble_root" style="display: none;"></div>
+<script>
+   function ShowSidebarRight(){
+        var div = document.getElementById('div_sidebar_right');
+         if (div.style.display == 'block') {
+            div.setAttribute("style", "display:none");
+
+        }
+        else {
+            div.setAttribute("style", "display:block;");
+        }
+    }
+</script></body></html>

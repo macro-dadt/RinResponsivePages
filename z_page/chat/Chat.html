@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://192.168.1.13/chatroom.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+Chat
+</title><link href="./Chat_files/bootstrap.min.css" rel="stylesheet"><link href="./Chat_files/bootstrap-theme.css" rel="stylesheet">
+
+<script src="./Chat_files/jquery-1.12.4.js.download"></script>
+<!-- Magnific Popup core CSS file -->
+<link rel="stylesheet" href="./Chat_files/magnific-popup.css">
+
+<!-- Magnific Popup core JS file -->
+<script src="./Chat_files/jquery.magnific-popup.js.download"></script>
+<!--Reference the SignalR library. -->
+<script src="./Chat_files/jquery.signalR-2.2.1.min.js.download"></script>
+<script src="./Chat_files/bootstrap.min.js.download"></script>
+<!--這邊滿重要的，這個參考是動態產生的，當我們 build 之後才會動態建立這個資料夾，且需引用在 jQuery 和 signalR 之後-->
+<script src="./Chat_files/hubs"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="./main_default_files/jquery-ui.css"><link rel="stylesheet" href="./Chat_files/file-upload_fb.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description"><meta name="author">
+
+<style type="text/css">
+
+ .mfp-with-zoom .mfp-container,
+ .mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  /* ideally, transition speed should match zoom duration */
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+    opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+    opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container,
+.mfp-with-zoom.mfp-removing.mfp-bg {
+  opacity: 0;
+}
+.small_talk_div {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+
+.small_talk_div_leave {
+    cursor: pointer;
+}
+#header{
+    background-color:#ea9494;
+    width: 100%;
+    height:80px;
+    text-align:center;
+    line-height:80px;
+    position: fixed;
+    top:0;
+    left: 0;
+    margin: 0 auto;
+    z-index: 9999;
+}
+.list{
+    width: 25%;
+    height: 10%;
+}
+.contact_list{
+    width: 25%;
+    height: 90%;
+}
+
+.friend_name{
+    width: 75%;
+    height: 10%;
+}
+.chat_window{
+    width: 75%;
+    height: 90%
+}
+
+
+.header-right{
+    width: 45%;
+}
+.topnav_right{
+    line-height: 100%;
+}
+
+#div_sidebar_right{
+    display:none;
+}
+#sidebar_right{
+    display: none;
+}
+.icon_right{
+    display: none;
+}
+.icon_left{
+    display: none;
+}
+#map_view{
+    display: none
+}
+.file-upload{
+    color:black;
+    background-color:#DDDDDD;
+    position: relative;
+    margin-top: 10px;
+}
+.space{
+    width: 10%;
+    height: 80%;
+}
+
+@media (max-width: 680px){
+ #chatbody{
+    position: fixed;
+    top: 0em;
+}
+.friend_name{
+    width: 100%;
+    display: none;
+}
+.chat_window{
+    width: 100%;
+    display: none;
+}
+.test{
+    display: block;
+}
+.list{
+    width: 100%;
+}
+.space{
+    width: 0%;
+}
+
+.contact_list{
+    width: 100%;
+}
+#header{
+    height: 60px;
+}
+#div_sidebar_right{
+    background-color:#e7e7e7;
+    width: 100px;
+    height: 100%;
+    float: right;
+    display: none; 
+}
+#sidebar_right{
+    width: 100%;
+    background-color:#e7e7e7;
+    z-index: 9998;
+    text-align:left;
+    position: fixed;
+    display: block;
+}
+
+.icon_right{
+    display: block;
+    position: absolute;
+    right: 0.1em;
+    top: -0.5em;
+}
+/* .icon_left{
+    display: block;
+    position: relative;
+    bottom: 0.6em;
+} */
+
+.topnav_right{
+    display: none;
+}
+
+
+#Label_logo{
+    display: block;
+    position: relative;
+    right: -0.5em;
+    bottom: 0.5em;
+}
+}/*----------------------------------------end media*/
+
+
+
+</style>
+<script>
+    var userID = 'admin';
+            //var userID = "";
+            $(window).resize(function () {
+                var w = $(window).width();
+                var h = $(window).height();
+                var maskFrame = $("#chatbody");
+                maskFrame.css({ "width": w, "height": h });
+            });
+
+
+
+            $(function () {
+
+
+                var w = $(document).width();
+                var h = $(window).height();
+                var progress = $('#chatbody');
+                progress.css({ "height": h, "width": w });
+
+                $(".small_talk_div_leave").on("click", function () {
+                    $(this).toggleClass("small_talk_div");
+                    $("#title_talk_name").html($(this).find('span').text());
+
+                    $("#title_talk_id").html($(this).find('div').text());
+
+                    $("#chat_chat_" + $(this).find('div').text()).show();
+
+                    $(".small_talk_div_leave").not(this).removeClass("small_talk_div");
+
+                    $(".small_talk_div_leave").not(this).find('div').each(function () {
+                        $("#chat_chat_" + $(this).text()).hide();
+                    });
+
+
+                });
+
+                while (userID.length == 0) {
+                    userID = window.prompt("Please set up username");
+                    if (!userID) {
+                        userID = "";
+                        '';
+                    } else {
+
+                        '';
+                    }
+
+                }
+                //$("#userName").append(userID).show();
+
+                //建立與Server端的Hub的物件，注意Hub的開頭字母一定要為小寫
+                var chat = $.connection.codingChatRoomHub;
+                //取得所有上線清單
+                chat.client.getList = function (userList) {
+                    $.each(userList, function (i, data) {
+                        var li = "<img src='images/online.png' width='10' height='10' id='" + data.id + "'>";
+                        $("#online_" + data.name).append(li);
+                    })
+                    //registerListClick();
+                }
+                //新增聊天內容
+                chat.client.addtalkList = function (id, name, photo, message, year, month, day, hour, minute,second) {
+                    var li = "<table width='100%'><tr><td width='10%' rowspan='2' valign='top'>";
+                    li += "<div class='zoom-gallery'>";
+                    li += "<a href='" + photo + "' data-source='" + photo + "' title='" + name + "' style='width:100px;height:100px;'>";
+                    li += "<img src='" + photo + "' width='100' height='100' />";
+                    li += "</a>";
+                    li += "</div>";
+                    li += "</td><td width='60%'>";
+                    li += "<a href='#'>" + name+"</a>";
+                    li += "</td><td width='20%'>";
+                    li +=  year+"年"+month+"月"+day+"日"+hour+":"+minute+":"+second ;
+                    li += "</td></tr><tr><td colspan='2'>";
+                    li += "" + message + "";
+                    li += "</td></tr></table>";
+
+
+                    $("#chat_chat_" + id).append(li);
+                    $("#chat_chat_" + id).hide();
+                }
+
+                //新增一筆上線人員
+                chat.client.addList = function (id, uid) {
+                    var li = "<img src='images/online.png' width='10' height='10' id='"+id+"'>";
+                    $("#online_"+uid).append(li);
+                    //registerListClick();
+                }
+
+                //移除一筆上線人員
+                chat.client.removeList = function (id) {
+                    $("#" + id).remove();
+                }
+
+                //全體聊天
+                chat.client.sendAllMessage = function (message) {
+                    $("#messageList").append("<li>" + message + "</li>");
+                }
+
+                //密語聊天
+                chat.client.sendMessage = function (id, name, photo, message, year, month, day, hour, minute, second,shortmesg) {
+                    var li = "<table width='100%'><tr><td width='10%' rowspan='2' valign='top'>";
+                    li += "<div class='zoom-gallery'>";
+                    li += "<a href='" + photo + "' data-source='" + photo + "' title='" + name + "' style='width:100px;height:100px;'>";
+                    li += "<img src='" + photo + "' width='100' height='100' />";
+                    li += "</a>";
+                    li += "</div>";
+                    li += "</td><td width='60%'>";
+                    li += "<a href='#'>" + name + "</a>";
+                    li += "</td><td width='20%'>";
+                    li += year + "年" + month + "月" + day + "日" + hour + ":" + minute + ":" + second;
+                    li += "</td></tr><tr><td colspan='2'>";
+                    li += "" + message + "";
+                    li += "</td></tr></table>";
+
+
+                    $("#chat_chat_" + id).append(li);
+
+                    //$("#chat_chat_" + id).find('strong').html("");
+                    $("#chat_chat_last" + id).text(shortmesg);
+                    
+                    //$("#messageList").append("<li>" + message + "</li>");
+
+                }
+
+                chat.client.loading = function () {
+                    ShowProgressBar();
+                }
+
+                chat.client.finishload = function () {
+                    HideProgressBar();
+                }
+
+
+                chat.client.scrollPanel= function () {
+                    var panel = document.getElementById("chat_Panel2");
+                    panel.scrollTop = panel.scrollHeight;
+                }
+                
+
+                chat.client.hello1 = function (message) {
+                    alert(message);
+                }
+
+                chat.client.hello = function (message) {
+                    $("#messageList").append("<li>" + message + "</li>");
+                }
+
+                //將連線打開
+                $.connection.hub.start().done(function () {
+                    //當連線完成後，呼叫Server端的userConnected方法，並傳送使用者姓名給Server
+                    chat.server.userConnected(userID);
+                });;
+
+                $("#send").click(function () {
+
+                    var to = $("#title_talk_id").text();
+                    var me = $("#title_pan_myid").text();
+
+                    //當to為all代表全體聊天，否則為私密聊天
+                    if (to == "") {
+                        //chat.server.sendAllMessage($("#message").val());
+                    }
+                    else {
+                        chat.server.sendMessageto(me,to, $("#message").val());
+                        //$("#messageList").append("<li>" + $("#message").val() + "</li>");
+                    }
+
+
+                    $("#message").val("");
+                });
+
+                $.connection.hub.error(function (error) {
+                    console.log('SignalR error: ' + error)
+                });
+
+
+
+                $('.image-link').magnificPopup({
+                    type: 'image',
+                    mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+
+                    zoom: {
+                        enabled: true, // By default it's false, so don't forget to enable it
+
+                        duration: 300, // duration of the effect, in milliseconds
+                        easing: 'ease-in-out', // CSS transition easing function
+
+                        // The "opener" function should return the element from which popup will be zoomed in
+                        // and to which popup will be scaled down
+                        // By defailt it looks for an image tag:
+                        opener: function (openerElement) {
+                            // openerElement is the element on which popup was initialized, in this case its <a> tag
+                            // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+                            return openerElement.is('img') ? openerElement : openerElement.find('img');
+                        }
+                    }
+
+                });
+
+                $('.zoom-gallery').each(function () { // the containers for all your galleries
+                    $(this).magnificPopup({
+                        delegate: 'a',
+                        type: 'image',
+                        closeOnContentClick: false,
+                        closeBtnInside: false,
+                        mainClass: 'mfp-with-zoom mfp-img-mobile',
+                        image: {
+                            verticalFit: true,
+                            titleSrc: function (item) {
+                                return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
+                            }
+                        },
+                        gallery: {
+                            enabled: true
+                        },
+                        zoom: {
+                            enabled: true,
+                            duration: 300, // don't foget to change the duration also in CSS
+                            opener: function (element) {
+                                return element.find('img');
+                            }
+                        }
+                    });
+                });
+
+
+            });
+
+
+function registerListClick() {
+    $("#list li").unbind("click");
+    $("#list li").on("click", function () {
+        var $this = $(this);
+        var id = $this.attr("id");
+        var text = $this.text();
+
+        $("#title_talk_name").html("");
+        $("#title_talk_name").html(text);
+        $("#title_talk_id").html("");
+        $("#title_talk_id").html(id);
+        $("#title_talk_email").html("");
+                    //$("#title_talk_email").html();
+
+
+                    //防止重複加入密語清單
+                    if ($("#box").has("." + id).length > 0) {
+                        $("#box").find("[class=" + id + "]").attr({ "selected": "selected" });
+                    }
+                    else {
+                        var option = "<option></option>"
+                        $("#box").append(option).find("option:last").val(id).text(text).attr({ "selected": "selected" }).addClass(id);
+                    }
+
+                });
+}
+
+            // 顯示讀取遮罩
+            function ShowProgressBar() {
+                displayProgress();
+                displayMaskFrame();
+            }
+
+            // 隱藏讀取遮罩
+            function HideProgressBar() {
+                var progress = $('#divProgress');
+                var maskFrame = $("#divMaskFrame");
+                progress.hide();
+                maskFrame.hide();
+            }
+            // 顯示讀取畫面
+            function displayProgress() {
+                var w = $(document).width();
+                var h = $(window).height();
+                var progress = $('#divProgress');
+                progress.css({ "z-index": 999999, "top": (h / 2) - (progress.height() / 2), "left": (w / 2) - (progress.width() / 2) });
+                progress.show();
+            }
+            // 顯示遮罩畫面
+            function displayMaskFrame() {
+                var w = $(window).width();
+                var h = $(document).height();
+                var maskFrame = $("#divMaskFrame");
+                maskFrame.css({ "z-index": 999998, "opacity": 0.7, "width": w, "height": h });
+                maskFrame.show();
+            }
+        </script>
+    </head>
+    <body>
+        　<div id="header">
+            <table style="width:100%;">
+                <tbody><tr>
+                    <td align="left" width="15%">
+
+                        <table style="width:100%;">
+                            <tbody><tr>
+                                <td width="5%">&nbsp;</td>
+                                <td class="icon_left"><span onclick="ShowSidebarLeft()"><i class="fa fa-bars" style="font-size:30px; color: white;cursor: pointer;"></i></span></td>
+                                <td><span id="Label_logo" onclick="javascript:self.location=&#39;home.aspx&#39;;" style="color:White;font-family:Arial Black;font-size:XX-Large;font-weight:bold;cursor:pointer;">RiN</span></td>
+
+                            </tr>
+                        </tbody></table>
+                    </td><!--rin end-->
+                    <td width="40%">&nbsp;</td>
+                    <td class="header-right">
+                        <table style="width:100%; height: 50%">
+                            <tbody><tr>
+                                <td class="topnav_right">
+                                    <button type="button"　onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">マイページ</button>
+                                </td>
+                                <td class="topnav_right">
+
+                                    <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">友達</button>
+                                </td>
+                                <td class="topnav_right">
+
+                                    <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">メッセージ</button>
+                                </td>
+                                <td class="topnav_right">
+
+                                    <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">お知らせ</button>
+                                </td>
+                                <td class="topnav_right">
+
+                                    <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">ヘルプ</button>
+                                </td>
+
+                                <td class="icon_right"><i class="fa fa-bell-o" style="font-size:30px; color: white;cursor: pointer;" onclick="ShowSidebarRight()"></i>
+                                </td>
+
+
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+
+        <div id="div_sidebar_right">
+            <div id="sidebar_right">
+                <table style="width: 100%; margin-top: 4em;">
+                    <tbody>
+                        <tr><td>
+                            <button type="button"　onclick="showDialog()" style="border-style: none; background-color:#E7E7E7 ;margin-top: 15px; cursor: pointer;">マイページ</button>
+                        </td></tr>
+                        <tr><td >
+
+                            <button type="button" onclick="showDialog()" style="border-style: none; background-color:#E7E7E7 ;margin-top: 15px; cursor: pointer;">友達</button>
+                        </td></tr>
+                        <tr><td >
+
+                            <button type="button" onclick="showDialog()" style="border-style: none; background-color:#E7E7E7 ;margin-top: 15px; cursor: pointer;">メッセージ</button>
+                        </td></tr>
+                        <tr><td>
+
+                            <button type="button" onclick="showDialog()" style="border-style: none; background-color:#E7E7E7 ;margin-top: 15px; cursor: pointer;">お知らせ</button>
+                        </td></tr>
+                        <tr><td>
+
+                            <button type="button" onclick="showDialog()" style="border-style: none; background-color:#E7E7E7 ;margin-top: 15px; cursor: pointer;">ヘルプ</button>
+                        </td></tr>
+
+
+
+                    </tbody>
+                </table>
+            </div><!--End sidebar_right--> 
+        </div><!--End div_sidebar_right-->
+
+
+        <form method="post" action="http://192.168.1.13/chatroom.aspx" id="form1">
+            <div class="aspNetHidden">
+                <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="vtmRmN8xCGGsvuOvqm1MfgBwghLCery1RWyYZko4aJtG10VE2ADebkB90q3NCR6Kyibkln1RD/bHA+Dr8WtI6OFMFAA6jt57kyVD60CfEcg=">
+            </div>
+
+            <div class="aspNetHidden">
+
+             <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="BB123110">
+         </div>
+         <div id="chatbody" style="height: 908px; width: 100%;">
+            <table style="width: 100%; height: 100%;">
+                <tbody>
+                    <tr>
+                        <td width="10%" height="10%">&nbsp;</td>
+                        <td width="80%" height="10%">&nbsp;</td>
+                        <td width="10%" height="10%">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td width="10%" height="80%">&nbsp;</td>
+                        <td width="80%" height="80%">
+                            <table style="width: 100%; height: 100%;">
+                                <tbody>
+                                    <tr class="main_header">
+                                        <td id="list" class="list" align="center" style="border-style: solid; border-width: thin">メッセージ一覧</td>
+                                        <td id="friend_name" class="friend_name" align="center" style="border-style: solid; border-width: thin">
+                                            <div id="title_myid">
+                                            </div>
+                                            <div id="title_talk_name">
+                                            </div>
+                                            <div style="visibility:hidden" id="title_talk_id"></div>
+                                            <div style="visibility:hidden" id="title_talk_email"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="contact_list" class="contact_list" valign="top">
+                                            <div id="chat_Panel1" valign="top" style="border-width:1px;border-style:Solid;height:100%;width:100%;overflow-y:scroll;">
+
+                                                <div id="chatList" class="label">
+
+                                                    <p > Who is online </p>
+
+                                                    <ul id="list"></ul>
+                                                </div>
+                                                <table width="100%" valign="top"><tbody><tr><td><div id="talk_small_panel0" class="small_talk_div_leave"><table width="100%" height="100%" style="border-style: solid; border-width: thin;"><tbody><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr><tr><td width="5%"></td><td width="90%"><table width="100%" height="100%"><tbody><tr><td width="40%"><div class="zoom-gallery"><a href="./Chat_files/spiderman.jpg" data-source="images/spiderman.jpg" title="spiderman" style="width:100px;height:100px;"><img src="./Chat_files/spiderman.jpg" width="100" height="100"></a></div></td><td width="60%"><table width="100%" height="100%"><tbody><tr><td width="60%"></td><td width="40%"></td></tr><tr><td><a href="http://192.168.1.13/chatroom.aspx#"><span>spiderman</span></a><div style="visibility:hidden">2</div></td><td id="online_2" valign="top"></td></tr><tr><td colspan="2"><strong id="chat_chat_last2">sdsdd</strong></td></tr></tbody></table></td></tr></tbody></table></td><td width="5%"></td></tr><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr></tbody></table></div></td></tr><tr><td><div id="talk_small_panel2" class="small_talk_div_leave"><table width="100%" height="100%" style="border-style: solid; border-width: thin;"><tbody><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr><tr><td width="5%"></td><td width="90%"><table width="100%" height="100%"><tbody><tr><td width="40%"><div class="zoom-gallery"><a href="./Chat_files/ironman.jpg" data-source="images/ironman.jpg" title="ironman" style="width:100px;height:100px;"><img src="./Chat_files/ironman.jpg" width="100" height="100"></a></div></td><td width="60%"><table width="100%" height="100%"><tbody><tr><td width="60%"></td><td width="40%"></td></tr><tr><td><a href="http://192.168.1.13/chatroom.aspx#"><span>ironman</span></a><div style="visibility:hidden">3</div></td><td id="online_3" valign="top"></td></tr><tr><td colspan="2"><strong id="chat_chat_last3">asd</strong></td></tr></tbody></table></td></tr></tbody></table></td><td width="5%"></td></tr><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr></tbody></table></div></td></tr><tr><td><div id="talk_small_panel4" class="small_talk_div_leave"><table width="100%" height="100%" style="border-style: solid; border-width: thin;"><tbody><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr><tr><td width="5%"></td><td width="90%"><table width="100%" height="100%"><tbody><tr><td width="40%"><div class="zoom-gallery"><a href="./Chat_files/superman.jpg" data-source="images/superman.jpg" title="superman" style="width:100px;height:100px;"><img src="./Chat_files/superman.jpg" width="100" height="100"></a></div></td><td width="60%"><table width="100%" height="100%"><tbody><tr><td width="60%"></td><td width="40%"></td></tr><tr><td><a href="http://192.168.1.13/chatroom.aspx#"><span>superman</span></a><div style="visibility:hidden">4</div></td><td id="online_4" valign="top"></td></tr><tr><td colspan="2"><strong id="chat_chat_last4">now i ‧‧‧</strong></td></tr></tbody></table></td></tr></tbody></table></td><td width="5%"></td></tr><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr></tbody></table></div></td></tr><tr><td><div id="talk_small_panel5" class="small_talk_div_leave"><table width="100%" height="100%" style="border-style: solid; border-width: thin;"><tbody><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr><tr><td width="5%"></td><td width="90%"><table width="100%" height="100%"><tbody><tr><td width="40%"><div class="zoom-gallery"><a href="./Chat_files/man.jpg" data-source="images/man.jpg" title="man" style="width:100px;height:100px;"><img src="./Chat_files/man.jpg" width="100" height="100"></a></div></td><td width="60%"><table width="100%" height="100%"><tbody><tr><td width="60%"></td><td width="40%"></td></tr><tr><td><a href="http://192.168.1.13/chatroom.aspx#"><span>man</span></a><div style="visibility:hidden">5</div></td><td id="online_5" valign="top"></td></tr><tr><td colspan="2"><strong id="chat_chat_last5">say so‧‧‧</strong></td></tr></tbody></table></td></tr></tbody></table></td><td width="5%"></td></tr><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr></tbody></table></div></td></tr><tr><td><div id="talk_small_panel7" class="small_talk_div_leave"><table width="100%" height="100%" style="border-style: solid; border-width: thin;"><tbody><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr><tr><td width="5%"></td><td width="90%"><table width="100%" height="100%"><tbody><tr><td width="40%"><div class="zoom-gallery"><a href="./Chat_files/201609291527258695.jpg" data-source="head_photo/201609291527258695.jpg" title="たんぽぽママ" style="width:100px;height:100px;"><img src="./Chat_files/201609291527258695.jpg" width="100" height="100"></a></div></td><td width="60%"><table width="100%" height="100%"><tbody><tr><td width="60%"></td><td width="40%"></td></tr><tr><td><a href="http://192.168.1.13/chatroom.aspx#"><span>たんぽぽママ</span></a><div style="visibility:hidden">10</div></td><td id="online_10" valign="top"></td></tr><tr><td colspan="2"><strong id="chat_chat_last10">【依頼願い】‧‧‧</strong></td></tr></tbody></table></td></tr></tbody></table></td><td width="5%"></td></tr><tr><td width="5%" height="10px"></td><td width="90%" height="10px"></td><td width="5%" height="10px"></td></tr></tbody></table></div></td></tr></tbody></table>
+                                            </div>
+                                        </td>
+                                        <td id="chat_window" class="chat_window" >
+                                            <div id="chat_Panel2" style="border-width:1px;border-style:Solid;height:70%;width:100%;overflow-y:scroll;">
+
+
+
+                                                <div id="chat_chat_"></div>
+                                                <ul id="messageList"></ul>
+                                                <div id="chat_chat_2" style="display: none;"><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:16:30</td></tr><tr><td colspan="2">test post</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月14日21:02:03</td></tr><tr><td colspan="2">hahahahaha</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日12:25:01</td></tr><tr><td colspan="2">haha</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:16:42</td></tr><tr><td colspan="2">test</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/spiderman.jpg" data-source="images/spiderman.jpg" title="spiderman" style="width:100px;height:100px;"><img src="./Chat_files/spiderman.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">spiderman</a></td><td width="20%">2016年09月15日17:03:04</td></tr><tr><td colspan="2">how</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日12:25:37</td></tr><tr><td colspan="2">ssssssss</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日12:34:37</td></tr><tr><td colspan="2">asasdasdasdasd</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日12:35:31</td></tr><tr><td colspan="2">oooooooooo</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日12:30:41</td></tr><tr><td colspan="2">iiiiiiiiiiiii</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月10日20:00:10</td></tr><tr><td colspan="2">how are you</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日12:27:22</td></tr><tr><td colspan="2">ohohohohohohohohohoh</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月18日20:14:33</td></tr><tr><td colspan="2">sdsdd</td></tr></tbody></table></div><div id="chat_chat_3" style="display: none;"><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月11日18:00:11</td></tr><tr><td colspan="2">haha</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:19:28</td></tr><tr><td colspan="2">test post</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:21:35</td></tr><tr><td colspan="2">test haha</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日19:25:47</td></tr><tr><td colspan="2">this is new message</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/ironman.jpg" data-source="images/ironman.jpg" title="ironman" style="width:100px;height:100px;"><img src="./Chat_files/ironman.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">ironman</a></td><td width="20%">2016年09月27日19:26:20</td></tr><tr><td colspan="2">you are </td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日13:26:19</td></tr><tr><td colspan="2">asd</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/ironman.jpg" data-source="images/ironman.jpg" title="ironman" style="width:100px;height:100px;"><img src="./Chat_files/ironman.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">ironman</a></td><td width="20%">2016年09月16日18:02:04</td></tr><tr><td colspan="2">say one</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日12:35:41</td></tr><tr><td colspan="2">tttttttttttt</td></tr></tbody></table></div><div id="chat_chat_4" style="display: none;"><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:31:59</td></tr><tr><td colspan="2">test post</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:33:37</td></tr><tr><td colspan="2">testttttt</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:43:06</td></tr><tr><td colspan="2">asdasdasd</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月12日19:00:01</td></tr><tr><td colspan="2">how fun</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:38:47</td></tr><tr><td colspan="2">tstttttt</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:40:16</td></tr><tr><td colspan="2">test</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:47:56</td></tr><tr><td colspan="2">now i post som message</td></tr></tbody></table></div><div id="chat_chat_5" style="display: none;"><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日10:34:18</td></tr><tr><td colspan="2">what?</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月13日20:01:02</td></tr><tr><td colspan="2">hey are you ok?</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日11:09:19</td></tr><tr><td colspan="2">adadad</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:45:39</td></tr><tr><td colspan="2">asdasasd</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日11:30:17</td></tr><tr><td colspan="2">say something</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日11:27:07</td></tr><tr><td colspan="2">gggggg</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日11:30:07</td></tr><tr><td colspan="2">afafaf</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/man.jpg" data-source="images/man.jpg" title="man" style="width:100px;height:100px;"><img src="./Chat_files/man.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">man</a></td><td width="20%">2016年09月28日10:35:54</td></tr><tr><td colspan="2">what</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日10:54:44</td></tr><tr><td colspan="2">fafa</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/man.jpg" data-source="images/man.jpg" title="man" style="width:100px;height:100px;"><img src="./Chat_files/man.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">man</a></td><td width="20%">2016年09月27日18:50:15</td></tr><tr><td colspan="2">want to see you</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月27日18:44:01</td></tr><tr><td colspan="2">asdasdasd</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日11:28:42</td></tr><tr><td colspan="2">adadadad</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日11:27:16</td></tr><tr><td colspan="2">asdhaha</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/man.jpg" data-source="images/man.jpg" title="man" style="width:100px;height:100px;"><img src="./Chat_files/man.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">man</a></td><td width="20%">2016年09月28日10:39:21</td></tr><tr><td colspan="2">haha</td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年09月28日10:35:46</td></tr><tr><td colspan="2">see</td></tr></tbody></table></div><div id="chat_chat_10" style="display: none;"><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月11日20:39:43</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;定期</li><li>定期&nbsp;&nbsp;2016/10/12&nbsp;-&nbsp;2016/10/31</li><li>曜日&nbsp;&nbsp;月曜日&nbsp;05:15~13:30</li><li>曜日&nbsp;&nbsp;日曜日&nbsp;03:15~12:15</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check_week.aspx?ActivationCode=7de8bc2c-317b-448a-8d08-d423d6ba7f75">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月11日20:44:52</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;単発</li><li>日時&nbsp;&nbsp;2016年09月16日(金) 09:00~14:00</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://192.168.1.13/a4d6898b-4f0c-46e9-ba66-cf7672b7024c">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月11日20:53:39</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;単発</li><li>日時&nbsp;&nbsp;2016年10月17日(月) 05:00~08:00</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check_week.aspx?ActivationCode=510a0b5d-5b1d-4f02-bdc6-38e9ba83e6a9">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月11日20:50:07</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;単発</li><li>日時&nbsp;&nbsp;2016年10月14日(金) 09:00~12:00</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check_week.aspx?ActivationCode=115a4437-4be4-4a1f-9b50-dbdabd6fc27a">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月13日14:22:52</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;単発</li><li>日時&nbsp;&nbsp;2016年10月17日(月) 05:00~11:00</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check_week.aspx?ActivationCode=91e4b343-9e3c-4094-aba8-133daa100859">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月13日16:43:13</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;単発</li><li>日時&nbsp;&nbsp;2016年09月22日(木) 08:15~15:45</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check.aspx?ActivationCode=fffcd70a-cc53-4001-8789-3505ff4767c9">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月13日16:42:22</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;単発</li><li>日時&nbsp;&nbsp;2016年10月10日(月) 06:15~10:30</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Date_Calendar.aspx/Save">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月13日16:43:47</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;定期</li><li>定期&nbsp;&nbsp;2016/10/26&nbsp;-&nbsp;2016/11/16</li><li>曜日&nbsp;&nbsp;月曜日&nbsp;05:15~13:30</li><li>曜日&nbsp;&nbsp;金曜日&nbsp;09:30~16:15</li><li>曜日&nbsp;&nbsp;日曜日&nbsp;03:15~12:15</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check_week.aspx?ActivationCode=1933f710-b325-406f-9ee2-588c8667a022">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月13日16:54:00</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;単発</li><li>日時&nbsp;&nbsp;2016年09月09日(金) 09:45~15:15</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check.aspx?ActivationCode=ef246410-b881-46b8-a0bf-3524977cdc82">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月14日11:10:39</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;単発</li><li>日時&nbsp;&nbsp;2016年10月28日(金) 09:00~13:30</li><li>依頼内容&nbsp;&nbsp;送迎、乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check_week.aspx?ActivationCode=89f17401-a7a3-4af2-bdf7-1cb5ade71fbe">確認用URL</a></li></ul></td></tr></tbody></table><table width="100%"><tbody><tr><td width="10%" rowspan="2" valign="top"><div class="zoom-gallery"><a href="./Chat_files/mike.jpg" data-source="images/mike.jpg" title="Mike" style="width:100px;height:100px;"><img src="./Chat_files/mike.jpg" width="100" height="100"></a></div></td><td width="60%"><a href="http://192.168.1.13/chatroom.aspx#">Mike</a></td><td width="20%">2016年10月14日14:50:51</td></tr><tr><td colspan="2">【依頼願い】<ul><li>単発/定期&nbsp;&nbsp;定期</li><li>定期&nbsp;&nbsp;2016/10/17&nbsp;-&nbsp;2016/10/31</li><li>曜日&nbsp;&nbsp;金曜日&nbsp;13:30~16:15</li><li>曜日&nbsp;&nbsp;日曜日&nbsp;03:15~06:15</li><li>依頼内容&nbsp;&nbsp;乳児預かり</li><li>お願いするお子様&nbsp;&nbsp;14 歳 0 ヶ月 ( 1 名)、9 歳 5 ヶ月 ( 1 名)</li><li>現在のステータス&nbsp;&nbsp;確認待ち</li><li>確認用URL&nbsp;&nbsp;<a href="http://localhost/Activation_check_week.aspx?ActivationCode=4a04db2c-5bf2-457e-8ae4-05815b6a29ff">確認用URL</a></li></ul></td></tr></tbody></table></div>
+                                            </div>
+                                        <!--map window start -->
+                                            <div tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable ui-resizable" aria-describedby="dialog" aria-labelledby="ui-id-1" style="position: absolute; height: auto; width: 300px; top: 191px; left: 378px; display: block;"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"><span id="ui-id-1" class="ui-dialog-title">&nbsp;</span></div><div id="dialog" style="display: block; width: auto; min-height: 95px; max-height: none; height: auto;" class="ui-dialog-content ui-widget-content">
+                                            <table id="map_view" style="border-style: solid; border-width: thin;" align="center">
+                                                <tbody><tr>
+                                                    <td>
+                                                        <input id="txt2" type="text" onkeydown="Javascript: if (event.which == 13 || event.keyCode == 13) runScript();" placeholder="住所を入力" style="width: 100%"><br>
+                                                        <br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">
+                                                        <div id="div_showMap" style="width: 250px; height: 250px; position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; position: absolute; left: -253px; top: -223px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -253px; top: -223px;"></div></div></div></div><div style="position: absolute; z-index: 0; left: 0px; top: 0px;"><div style="overflow: hidden;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"></div></div></div><div class="gm-style-pbc" style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%; transition-duration: 0.3s; opacity: 0; display: none;"><p class="gm-style-pbt">2 本の指で地図を移動してください</p></div><div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div><div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a target="_blank" href="https://maps.google.com/maps?ll=35.447824,139.641661&amp;z=16&amp;t=m&amp;hl=ja&amp;gl=US&amp;mapclient=apiv3" title="クリックすると Google マップでこの地域を表示します" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 66px; height: 26px; cursor: pointer;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/google4_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div></a></div><div style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 0px; height: 0px; position: absolute; left: 5px; top: 5px;"><div style="padding: 0px 0px 10px; font-size: 16px;">地図データ</div><div style="font-size: 13px;"></div><div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/mapcnt6.png" draggable="false" style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 0px; bottom: 0px; width: 12px;"><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a style="color: rgb(68, 68, 68); text-decoration: none; cursor: pointer; display: none;">地図データ</a><span style="display: none;"></span></div></div></div><div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;"><div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);"></div></div><div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; -webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a href="https://www.google.com/intl/ja_US/help/terms_maps.html" target="_blank" style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">利用規約</a></div></div><div style="width: 25px; height: 25px; overflow: hidden; display: none; margin: 10px 14px; position: absolute; top: 0px; right: 0px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/sv9.png" draggable="false" class="gm-fullscreen-control" style="position: absolute; left: -52px; top: -86px; width: 164px; height: 175px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px; display: none; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a target="_new" title="Google に地図や画像のエラーを報告する" href="https://www.google.com/maps/@35.447824,139.6416613,16z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3" style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">地図の誤りを報告する</a></div></div><div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false" controlwidth="0" controlheight="0" style="margin: 10px; -webkit-user-select: none; position: absolute; display: none; bottom: 0px; right: 0px;"><div class="gmnoprint" style="display: none; position: absolute;"><div draggable="false" style="-webkit-user-select: none; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; background-color: rgb(255, 255, 255);"><div title="ズームイン" style="position: relative;"><div style="overflow: hidden; position: absolute;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 240px; height: 108px;"></div></div><div style="position: relative; overflow: hidden; width: 67%; height: 1px; left: 16%; background-color: rgb(230, 230, 230);"></div><div title="ズームアウト" style="position: relative;"><div style="overflow: hidden; position: absolute;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 240px; height: 108px;"></div></div></div></div><div class="gm-svpc" controlwidth="28" controlheight="28" style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; width: 28px; height: 28px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default; display: none; position: absolute;"><div style="position: absolute; left: 1px; top: 1px;"></div></div><div class="gmnoprint" controlwidth="28" controlheight="0" style="display: none; position: absolute;"><div title="地図を 90 度回転します" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; cursor: pointer; background-color: rgb(255, 255, 255); display: none;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4_hdpi.png" draggable="false" style="position: absolute; left: -141px; top: 6px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div class="gm-tilt" style="width: 0px; height: 0px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; top: 0px; cursor: pointer; background-color: rgb(255, 255, 255);"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" style="margin: 10px; z-index: 0; position: absolute; cursor: pointer; display: none; left: 0px; top: 0px;"><div class="gm-style-mtc" style="float: left;"><div draggable="false" title="市街地図を見る" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 8px; border-bottom-left-radius: 2px; border-top-left-radius: 2px; -webkit-background-clip: padding-box; background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; font-weight: 500;">地図</div><div style="background-color: white; z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; left: 0px; top: 0px; text-align: left; display: none;"><div draggable="false" title="地形を見る" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap;"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle;"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;"><img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">地形</label></div></div></div><div class="gm-style-mtc" style="float: left;"><div draggable="false" title="航空写真を見る" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(86, 86, 86); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 8px; border-bottom-right-radius: 2px; border-top-right-radius: 2px; -webkit-background-clip: padding-box; background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-left: 0px;">航空写真</div><div style="background-color: white; z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; right: 0px; top: 0px; text-align: left; display: none;"><div draggable="false" title="航空写真に道路名を表示" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap;"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle;"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden;"><img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">ラベル</label></div></div></div></div></div></div></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="place_select" type="button" value="この場所で決定" class="file-upload1" style="width: 100%">
+                                                    </td>
+                                                </tr>
+                                            </tbody></table>
+                                        </div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+                                        </div> <!--map window end -->
+
+
+
+                                        <div style="background-color: #DDDDDD; height: 30%; width: 100%;">
+                                            <table style="width: 100%; height: 100%;">
+                                                <tbody><tr>
+                                                    <td width="10%" height="5%">&nbsp;</td>
+                                                    <td width="80%" height="5%">&nbsp;</td>
+                                                    <td width="10%" height="5%">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="10%" height="90%">&nbsp;</td>
+                                                    <td width="80%" height="90%">
+                                                        <table style="border-style: solid; border-width: thin; width: 100%; height: 80%;">
+                                                            <tbody>
+
+                                                                <tr>
+                                                                    <td style="width: 100%; height: 100%">
+                                                                        <textarea id="message" style="min-height: 50px;height: 100%; width: 100%" cols="40" rows="5" class="form-control" placeholder="コメントを入力する...."></textarea>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table><!--typing box end-->
+
+                                                        <table style="border-style: solid; border-width: thin; width: 100%; height: 20%;">
+                                                            <tbody><tr>
+                                                                <td width="30%">
+                                                                 <div id="addmsg"></div>
+                                                                 <input type="hidden" name="place_va" id="place_va">
+                                                                 <img alt="" src="./main_default_files/pin.png" height="20px" width="20px">
+                                                                 <input id="opener" type="button" value="位置情報" style="border-style: none; background-color: #DDDD; color: black;">
+                                                             </td><!--end GPS-->
+                                                             <td style="width: 30%;">
+                                                                <table style="width: 100%; height: 100%;">
+                                                                 <tbody><tr>
+                                                                     <td class="auto-style1">&nbsp;</td>
+                                                                     <td align="right" width="5%" valign="center">
+                                                                         <img id="Image2" src="./main_default_files/photo.png" style="height:20px;width:20px;">
+                                                                         <br>
+                                                                     </td>
+                                                                     <td align="left" valign="bottom">
+                                                                         <label class="file-upload">
+                                                                            <span ><strong>写真‧動画</strong></span>
+                                                                            <input type="file" multiple="multiple" name="fuDocument" id="fuDocument" onchange="UploadFile(this);">
+                                                                        </label>
+
+                                                                        <input type="submit" name="btnUploadDoc" value="Upload" onclick="ShowProgressBar();" id="btnUploadDoc" style="display: none;">
+
+
+                                                                    </td>
+                                                                    <td valign="bottom" width="10%">
+                                                                     <br>
+
+                                                                 </td>
+                                                             </tr>
+                                                         </tbody>
+                                                     </table>
+
+                                                 </td><!--end take photo-->
+
+                                                 <td width="40%" align="right">
+                                                    <input type="button" id="send" value=" 送信する " style="border-style: none; background-color: #FF6666; color: #FFFFFF;">
+                                                </td>
+                                                <td width="5%">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table><!--end footer of typing box-->
+
+
+                                </td>
+                                <td width="10%" height="90%">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="10%" height="5%">&nbsp;</td>
+                                <td width="80%" height="5%">&nbsp;</td>
+                                <td width="10%" height="5%">&nbsp;</td>
+                            </tr>
+                        </td>                            
+                    </tr>
+                </tbody>
+            </table><!--end list & chat window-->
+
+            <!-- white space blow -->
+            <tr>
+                <td class="space">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="space">&nbsp;</td>
+                <td width="80%" height="10%" aria-multiline="True">&nbsp;</td>
+                <td width="10%" height="10%">&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+<div id="divProgress" style="text-align: center; position: fixed; top: 444.5px; left: 927.5px; z-index: 999999; display: none;">
+    <img id="imgLoading" src="./Chat_files/loading.gif">
+    <br>
+    <font color="#1B3563" size="2px">資料処理中</font>
+</div>
+<div id="divMaskFrame" style="background-color: rgb(242, 244, 247); left: 0px; position: absolute; top: 0px; z-index: 999998; opacity: 0.7; width: 1903px; height: 1054px; display: none;">
+</div>
+<div id="javaplace">
+</div>
+
+</form>
+
+<div class="selection_bubble_root" style="display: none;"></div>
+
+
+<script>
+ function ShowSidebarRight(){
+    var div = document.getElementById('div_sidebar_right');
+    if (div.style.display  == 'block') {
+        div.setAttribute("style", "display:none");
+
+    }
+    else {
+        div.setAttribute("style", "display:block;");
+    }
+}
+
+ $(".small_talk_div_leave").on("click", function () {
+   if ( $(window).width() < 680) {      
+                    $('#list').css({
+                        display:'none',
+                    });;
+                    $('#contact_list').css({
+                        display:'none',
+                    });;
+                    $('#friend_name').css({
+                        display:'block',
+                        width:'100%'
+                    });;
+                     $('#chat_window').css({
+                        display:'block',
+                        height:'500px',
+                        width:'100%'
+                    });;
+        
+}
+                  
+
+                });
+</script>
+
+
+</body></html>

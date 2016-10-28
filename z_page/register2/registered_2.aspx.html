@@ -1,0 +1,563 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://192.168.1.13/registered_2.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+
+</title>
+     <style type="text/css">
+          #header{
+background-color:#ea9494;
+width: 100%;
+height:80px;
+text-align:center;
+line-height:80px;
+position: fixed;
+top:0;
+left: 0;
+z-index: 9999;
+}
+.icon_right{
+    display: none
+}
+#div_sidebar_right{
+    display:none;
+}
+#sidebar_right{
+    display: none;
+}
+.topnav_right{
+        position: relative;
+     bottom: .3em;  
+    }
+.main{
+    position: relative;
+    margin: 100px auto;
+}
+ #Label_logo{
+        display: block;
+        position: relative;
+        bottom: .2em;
+    }
+    img {
+    width: 100%;
+    height: auto;
+}
+@media (max-width: 680px){
+#header{
+        height: 60px;
+    }
+#div_sidebar_right{
+    width: 100px;
+    height: 100%;
+    position: relative;
+    float: right;
+    z-index: 9997;
+    display: none; 
+    }
+#sidebar_right{
+width: 100%;
+background-color:#e7e7e7;
+z-index: 9998;
+text-align:left;
+position: fixed;
+top: 1em;
+display: block;
+}
+#Label_logo{
+        display: block;
+        position: relative;
+        bottom: 0.5em;
+    }
+.icon_right{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 1em;
+    }
+.topnav_right{
+        display: none;
+    }
+
+
+}/*--------------------------end media*/
+        .textbox { 
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+  } 
+          input:focus 
+  {
+      border: 2px solid #AA88FF;
+    background-color: #ff7575;
+    }   
+    </style> 
+   <link rel="stylesheet" href="./registered_2.aspx_files/file-upload.css" type="text/css"><link rel="stylesheet" href="./registered_2.aspx_files/jquery-ui.css">
+      <script src="./registered_2.aspx_files/jquery-1.12.4.js.download"></script>
+  <script src="./registered_2.aspx_files/jquery-ui.js.download"></script>
+    <script src="./registered_2.aspx_files/datepicker-ja.js.download"></script>
+    <script type="text/javascript">
+
+        // 顯示讀取遮罩
+        function ShowProgressBar() {
+            displayProgress();
+            displayMaskFrame();
+        }
+
+        // 隱藏讀取遮罩
+        function HideProgressBar() {
+            var progress = $('#divProgress');
+            var maskFrame = $("#divMaskFrame");
+            progress.hide();
+            maskFrame.hide();
+        }
+        // 顯示讀取畫面
+        function displayProgress() {
+            var w = $(document).width();
+            var h = $(window).height();
+            var progress = $('#divProgress');
+            progress.css({ "z-index": 999999, "top": (h / 2) - (progress.height() / 2), "left": (w / 2) - (progress.width() / 2) });
+            progress.show();
+        }
+        // 顯示遮罩畫面
+        function displayMaskFrame() {
+            var w = $(window).width();
+            var h = $(document).height();
+            var maskFrame = $("#divMaskFrame");
+            maskFrame.css({ "z-index": 999998, "opacity": 0.7, "width": w, "height": h });
+            maskFrame.show();
+        }
+
+        $(document).ready(function () {
+
+            var counter = 2;
+
+            $("#addButton").click(function () {
+
+                if (counter > 10) {
+                    alert("Only 10 textboxes allow");
+                    return false;
+                }
+
+                $("#KidGroup").append('<div id="KidDiv' + counter + '"><table style="width:100%;"> <tr> <td width="40%" valign="top"> <table style="width:100%;"> <tr> <td width="50%"> <span>お名前</span> </td> <td width="50%" valign="bottom"> <span style ="color: #FF5050; font-size: XX-Small;">※必須</span> </td> </tr> </table> </td> <td width="60%"> <table style="width:100%;"> <tr> <td width="50%"> <input id="real_first_name_text' + counter + '" type="text" name="real_first_name_text' + counter + '" class="textbox" placeholder="姓" style="height:20px;width:90%;" /> <br /><br /><span id="real_first_name_la' + counter + '" style="color: #FF0000"></span> </td> <td width="50%"> <input id="real_second_name_text' + counter + '" type="text" name="real_second_name_text' + counter + '" class="textbox" placeholder="名" style="height:20px;width:90%;" /> <br /><br /><span id="real_second_name_la' + counter + '" style="color: #FF0000"></span> </td> </tr> </table> </td> </tr> <tr> <td width="40%" valign="top"> <table style="width:100%;"> <tr> <td width="50%"> <span>フリガナ</span> </td> <td width="50%" valign="bottom"> <span style ="color: #FF5050; font-size: XX-Small;">※必須</span> </td> </tr> </table> </td> <td width="60%"> <table style="width:100%;"> <tr> <td width="50%"> <input id="real_spell_first_name_text' + counter + '" type="text" name="real_spell_first_name_text' + counter + '" class="textbox" placeholder="セイ" style="height:20px;width:90%;" /> <br /><br /><span id="real_spell_first_name_la' + counter + '" style="color: #FF0000"></span> </td> <td width="50%"> <input id="real_spell_second_name_text' + counter + '" type="text" name="real_spell_second_name_text' + counter + '" class="textbox" placeholder="メイ" style="height:20px;width:90%;" /> <br /><br /><span id="real_spell_second_name_la' + counter + '" style="color: #FF0000"></span> </td> </tr> </table> </td> </tr> <tr> <td width="40%" valign="top"> <table style="width:100%;"> <tr> <td width="50%"> <span>性别</span> </td> <td width="50%" valign="bottom"> <span style ="color: #FF5050; font-size: XX-Small;">※必須</span> </td> </tr> </table> </td> <td width="60%"> <input type="radio" name="sex' + counter + '" value="Girl">女性 <input type="radio" name="sex' + counter + '" value="Boy">男性 <br /> <br /><span id="sex_la' + counter + '" style="color: #FF0000"></span> </td> </tr> <tr> <td width="40%" valign="center"> <table style="width:100%;"> <tr> <td width="50%"> <span>生年月日</span> </td> <td width="50%" valign="bottom"> <span style ="color: #FF5050; font-size: XX-Small;">※必須</span> </td> </tr> </table> <br /> </td> <td width="60%" valign="center"> <p><input type="text" name="datepicker' + counter + '" id="datepicker' + counter + '" class="textbox" placeholder="2016/01/01" readonly></p> <script> $(function () { $("#datepicker' + counter + '").datepicker({ format: "yyyy/mm/dd", language: "ja", changeMonth: true, changeYear: true, autoclose: true, clearBtn: true, clear: "閉じる" }); });</' + 'script><br /><span id="date_la' + counter + '" style="color: #FF0000"></span> </td> </tr> <tr> <td> <span>保育園/学校名</span> <br /> <br /> </td> <td> <input name="school_name_text' + counter + '" type="text" id="school_name_text' + counter + '" class="textbox" placeholder="通っている保育園/病院を入力" style="height:20px;width:100%;"> </td> </tr> <tr> <td> <span>かかりつけ医院名</span> <br /> <br /> </td> <td> <input name="hospital_name_text' + counter + '" type="text" id="hospital_name_text' + counter + '" class="textbox" placeholder="病院名/診療所名を入力" style="height:20px;width:100%;"> </td> </tr> <tr> <td> <span>アレルギー/持病</span> <br /> <br /> </td> <td> <textarea name="sick_name_text' + counter + '" rows="2" cols="20" wrap="off" id="sick_name_text' + counter + '" class="textbox" placeholder="例小麦アレルキーなど" style="height:50px;width:100%;"></textarea> </td> </tr> </table> <hr/></div>');
+
+
+
+                counter++;
+            });
+
+            $("#removeButton").click(function () {
+                if (counter == 2) {
+                    alert("No more Kid to remove");
+                    return false;
+                }
+
+                counter--;
+
+                $("#KidDiv" + counter).remove();
+
+            });
+
+            $("#Button1").click(function () {
+                var checkfin = true;
+                var param1 = "1".toString();
+                for (i = 1; i < counter; i++) {
+                    $('#real_first_name_la' + i).text("");
+                    $('#real_second_name_la' + i).text("");
+                    $('#real_spell_first_name_la' + i).text("");
+                    $('#real_spell_second_name_la' + i).text("");
+                    $('#date_la' + i).text("");
+                    $('#sex_la' + i).text("");
+
+
+                    if ($('#real_first_name_text' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() != "" && $('#real_second_name_text' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() != "" && $('#real_spell_first_name_text' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() != "" && $('#real_spell_second_name_text' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() != "" && $('#datepicker' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() != "" && document.querySelector('input[name="sex' + i + '"]:checked') != null) {
+                       
+                    } else {
+                        checkfin = false;
+                        if ($('#real_first_name_text' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() == "") {
+                            $("#real_first_name_la" + i).text("未入力");
+                        }
+                        if ($('#real_second_name_text' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() == "") {
+                            $('#real_second_name_la' + i).text("未入力");
+                        }
+                        if ($('#real_spell_first_name_text' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() == "") {
+                            $('#real_spell_first_name_la' + i).text("未入力");
+                        }
+                        if ($('#real_spell_second_name_text' + i).val().replace("'", "").replace('"', "").replace("`", "").trim() == "") {
+                            $('#real_spell_second_name_la' + i).text("未入力");
+                        }
+                        if ($('#datepicker' + i).val() == "") {
+                            $('#date_la' + i).text("未入力");
+                        }
+                        if (document.querySelector('input[name="sex' + i + '"]:checked') == null) {
+                            $('#sex_la' + i).text("未入力");
+                        }
+                    }
+                }
+                HideProgressBar();
+
+                if (checkfin) {
+                    ShowProgressBar();
+                    for (i = 1; i < counter; i++) {
+                        $('#real_first_name_la' + i).text("");
+                        $('#real_second_name_la' + i).text("");
+                        $('#real_spell_first_name_la' + i).text("");
+                        $('#real_spell_second_name_la' + i).text("");
+                        $('#date_la' + i).text("");
+                        $('#sex_la' + i).text("");
+                        $.ajax({
+                            type: "POST",
+                            url: "registered_2.aspx/Save",
+                            data: "{param1: '" + param1 + "' , param2 :'" + $('#real_first_name_text' + i).val() + "',param3 :'" + $('#real_second_name_text' + i).val() + "',param4 :'" + $('#real_spell_first_name_text' + i).val() + "',param5 :'" + $('#real_spell_second_name_text' + i).val() + "',param6 :'" + $('#datepicker' + i).val() + "',param7 :'" + $('#school_name_text' + i).val() + "',param8 :'" + $('#hospital_name_text' + i).val() + "',param9 :'" + $('#sick_name_text' + i).val() + "',param10 :'" + document.querySelector('input[name="sex' + i + '"]:checked').value + "'}",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            async: false,
+                            cache: false,
+                            success: function (result) {
+                                //Successfully gone to the server and returned with the string result of the server side function do what you want with the result  
+                                //console.log(result.d);
+                                //alert(result.d);
+
+                            },
+                            error: function (result) {
+                                //console.log(result.Message);
+                                //alert(result.d);
+                            }
+                        });
+                    }
+                    window.location.href = "registered_2_1.aspx";
+                }
+
+            });
+
+
+        });
+
+        function escapeRegExp(str) {
+            return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+        }
+
+    </script>
+</head>
+<body>
+    <form method="post" action="http://192.168.1.13/registered_2.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="XcKigO4YsEWcXtGzRQWFdGBug8luDdNV0Bq8QweKmi1CN+Qt8qtIiEfQ0KB29h7LIJQVHw3kmCN9Ep4FhkXHd0lxyvgTTQJaIBm3yVxQnAzfHc+foFnjyGN6qm4p11hoBp7J32FfdY1TWsa1e9E/zDE7FLBe8hpagMn2Ppozcl2Mm7diYNr6T4DGA6dD7KZJcJbSezefaeVJ0UsDIUQP1A==">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="E8E89D8A">
+</div>
+                <div id="header">
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="left" width="15%">
+                                
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="5%">&nbsp;</td>
+                                        <td><span id="Label_logo" onclick="javascript:self.location=&#39;home.aspx&#39;;" style="color:White;font-family:Arial Black;font-size:XX-Large;font-weight:bold;cursor:pointer;">RiN</span></td>
+                                    </tr>
+                                </tbody></table>
+                            </td><!--rin end-->
+                            <td width="55%">
+                                &nbsp;</td>
+                            <td class="header-right">
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td class="topnav_right">
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">マイへ一ン</button>
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">メッセ一ジ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" onclick="showDialog_m()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">お知らせ</button>
+
+                                        </td>
+                                        <td class="topnav_right">
+
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">ヘルプ</button>
+                                        </td>
+                                         <td class="icon_right"><i class="fa fa-bell-o" style="font-size:30px; color: white;cursor: pointer;" onclick="ShowSidebarRight()"></i>
+                                         </td>
+
+
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    </div>
+
+
+
+                     <div id="div_sidebar_right">
+    <div id="sidebar_right">
+        <table style="width: 100%; margin-top: 4em;">
+            <tbody>
+                <tr>
+                    <td>
+                         <button type="button" style="border-style: none; background-color:#E7E7E7 ;  cursor: pointer;">マイへ一ン</button>
+                    </td>
+                </tr> 
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">メッセ一ジ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">お知らせ</button>
+                    </td>
+                </tr>   
+
+                <tr>
+                    <td>
+                         <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7; cursor: pointer;">ヘルプ</button>
+                    </td>
+                </tr>     
+            </tbody>
+         </table>
+</div><!--End sidebar_right--> 
+</div><!--End div_sidebar_right-->
+    <div>
+    
+        <table class="main" style="width:100%;">
+            <tbody><tr>
+                <td width="25%">
+                    &nbsp;</td>
+                <td width="50%" align="center">
+                    <img id="Image1" src="./registered_2.aspx_files/1.PNG">
+                </td>
+                <td width="25%">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    <table style="width:100%;">
+                      <tbody><tr>
+                            <td colspan="2" align="center">
+                                <span id="Label1" style="color:#FF5050;font-weight:bold;">お子様の情報</span>
+                                    &nbsp;<br>
+                                <br>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div id="KidDiv1">
+                                    <table style="width:100%;">
+                                        <tbody><tr>
+                                            <td width="40%" valign="top">
+                                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="50%">
+                                                <span>お名前</span>
+                                        </td>
+                                              <td width="50%" valign="bottom">
+                                        <span style="color: #FF5050; font-size: XX-Small;">※必須</span>
+                                                  </td>
+                                             </tr>
+                                             </tbody></table>
+                                            </td>
+                                            <td width="60%">
+                                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="50%">
+                                            <input id="real_first_name_text1" type="text" name="real_first_name_text1" class="textbox" placeholder="姓" style="height:20px;width:90%;">
+                                    <br><br><span id="real_first_name_la1" style="color: #FF0000"></span>
+                                            </td>
+                                        <td width="50%">
+                                <input id="real_second_name_text1" type="text" name="real_second_name_text1" class="textbox" placeholder="名" style="height:20px;width:90%;">
+                                    <br><br><span id="real_second_name_la1" style="color: #FF0000"></span>
+                                            </td>
+                                    </tr>
+                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="40%" valign="top">
+                                               <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="50%">
+                                                <span>フリガナ</span>
+                                        </td>
+                                              <td width="50%" valign="bottom">
+                                        <span style="color: #FF5050; font-size: XX-Small;">※必須</span>
+                                                  </td>
+                                             </tr>
+                                             </tbody></table>
+
+                                            </td>
+                                            <td width="60%">
+                                                 <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="50%">
+                                            <input id="real_spell_first_name_text1" type="text" name="real_spell_first_name_text1" class="textbox" placeholder="セイ" style="height:20px;width:90%;">
+                                    <br><br><span id="real_spell_first_name_la1" style="color: #FF0000"></span>
+                                            </td>
+                                        <td width="50%">
+                                <input id="real_spell_second_name_text1" type="text" name="real_spell_second_name_text1" class="textbox" placeholder="メイ" style="height:20px;width:90%;">
+                                    <br><br><span id="real_spell_second_name_la1" style="color: #FF0000"></span>
+                                            </td>
+                                    </tr>
+                                </tbody></table>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="40%" valign="top">
+                                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="50%">
+                                                <span>性别</span>
+                                        </td>
+                                              <td width="50%" valign="bottom">
+                                        <span style="color: #FF5050; font-size: XX-Small;">※必須</span>
+                                                  </td>
+                                             </tr>
+                                             </tbody></table>
+
+                                            </td>
+                                            <td width="60%">
+                                                <input type="radio" name="sex1" value="Girl">女性
+                                                <input type="radio" name="sex1" value="Boy">男性
+                                                <br>
+                                <br><span id="sex_la1" style="color: #FF0000"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="40%" valign="center">
+                                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="50%">
+                                                <span>生年月日</span>
+                                        </td>
+                                              <td width="50%" valign="bottom">
+                                        <span style="color: #FF5050; font-size: XX-Small;">※必須</span>
+                                                  </td>
+                                             </tr>
+                                             </tbody></table>
+                                                <br>
+                                            </td>
+                                            <td width="60%" valign="center">
+                                               <p><input type="text" name="datepicker1" id="datepicker1" class="textbox hasDatepicker" placeholder="2016/01/01" readonly=""></p>
+                                                <script>
+                                                    $(function () {
+                                                        $("#datepicker1").datepicker({
+                                                            format: 'yyyy/mm/dd',
+                                                            language: 'ja',
+                                                            changeMonth: true,
+                                                            changeYear: true,
+                                                            autoclose: true, // これ
+                                                            clearBtn: true,
+                                                            clear: '閉じる'
+                                                        });
+                                                    });
+                                                </script>
+                                <br><span id="date_la1" style="color: #FF0000"></span>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                 <span>保育園/学校名</span>
+                                <br>
+                                <br>
+                                            </td>
+                                            <td>
+                                                <input name="school_name_text1" type="text" id="school_name_text1" class="textbox" placeholder="通っている保育園/病院を入力" style="height:20px;width:100%;">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                 <span>かかりつけ医院名</span>
+                                <br>
+                                <br>
+                                            </td>
+                                            <td>
+                                                <input name="hospital_name_text1" type="text" id="hospital_name_text1" class="textbox" placeholder="病院名/診療所名を入力" style="height:20px;width:100%;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                 <span>アレルギー/持病</span>
+                                <br>
+                                <br>
+                                            </td>
+                                            <td>
+                                                <textarea name="sick_name_text1" rows="2" cols="20" wrap="off" id="sick_name_text1" class="textbox" placeholder="例小麦アレルキーなど" style="height:50px;width:100%;"></textarea>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                    <hr>
+                                </div>
+                             </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div id="KidGroup">
+
+                                </div>
+                                                <br><br>
+                             </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="right">
+                                <a id="addButton" href="javascript:void(0);" target="_blank" style="font-size:Small;text-decoration:none;">+別のお子様を追加</a>
+                                                <br>
+                                    <a id="removeButton" href="javascript:void(0);" target="_blank" style="font-size:Small;text-decoration:none;">-別のお子様を削除</a>
+                                                <br><br>
+                             </td>
+                        </tr>
+                         <tr>
+                            <td colspan="2" align="center">
+                                <input id="Button1" type="button" value="保存して次へ" class="file-upload" style="width:50%;" onclick="ShowProgressBar();">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+        </tbody></table>
+    
+    </div>
+                        <div id="divProgress" style="text-align:center; display: none; position: fixed; top: 50%;  left: 50%;">
+    <img id="imgLoading" src="./registered_2.aspx_files/loading.gif">
+    <br>
+    <font color="#1B3563" size="2px">資料処理中</font>
+</div>
+<div id="divMaskFrame" style="background-color: #F2F4F7; display: none; left: 0px;
+    position: absolute; top: 0px;">
+</div>
+    </form>
+
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><div class="selection_bubble_root" style="display: none;"></div><script>
+   function ShowSidebarRight(){
+        var div = document.getElementById('div_sidebar_right');
+         if (div.style.display == 'block') {
+            div.setAttribute("style", "display:none");
+
+        }
+        else {
+            div.setAttribute("style", "display:block;");
+        }
+    }
+</script></body></html>

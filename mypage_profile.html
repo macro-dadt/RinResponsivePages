@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+	<title>my page profile</title>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="js/agency.min.js">
+     <!-- date picker -->
+	<link rel="stylesheet" type="text/css" href="css/datepicker.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style_mypage_profile.css">
+
+	<script src="js/main.js"></script><!--must here-->		
+</head>
+
+
+<body>
+	<div id="header">
+		<table style="width:100%;">
+			<tbody>
+				<tr>
+					<td class="header-left" align="left">
+
+						<table style="width:100%;">
+							<tbody>
+								<tr>
+									<td width="5%">&nbsp;
+									</td>
+
+									<td><span id="rin" style="color:White;font-family:Arial Black;font-size:XX-Large;font-weight:bold;">RiN</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td class="header-midle">
+					</td>
+					<td class="header-right">
+						<table style="width:100%;">
+							<tbody>
+								<tr>
+									<td class="topnav_right">
+										<button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF;">マイへ一ン</button>
+									</td>
+									<td class="topnav_right">
+
+										<button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF;">メッセ一ジ</button>
+
+									</td>
+									<td class="topnav_right">
+
+										<button type="button" onclick="showDialog_m()" style="border-style: none; background-color: #ea9494; color: #FFFFFF;">お知らせ</button>
+
+									</td>
+									<td class="topnav_right">
+
+										<button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF;">ヘルプ</button>
+									</td>
+									<td class="icon_right"><i class="fa fa-bell-o" style="font-size:30px; color: white;cursor: pointer;" onclick="ShowSidebarRight()"></i></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div><!--end header-->
+
+	<div id="div_sidebar_right">
+				<div id="sidebar_right">
+					<table style="width: 100%; margin-top: 1em;">
+						<tbody>
+							<tr>
+								<td>
+									<button type="button" style="border-style: none; background-color:#E7E7E7 ;  cursor: pointer;">マイへ一ン</button>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<button onclick="showDialog()" 　type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">メッセ一ジ</button>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<button onclick="showDialog()" 　 type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">お知らせ</button>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<button onclick="showDialog()" 　 type="button" style="border-style: none; background-color: #E7E7E7; cursor: pointer;">ヘルプ</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+				</div>
+				<!--End sidebar_right-->
+			</div>
+			<!--End div_sidebar_right-->
+
+	<div id="header1">
+		<table style="width: 100%; height: 100%;">
+			<tbody>
+				<tr>
+					<td aligh="right" width="18%">
+						<input type="submit" name="date_manger_b1" value="予約　　状況" onclick="ShowProgressBar();" id="date_manger_b1" style="color:#FFFFFF;background-color:Black;border-style:None;font-weight:bold;height:85%;width:60%;">
+						<br><img id="date_manger_im1" src="./user_date_manger_files/block.PNG" style="height:10%;width:60%;">
+					</td>
+					<td aligh="right" width="18%">
+						<input type="submit" name="date_manger_b2" value="予約枠の変更" onclick="ShowProgressBar();" id="date_manger_b2" style="color:#999999;background-color:Black;border-style:None;height:85%;width:60%;">
+						<br>
+					</td>
+					<td aligh="right" width="18%">
+						<input type="submit" name="date_manger_b3" value="登録情報の変更" onclick="ShowProgressBar();" id="date_manger_b3" style="color:#999999;background-color:Black;border-style:None;height:85%;width:60%;">
+						<br>
+					</td>
+					<td aligh="right" width="18%">
+						<input type="submit" name="date_manger_b4" value="実績" onclick="ShowProgressBar();" id="date_manger_b4" style="color:#999999;background-color:Black;border-style:None;height:85%;width:60%;">
+						<br>
+					</td>
+					<td aligh="right" width="18%">
+						<input type="submit" name="date_manger_b5" value="講習動画" onclick="ShowProgressBar();" id="date_manger_b5" style="color:#999999;background-color:Black;border-style:None;height:85%;width:60%;">
+						<br>
+					</td>
+					<td width="10%">
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div><!--end header 1-->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7  col-md-offset-2">
+				<div class="row text_style lead" >情報書</div><!--label-->
+				<div class="row">
+					<div class="col-sm-4 col-md-4　text_style"><b>預かり日</b></div>
+					<div class="col-sm-8 col-md-8">
+
+					     <div class="span5 col-md-5" id="sandbox-container"><input type="text" class="form-control datepicker"></div>
+					     <span class="span1 col-md-1" style="line-height: 300%"> ~</span>
+					     <div class="span5 col-md-5" id="sandbox-container"><input type="text" class="form-control datepicker"></div>
+
+					</div>
+				</div><!--end caring date-->
+				<div class="row">
+					<div class="col-md-4 text_style" >預かり時間帯</div>
+					<div class="col-md-8">
+						<select name="start_hour_DropDownList0" id="start_hour_DropDownList0" class="textbox" style="height:20px;">
+							<option value="00">00</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+						</select><!--hour end-->
+
+						<span id="Label23">時</span>
+
+						<select name="start_minute_DropDownList0" id="start_minute_DropDownList0" class="textbox" style="height:20px;">
+							<option value="00">00</option>
+							<option value="15">15</option>
+							<option value="30">30</option>
+							<option value="45">45</option>
+						</select><!--minute end-->
+
+						<span id="Label38">分  ~</span>
+						<select name="end_hour_DropDownList0" id="end_hour_DropDownList0" class="textbox" style="height:20px;">
+							<option value="00">00</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+						</select><!--hour2 end-->
+
+						<span>時</span>
+
+						<select name="end_minute_DropDownList0" id="end_minute_DropDownList0" class="textbox" style="height:20px;">
+							<option value="00">00</option>
+							<option value="15">15</option>
+							<option value="30">30</option>
+							<option value="45">45</option>
+						</select><!--minute2 end-->
+							<span id="Label38">分</span>
+					</div>
+				</div><!--row 3 end-->
+				<div class="row">
+					<div class="col-md-4 text_style">預かり内容</div><!---->
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-6"> <label style="font-weight: normal;"><input type="checkbox" value="">送迎</label></div>
+							<div class="col-md-6"> <label  style="font-weight: normal;"><input type="checkbox" value="">利用宅で預かる</label></div>
+							<div class="col-md-6 "> <label  style="font-weight: normal;"><input type="checkbox" value="">自宅で預かる</label></div>
+							<div class="col-md-6 "> <label  style="font-weight: normal;"><input type="checkbox" value="">乳児預かり</label></div>
+					    </div>
+					</div><!--caring options-->
+				</div><!---->
+				<div class="row">
+					<div class="col-md-4 text_style">預かり時の様子</div>
+					<textarea class="col-md-8 textboxclass"></textarea>
+				</div><!---->
+				<div class="row" >
+					<div class="col-md-6 col-md-offset-3" style="height: 50px"><button id="button">情報書を送付</button></div>
+				</div><!---->
+			</div>
+		</div>
+	</div><!--end main body-->
+
+
+	<script>
+		$(function(){
+			 $('.datepicker').datepicker();
+			});
+
+		 function ShowSidebarRight(){
+        var div = document.getElementById('div_sidebar_right');
+         if (div.style.display == 'block') {
+            div.setAttribute("style", "display:none");
+
+        }
+        else {
+            div.setAttribute("style", "display:block; z-index:999999");
+        }
+    }
+
+		</script>
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+
+		
+</body>
+</html>
