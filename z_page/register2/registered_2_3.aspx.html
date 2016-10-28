@@ -49,6 +49,7 @@ top:0;
 left: 0;
 z-index: 9999;
 }
+
 .icon_right{
     display: none
 }
@@ -80,9 +81,11 @@ z-index: 9999;
 #header{
         height: 60px;
     }
+.space{
+    display: none;
+}
 #div_sidebar_right{
     width: 100px;
-    height: 100%;
     position: relative;
     float: right;
     z-index: 9997;
@@ -215,19 +218,19 @@ display: block;
 </div><!--End sidebar_right--> 
 </div><!--End div_sidebar_right-->
 
-
     <div>
     
         <table class="main" style="width:100%;">
-            <tbody><tr>
-               <td style="width: 25%">&nbsp;</td>
+            <tbody>
+            <tr>
+               <td class="space" style="width: 25%">&nbsp;</td>
                 <td style="width: 50%" align="center">
                     <img id="Image1" src="./registered_2_3.aspx_files/4.PNG">
                 </td>
-                <td style="width: 25%">&nbsp;</td>
-            </tr>
+                <td class="space" style="width: 25%">&nbsp;</td>
+            </tr><!--process image tr end-->
             <tr>
-                <td>&nbsp;</td>
+                <td class="space">&nbsp;</td>
                 <td>
                     <table style="width:100%;">
                         <tbody><tr>
@@ -293,13 +296,13 @@ display: block;
                         </tr>
                     </tbody></table>
                 </td>
-                <td>&nbsp;</td>
-            </tr>
+                <td class="space">&nbsp;</td>
+            </tr><!--main content end-->
             <tr>
+                <td class="space">&nbsp;</td>
                 <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
+                <td class="space">&nbsp;</td>
+            </tr><!--sapce footer end-->
         </tbody></table>
     
     </div>
@@ -314,10 +317,11 @@ display: block;
     </form>
 
 
-<div class="selection_bubble_root" style="display: none;"></div><script>
+<div class="selection_bubble_root" style="display: none;"></div>
+<script>
    function ShowSidebarRight(){
         var div = document.getElementById('div_sidebar_right');
-         if (div.style.display != 'block') {
+         if (div.style.display == 'block') {
             div.setAttribute("style", "display:none");
 
         }
