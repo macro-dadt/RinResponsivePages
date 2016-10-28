@@ -6,7 +6,7 @@
       <script src="./registered_2_2.aspx_files/jquery-1.12.4.js.download"></script>
   <script src="./registered_2_2.aspx_files/jquery-ui.js.download"></script>
     <style type="text/css">
-       #header{
+#header{
 background-color:#ea9494;
 width: 100%;
 height:80px;
@@ -16,7 +16,10 @@ position: fixed;
 top:0;
 left: 0;
 z-index: 9999;
+white-space: nowrap;
 }
+
+
 .icon_right{
     display: none
 }
@@ -39,18 +42,28 @@ z-index: 9999;
         position: relative;
         bottom: .2em;
     }
-    img {
+img {
     width: 100%;
     height: auto;
 }
+/* td#div_video iframe{
+    height: 100%;
+    width: 100%;
+} */
 @media (max-width: 680px){
 .main{
     position: relative;
     margin: 80px auto;
 }
+.space{
+    display: none;
+}
 #header{
         height: 60px;
     }
+#image_process{
+    width: 100%;
+}
 #div_sidebar_right{
     width: 100px;
     height: 100%;
@@ -67,6 +80,10 @@ text-align:left;
 position: fixed;
 top: 1em;
 display: block;
+}
+td#div_video iframe{
+    height: 100%;
+    width: 100%;
 }
 #Label_logo{
         display: block;
@@ -212,15 +229,16 @@ display: block;
     <div>
     
         <table class="main" style="width:100%;">
-            <tbody><tr>
-                <td style="width: 25%">&nbsp;</td>
-                <td style="width: 50%" align="center">
+            <tbody>
+            <tr>
+                <td class="space" style="width: 25%">&nbsp;</td>
+                <td id="image_process" style="width: 50%" align="center">
                     <img id="Image1" src="./registered_2_2.aspx_files/3.PNG">
                 </td>
-                <td style="width: 25%">&nbsp;</td>
-            </tr>
+                <td class="space" style="width: 25%">&nbsp;</td>
+            </tr><!--end image process-->
             <tr>
-                <td>&nbsp;</td>
+                <td class="space">&nbsp;</td>
                 <td>
                     <table style="width:100%;">
                         <tbody><tr>
@@ -246,7 +264,7 @@ display: block;
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
-                            <td align="center">
+                            <td id="div_video" align="center">
                                 <iframe width="400" height="300" src="./registered_2_2.aspx_files/J6FVMA45MQA.html" frameborder="0" allowfullscreen=""></iframe>
                             </td>
                             <td>&nbsp;</td>
@@ -262,13 +280,8 @@ display: block;
                         </tr>
                     </tbody></table>
                 </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
+                <td class="space">&nbsp;</td>
+            </tr><!--end main content-->
         </tbody></table>
     
     </div>
