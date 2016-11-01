@@ -78,10 +78,7 @@ Chat
     width: 75%;
     height: 10%;
 }
-.chat_window{
-    width: 75%;
-    height: 90%
-}
+
 
 
 .header-right{
@@ -113,22 +110,46 @@ Chat
     margin-top: 10px;
 }
 .space{
-    width: 10%;
-    height: 80%;
+   
 }
+.zoom-gallery{
+    margin-top: 10px;
+    
+}
+.zoom-gallery a img{
 
+        margin-right: 5px;
+    
+        width: 80px;
+        height: 80px;
+    }
 @media (max-width: 680px){
+    .zoom-gallery a img{  
+        width: 60px;
+        height: 60px;
+    }
+ .zoom-gallery{
+     margin-top: 5px; 
+ }
  #chatbody{
+   position: fixed;
+   
+    margin-top: -20px;
+}
+#typing_box{
     position: fixed;
-    top: 0em;
+    bottom: 0
+}
+#chat_Panel2{
+    height: 100%;
+    overflow-y:scroll;
 }
 .friend_name{
     width: 100%;
     display: none;
 }
 .chat_window{
-    width: 100%;
-    display: none;
+        display: none;
 }
 .test{
     display: block;
@@ -137,7 +158,7 @@ Chat
     width: 100%;
 }
 .space{
-    width: 0%;
+   display: none;
 }
 
 .contact_list{
@@ -253,7 +274,7 @@ Chat
                 //新增聊天內容
                 chat.client.addtalkList = function (id, name, photo, message, year, month, day, hour, minute,second) {
                     var li = "<table width='100%'><tr><td width='10%' rowspan='2' valign='top'>";
-                    li += "<div class='zoom-gallery'>";
+                    li += "<div class='zoom-gallery'  style='margin-top:5px;'>";
                     li += "<a href='" + photo + "' data-source='" + photo + "' title='" + name + "' style='width:100px;height:100px;'>";
                     li += "<img src='" + photo + "' width='100' height='100' />";
                     li += "</a>";
@@ -306,6 +327,9 @@ Chat
 
 
                     $("#chat_chat_" + id).append(li);
+                    $("#chat_chat_" + id).css({
+                        valign: 'top',
+                    });
 
                     //$("#chat_chat_" + id).find('strong').html("");
                     $("#chat_chat_last" + id).text(shortmesg);
@@ -568,20 +592,20 @@ function registerListClick() {
 
              <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="BB123110">
          </div>
-         <div id="chatbody" style="height: 908px; width: 100%;">
+         <div id="chatbody">
             <table style="width: 100%; height: 100%;">
                 <tbody>
                     <tr>
-                        <td width="10%" height="10%">&nbsp;</td>
-                        <td width="80%" height="10%">&nbsp;</td>
-                        <td width="10%" height="10%">&nbsp;</td>
+                        <td class="space" width="10%" height="10%">&nbsp;</td>
+                        <td height="70px">&nbsp;</td>
+                        <td class="space" width="10%" height="10%">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td width="10%" height="80%">&nbsp;</td>
-                        <td width="80%" height="80%">
+                        <td class="space" width="10%" height="80%">&nbsp;</td>
+                        <td >
                             <table style="width: 100%; height: 100%;">
                                 <tbody>
-                                    <tr class="main_header">
+                                    <tr class="main_header" style="height: 10px">
                                         <td id="list" class="list" align="center" style="border-style: solid; border-width: thin">メッセージ一覧</td>
                                         <td id="friend_name" class="friend_name" align="center" style="border-style: solid; border-width: thin">
                                             <div id="title_myid">
@@ -606,7 +630,7 @@ function registerListClick() {
                                             </div>
                                         </td>
                                         <td id="chat_window" class="chat_window" >
-                                            <div id="chat_Panel2" style="border-width:1px;border-style:Solid;height:70%;width:100%;overflow-y:scroll;">
+                                            <div id="chat_Panel2" style="border-width:thin;border-style:solid;height:70%;width:100%;overflow-y:scroll;">
 
 
 
@@ -639,16 +663,17 @@ function registerListClick() {
 
 
 
-                                        <div style="background-color: #DDDDDD; height: 30%; width: 100%;">
+                                        <div id="typing_box" style="background-color: #DDDDDD; height: 30%; width: 100%;">
                                             <table style="width: 100%; height: 100%;">
-                                                <tbody><tr>
-                                                    <td width="10%" height="5%">&nbsp;</td>
-                                                    <td width="80%" height="5%">&nbsp;</td>
-                                                    <td width="10%" height="5%">&nbsp;</td>
+                                                <tbody>
+                                                <tr>
+                                                    <td class="space" width="10%" height="5%">&nbsp;</td>
+                                                    <td height="5%">&nbsp;</td>
+                                                    <td class="space" width="10%" height="5%">&nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td width="10%" height="90%">&nbsp;</td>
-                                                    <td width="80%" height="90%">
+                                                    <td class="space" width="10%" height="90%">&nbsp;</td>
+                                                    <td height="90%">
                                                         <table style="border-style: solid; border-width: thin; width: 100%; height: 80%;">
                                                             <tbody>
 
@@ -696,24 +721,25 @@ function registerListClick() {
 
                                                  </td><!--end take photo-->
 
-                                                 <td width="40%" align="right">
+                                                 <td  align="right">
                                                     <input type="button" id="send" value=" 送信する " style="border-style: none; background-color: #FF6666; color: #FFFFFF;">
                                                 </td>
-                                                <td width="5%">&nbsp;</td>
+                                                <td class="space" width="5%">&nbsp;</td>
                                             </tr>
                                         </tbody>
                                     </table><!--end footer of typing box-->
 
 
                                 </td>
-                                <td width="10%" height="90%">&nbsp;</td>
+                                <td class="space" width="10%" height="90%">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td width="10%" height="5%">&nbsp;</td>
-                                <td width="80%" height="5%">&nbsp;</td>
-                                <td width="10%" height="5%">&nbsp;</td>
+                                <td class="space" width="10%" height="5%">&nbsp;</td>
+                                <td height="5%">&nbsp;</td>
+                                <td class="space" width="10%" height="5%">&nbsp;</td>
                             </tr>
-                        </td>                            
+                        </td> 
+                         <td class="space" width="10%" height="80%">&nbsp;</td>                           
                     </tr>
                 </tbody>
             </table><!--end list & chat window-->
@@ -723,9 +749,9 @@ function registerListClick() {
                 <td class="space">&nbsp;</td>
             </tr>
             <tr>
-                <td class="space">&nbsp;</td>
-                <td width="80%" height="10%" aria-multiline="True">&nbsp;</td>
-                <td width="10%" height="10%">&nbsp;</td>
+                <td class="space" width="10%" height="10%">&nbsp;</td>
+                <td class="space" height="10%" aria-multiline="True">&nbsp;</td>
+                <td class="space" width="10%" height="10%">&nbsp;</td>
             </tr>
         </tbody>
     </table>
@@ -769,11 +795,12 @@ function registerListClick() {
                     });;
                     $('#friend_name').css({
                         display:'block',
-                        width:'100%'
+                        width:'100%',
+                        height:'100%'
                     });;
                      $('#chat_window').css({
                         display:'block',
-                        height:'500px',
+                        height:'100%',
                         width:'100%'
                     });;
         

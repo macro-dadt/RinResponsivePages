@@ -1,0 +1,13 @@
+/*
+ * Hannari (Japanese) https://fonts.google.com/earlyaccess
+ */
+@font-face {
+  font-family: 'Hannari';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/hannari/v1/Hannari-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/hannari/v1/Hannari-Regular.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/hannari/v1/Hannari-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/hannari/v1/Hannari-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/hannari/v1/Hannari-Regular.ttf) format('truetype');
+}

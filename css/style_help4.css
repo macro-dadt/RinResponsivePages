@@ -233,8 +233,8 @@ top: -3em;
 .cover_searchbox{
 	top: -20px;
 }
-    td.icon_left{
-       display:block;
+    .icon_left{
+       display:none;
        position: absolute;
        left: 0;
        top: 35%;

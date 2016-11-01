@@ -48,11 +48,14 @@
     .calendar{
         position: fixed;
         margin: 3.4em auto;
-        overflow: scroll;
     }
     .calendar_mobile{
         display: none;
     }
+    /* .calendar_size_pc{
+        width: 100px;
+        height: 50px;
+    } */
     #div_sidebar_right{
         display:none;
     }
@@ -60,22 +63,48 @@
         display: none;
     }
     .topnav_right{
-     line-height: 100%;
-     
- }
- .flexslider{
+       line-height: 100%;
+       position: relative;
+
+
+   }
+   .flexslider{
     margin: 0 0 10px !important;
- } 
+} 
+table {  border-collapse:collapse; }
 
-
- @media (max-width: 680px){
-    body {
-    display: block;
-    margin-right: 0
+.calendar tr td div span{
+    font-size: 12px
 }
-.flexslider{
-    margin: -10px 0 0 !important;
- } 
+.calendar tr td span{
+    font-size: 12px
+}
+#color_sub_mobile{
+    display: none;
+}
+
+#calendar_button{
+
+}
+#color_sub{
+
+}
+
+@media (min-width: 681px){
+    #calendar_button_mobile{
+display: none;
+}
+}
+
+@media (max-width: 680px){
+    body {
+        display: block;
+        margin-left:-5px;
+
+    }
+    .flexslider{
+        margin: -10px 0 0 !important;
+    } 
     #header{
         height: 60px;
     }
@@ -98,23 +127,53 @@
         display: block;
         position: relative;
         bottom: 0em;
+
     }
     .calendar{
         display: none;   
     }
     .calendar_mobile{
         display: block;
+        width: 100%
+    }
+    .calendar_mobile tr td div span{
+        font-size: 10px
+    }
+    .calendar_mobile tr td{
+        width: 100%;
+        width: 100%;
     }
 
-    .icon_right{
+    .calendar_mobile tr td span{
+        font-size: 10px
+    }
+    #color_sub_mobile{
         display: block;
-        position: absolute;
-        right: 0;
-        bottom: 1em;
     }
-    .topnav_right{
-        display: none;
-    }
+   #calendar_button{
+       display: none;
+   }
+   #color_sub{
+       display: none;
+   }
+
+
+   .icon_right{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 1em;
+}
+.topnav_right{
+    display: none;
+}
+#calendar_mobile tr td span{
+    position: relative;
+
+}
+
+
+
 
 
 }/*--------------------------end media*/
@@ -124,27 +183,27 @@
     background-color: #FFD700; /* Gold */
     border: none;
     color: white;
-    padding: 6px 11px;
+    
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 10px;
-    margin: 4px 2px;
+    
     cursor: pointer;
 }
 
-.button_yes {border-radius: 8px;}
+.button_yes {border-radius: 4px;}
 
 .button_no {
     background-color: #d0d0d0; /* Gray */
     border: none;
     color:  #4F4F4F;
-    padding:  6px 11px;
     text-align: center;
+    font-size: 11px;
+
     text-decoration: none;
     display: inline-block;
-    font-size: 10px;
-    margin: 4px 2px;
+
 }
 nav li {margin: 0 0 7px; font-size: 15px; }
 nav li a:hover,
@@ -875,28 +934,28 @@ Sys.WebForms.PageRequestManager._initialize('ScriptManager1', 'form1', ['tUpdate
                 <tbody>
                     <tr>
                         <td>
-                           <button type="button" style="border-style: none; background-color:#E7E7E7 ;  cursor: pointer;">マイへ一ン</button>
-                       </td>
-                   </tr> 
+                         <button type="button" style="border-style: none; background-color:#E7E7E7 ;  cursor: pointer;">マイへ一ン</button>
+                     </td>
+                 </tr> 
 
-                   <tr>
+                 <tr>
                     <td>
-                       <button onclick="showDialog()" 　type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">メッセ一ジ</button>
-                   </td>
-               </tr>   
+                     <button onclick="showDialog()" 　type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">メッセ一ジ</button>
+                 </td>
+             </tr>   
 
-               <tr>
+             <tr>
                 <td>
-                   <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">お知らせ</button>
-               </td>
-           </tr>   
+                 <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7;  cursor: pointer;">お知らせ</button>
+             </td>
+         </tr>   
 
-           <tr>
+         <tr>
             <td>
-               <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7; cursor: pointer;">ヘルプ</button>
-           </td>
-       </tr>     
-   </tbody>
+             <button onclick="showDialog()" 　="" type="button" style="border-style: none; background-color: #E7E7E7; cursor: pointer;">ヘルプ</button>
+         </td>
+     </tr>     
+ </tbody>
 </table>
 </div><!--End sidebar_right--> 
 </div><!--End div_sidebar_right-->
@@ -906,92 +965,110 @@ Sys.WebForms.PageRequestManager._initialize('ScriptManager1', 'form1', ['tUpdate
 </div>
 
 <span></span><table style="width:100%;position:relative; top:3em">
-    <tbody><tr>
-        <td class="body_left" width="65%" valign="top">
-            <div id="left_view" style="width: 100%; ">
+<tbody><tr>
+    <td class="body_left" width="65%" valign="top">
+        <div id="left_view" style="width: 100%; ">
 
 
-                <table width="100%"><tbody>
-                    <tr><td>
+            <table width="100%"><tbody>
+                <tr><td>
 
 
-                        <div id="slider" class="flexslider flexslider-container">
-                            <div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="http://192.168.1.13/Date_Calendar.aspx#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="http://192.168.1.13/Date_Calendar.aspx#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 100%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-                            <li class="flex-active-slide" style="width: 100%; margin-right: -100%; float: left; display: block; position: relative; opacity: 1; z-index: 2;"><img src="./Date_Calendar.aspx_files/201610171134365172.jpg" draggable="false">
-                            </li>
+                    <div id="slider" class="flexslider flexslider-container">
+                        <div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="http://192.168.1.13/Date_Calendar.aspx#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="http://192.168.1.13/Date_Calendar.aspx#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 100%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                        <li class="flex-active-slide" style="width: 100%; margin-right: -100%; float: left; display: block; position: relative; opacity: 1; z-index: 2;"><img src="./Date_Calendar.aspx_files/201610171134365172.jpg" draggable="false">
+                        </li>
 
-                            <li style="width: 100%; margin-right: -100%; float: left; display: block; position: relative; opacity: 0; z-index: 1;"><img src="./Date_Calendar.aspx_files/201610171134365232.jpg" draggable="false">
-                            </li>
+                        <li style="width: 100%; margin-right: -100%; float: left; display: block; position: relative; opacity: 0; z-index: 1;"><img src="./Date_Calendar.aspx_files/201610171134365232.jpg" draggable="false">
+                        </li>
 
-                            <li style="width: 100%; margin-right: -100%; float: left; display: block; position: relative; opacity: 0; z-index: 1;"><img src="./Date_Calendar.aspx_files/201610171134365282.jpg" draggable="false">
-                            </li>
-                            <li style="width: 100%; margin-right: -100%; float: left; display: block; position: relative; opacity: 0; z-index: 1;"><img src="./Date_Calendar.aspx_files/201610171134365342.jpg" draggable="false"></li></ul></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="file:///P:/OneDrive/Rin/zip/Date_Calendar.aspx.html#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="file:///P:/OneDrive/Rin/zip/Date_Calendar.aspx.html#">Next</a></li></ul><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul></div>
-
-
-
-                            <div id="carousel" class="flexslider"><div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="http://192.168.1.13/Date_Calendar.aspx#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="http://192.168.1.13/Date_Calendar.aspx#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="file:///P:/OneDrive/Rin/zip/Date_Calendar.aspx.html#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="file:///P:/OneDrive/Rin/zip/Date_Calendar.aspx.html#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 800%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);"><li class="flex-active-slide" style="width: 210px; margin-right: 5px; float: left; display: block;"><img src="./Date_Calendar.aspx_files/201610171134365172.jpg" draggable="false"></li><li style="width: 210px; margin-right: 5px; float: left; display: block;"><img src="./Date_Calendar.aspx_files/201610171134365232.jpg" draggable="false"></li><li style="width: 210px; margin-right: 5px; float: left; display: block;"><img src="./Date_Calendar.aspx_files/201610171134365282.jpg" draggable="false"></li><li style="width: 210px; margin-right: 5px; float: left; display: block;"><img src="./Date_Calendar.aspx_files/201610171134365342.jpg" draggable="false"></li></ul></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul></div></td></tr><tr><td><hr><table width="100%"><tbody><tr><td width="10%"><div class="zoom-gallery"><a href="./Date_Calendar.aspx_files/201609291527258695.jpg" data-source="head_photo/201609291527258695.jpg" title="たんぽぽママ" style="width:100px;height:100px;"><img src="./Date_Calendar.aspx_files/201609291527258695.jpg" width="100" height="100"></a></div></td><td width="75%"><table width="100%"><tbody><tr><td><a href="javascript:void(0);" target="_blank" style="text-decoration:none;">たんぽぽママ</a></td></tr><tr><td><span style="color:#848484;font-size:20pt;">2人の子どもを育てた経験があります!!!!!!!!!!!!</span></td></tr></tbody></table></td><td width="15%"><br><br><span style="color:#848484;">2016.09.29</span></td></tr></tbody></table><hr><table width="100%"><tbody><tr><td width="5%"></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/active_Child-rearing experience.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/non-active_Municipality.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/active_Infants.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/active_TeacherQualification.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/active_DoctorQualification.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/handicapped.png"><br><br></td><td width="5%"></td></tr></tbody></table><table width="100%"><tbody><tr><td width="5%"></td><td align="center" width="15%" valign="top"><span style="color:#CF8B58;">子育て経験</span></td><td align="center" width="15%" valign="top"><span style="color:#848484;">自治体認定</span></td><td align="center" width="15%" valign="top"><span style="color:#CF8B58;">保育士資格</span></td><td align="center" width="15%" valign="top"><span style="color:#CF8B58;">幼稚園/小学校教員資格</span></td><td align="center" width="15%" valign="top"><span style="color:#CF8B58;">医師看護士資格</span></td><td align="center" width="15%" valign="top"><span style="color:#848484;">障害児預かり経験</span></td><td width="5%"></td></tr></tbody></table><hr><table width="100%"><tbody><tr><td><span style="color:#848484;">サポート内容 : 送迎、利用宅で預かる、自宅で預かる</span></td></tr><tr><td><span style="color:#848484;">サポート年齢 : 2歳 8ヶ月 ～ 3歳 10ヶ月</span><br><br></td></tr></tbody></table><hr><table width="100%"><tbody>
-
-                            <tr>
-                                <td align="center"><br><br><span style="color:#FF9797;font-size:20pt;">自己紹介</span><br><br></td>
-                            </tr>
-
-
-                            <tr><td><span style="color:#848484;">はじめまして 。 自身 の 子育て を し ながら 、 子供 に 関わる お 仕事 に 興味 を 持つ様 に なり 、 保育士資格 を 取得 し まし た 。 現在 は ヨガ 教室 に 通わ れ お母さま の 為 の 保育 ルーム スタッフ として 0 才 ~ 3 才 の お子さま の 保育 を し て おり ます 。 一人一人 の お子さま の 個性 と 自主性 を 尊重 し 、 優しく温かい サポート を 心掛け て い ます 。</span></td>
-                            </tr>
+                        <li style="width: 100%; margin-right: -100%; float: left; display: block; position: relative; opacity: 0; z-index: 1;"><img src="./Date_Calendar.aspx_files/201610171134365282.jpg" draggable="false">
+                        </li>
+                        <li style="width: 100%; margin-right: -100%; float: left; display: block; position: relative; opacity: 0; z-index: 1;"><img src="./Date_Calendar.aspx_files/201610171134365342.jpg" draggable="false"></li></ul></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="file:///P:/OneDrive/Rin/zip/Date_Calendar.aspx.html#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="file:///P:/OneDrive/Rin/zip/Date_Calendar.aspx.html#">Next</a></li></ul><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul></div>
 
 
 
+                        <div id="carousel" class="flexslider"><div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="http://192.168.1.13/Date_Calendar.aspx#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="http://192.168.1.13/Date_Calendar.aspx#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="file:///P:/OneDrive/Rin/zip/Date_Calendar.aspx.html#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="file:///P:/OneDrive/Rin/zip/Date_Calendar.aspx.html#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul><div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 800%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);"><li class="flex-active-slide" style="width: 210px; margin-right: 5px; float: left; display: block;"><img src="./Date_Calendar.aspx_files/201610171134365172.jpg" draggable="false"></li><li style="width: 210px; margin-right: 5px; float: left; display: block;"><img src="./Date_Calendar.aspx_files/201610171134365232.jpg" draggable="false"></li><li style="width: 210px; margin-right: 5px; float: left; display: block;"><img src="./Date_Calendar.aspx_files/201610171134365282.jpg" draggable="false"></li><li style="width: 210px; margin-right: 5px; float: left; display: block;"><img src="./Date_Calendar.aspx_files/201610171134365342.jpg" draggable="false"></li></ul></div><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev flex-disabled" href="#" tabindex="-1">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul></div></td></tr><tr><td><hr><table width="100%"><tbody><tr><td width="10%"><div class="zoom-gallery"><a href="./Date_Calendar.aspx_files/201609291527258695.jpg" data-source="head_photo/201609291527258695.jpg" title="たんぽぽママ" style="width:100px;height:100px;"><img src="./Date_Calendar.aspx_files/201609291527258695.jpg" width="100" height="100"></a></div></td><td width="75%"><table width="100%"><tbody><tr><td><a href="javascript:void(0);" target="_blank" style="text-decoration:none;">たんぽぽママ</a></td></tr><tr><td><span style="color:#848484;font-size:20pt;">2人の子どもを育てた経験があります!!!!!!!!!!!!</span></td></tr></tbody></table></td><td width="15%"><br><br><span style="color:#848484;">2016.09.29</span></td></tr></tbody></table><hr><table width="100%"><tbody><tr><td width="5%"></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/active_Child-rearing experience.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/non-active_Municipality.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/active_Infants.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/active_TeacherQualification.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/active_DoctorQualification.png"><br><br></td><td align="center" width="15%"><img src="./Date_Calendar.aspx_files/handicapped.png"><br><br></td><td width="5%"></td></tr></tbody></table><table width="100%"><tbody><tr><td width="5%"></td><td align="center" width="15%" valign="top"><span style="color:#CF8B58;">子育て経験</span></td><td align="center" width="15%" valign="top"><span style="color:#848484;">自治体認定</span></td><td align="center" width="15%" valign="top"><span style="color:#CF8B58;">保育士資格</span></td><td align="center" width="15%" valign="top"><span style="color:#CF8B58;">幼稚園/小学校教員資格</span></td><td align="center" width="15%" valign="top"><span style="color:#CF8B58;">医師看護士資格</span></td><td align="center" width="15%" valign="top"><span style="color:#848484;">障害児預かり経験</span></td><td width="5%"></td></tr></tbody></table><hr><table width="100%"><tbody><tr><td><span style="color:#848484;">サポート内容 : 送迎、利用宅で預かる、自宅で預かる</span></td></tr><tr><td><span style="color:#848484;">サポート年齢 : 2歳 8ヶ月 ～ 3歳 10ヶ月</span><br><br></td></tr></tbody></table><hr><table width="100%"><tbody>
+
+                        <tr>
+                            <td align="center"><br><br><span style="color:#FF9797;font-size:20pt;">自己紹介</span><br><br></td>
+                        </tr>
+
+
+                        <tr><td><span style="color:#848484;">はじめまして 。 自身 の 子育て を し ながら 、 子供 に 関わる お 仕事 に 興味 を 持つ様 に なり 、 保育士資格 を 取得 し まし た 。 現在 は ヨガ 教室 に 通わ れ お母さま の 為 の 保育 ルーム スタッフ として 0 才 ~ 3 才 の お子さま の 保育 を し て おり ます 。 一人一人 の お子さま の 個性 と 自主性 を 尊重 し 、 優しく温かい サポート を 心掛け て い ます 。</span></td>
+                        </tr>
 
 
 
 
-                            <tr><td align="center"><span style="color:#FF9797;font-size:20pt;">ルール</span><br><br></td></tr>
-
-                            <tr><td><span style="color:#848484;">自宅最寄り駅 より ご 依頼主様 の 保育 ご 指定場所 まで 移動 1 時間以内 の 方 で お引き受け し て おり ます。test</span></td></tr>
-
-                            <tr><td align="center"><span style="color:#FF9797;font-size:20pt;">注意事項</span><br><br></td></tr>
-
-                            <tr><td><span style="color:#848484;">自宅 に 猫 が い ます ので 、 猫 アレルギー の お子さん は 難しい です 。change</span></td></tr>
-
-                            <tr><td align="center"><span style="color:#FF9797;font-size:20pt;">レビュー</span><br><br></td></tr><!--end review lable-->
 
 
-                            <tr><td></td></tr><!--end review content-->
 
-                            <tr class="calendar_mobile"><td>
-                                <div id="UpdatePanel1"> 
-                                    <table id="Calendar1" cellspacing="0" cellpadding="2" rules="all" title="月曆" style="width:350px;height:190px;font-size:9pt;font-family:Verdana;color:Black;border-width:1px;border-style:solid;border-color:Silver;background-color:White;border-collapse:collapse;">
-                                        <tbody><tr><td colspan="7" style="background-color:White;border-color:Black;border-width:4px;border-style:solid;"><table cellspacing="0" style="color:#333399;font-family:Verdana;font-size:16pt;font-weight:bold;width:100%;border-collapse:collapse;">
-                                            <tbody><tr><td valign="bottom" style="color:#333333;font-size:8pt;font-weight:bold;width:15%;"><a href="javascript:__doPostBack('Calendar1','V6088')" style="color:#333333" title="移至上個月">9月</a></td><td align="center" style="width:70%;">2016年10月</td><td align="right" valign="bottom" style="color:#333333;font-size:8pt;font-weight:bold;width:15%;"><a href="javascript:__doPostBack('Calendar1','V6149')" style="color:#333333" title="移至下個月">11月</a></td></tr>
-                                            </tbody></table></td></tr><tr><th align="center" abbr="日曜日" scope="col" style="font-size:8pt;font-weight:bold;">日</th><th align="center" abbr="月曜日" scope="col" style="font-size:8pt;font-weight:bold;">月</th><th align="center" abbr="火曜日" scope="col" style="font-size:8pt;font-weight:bold;">火</th><th align="center" abbr="水曜日" scope="col" style="font-size:8pt;font-weight:bold;">水</th><th align="center" abbr="木曜日" scope="col" style="font-size:8pt;font-weight:bold;">木</th><th align="center" abbr="金曜日" scope="col" style="font-size:8pt;font-weight:bold;">金</th><th align="center" abbr="土曜日" scope="col" style="font-size:8pt;font-weight:bold;">土</th></tr><tr><td align="center" style="color:#999999;background-color:White;width:14%;"><span>25</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>26</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>27</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>28</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>29</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>30</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>1</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>2</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>3</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>4</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>5</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>6</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>7</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>8</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>9</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>10</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>11</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>12</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>13</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>14</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>15</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>16</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>17</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>18</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.18" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-                                            <span>09:15<br>|<br>18:15</span>
-                                        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>19</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>20</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.20" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-                                        <span>05:45<br>|<br>22:15</span>
-                                    </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>21</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.21" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-                                    <span>09:30<br>|<br>16:15</span>
-                                </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>22</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>23</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.23" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-                                <span>03:15<br>|<br>12:15</span><!--end calendar mobile-->
+                        <tr><td align="center"><span style="color:#FF9797;font-size:20pt;">ルール</span><br><br></td></tr>
+
+                        <tr><td><span style="color:#848484;">自宅最寄り駅 より ご 依頼主様 の 保育 ご 指定場所 まで 移動 1 時間以内 の 方 で お引き受け し て おり ます。test</span></td></tr>
+
+                        <tr><td align="center"><span style="color:#FF9797;font-size:20pt;">注意事項</span><br><br></td></tr>
+
+                        <tr><td><span style="color:#848484;">自宅 に 猫 が い ます ので 、 猫 アレルギー の お子さん は 難しい です 。change</span></td></tr>
+
+                        <tr><td align="center"><span style="color:#FF9797;font-size:20pt;">レビュー</span><br><br></td></tr><!--end review lable-->
 
 
-                            </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>24</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.24" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-                            <span>05:15<br>|<br>13:30</span>
-                        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>25</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.25" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-                        <span>09:15<br>|<br>18:15</span>
-                    </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>26</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>27</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.27" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-                    <span>05:45<br>|<br>22:15</span>
-                </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>28</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.28" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-                <span>09:30<br>|<br>16:15</span>
-            </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>29</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>30</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.30" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>03:15<br>|<br>12:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>31</span><span><br><table class="calendar_button_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.31" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-        <span>05:15<br>|<br>13:30</span>
-    </div><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>1</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>2</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>3</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>4</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>5</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr>
+                        <tr><td></td></tr><!--end review content-->
+
+                        <tr class="calendar_mobile">
+                        <td>
+                            <div id="UpdatePanel1"> 
+                                <table id="Calendar1" cellspacing="0" cellpadding="2" rules="all" title="月曆" style="width:350px;height:190px;font-size:9pt;font-family:Verdana;color:Black;border-width:1px;border-style:solid;border-color:Silver;background-color:White;border-collapse:collapse;">
+                                    <tbody><tr><td colspan="7" style="background-color:White;border-color:Black;border-width:4px;border-style:solid;"><table cellspacing="0" style="color:#333399;font-family:Verdana;font-size:16pt;font-weight:bold;width:100%;border-collapse:collapse;">
+                                        <tbody><tr><td valign="bottom" style="color:#333333;font-size:8pt;font-weight:bold;width:15%;"><a href="javascript:__doPostBack('Calendar1','V6088')" style="color:#333333" title="移至上個月">9月</a></td><td align="center" style="width:70%;">2016年10月</td><td align="right" valign="bottom" style="color:#333333;font-size:8pt;font-weight:bold;width:15%;"><a href="javascript:__doPostBack('Calendar1','V6149')" style="color:#333333" title="移至下個月">11月</a></td></tr>
+                                        </tbody></table></td></tr><tr><th align="center" abbr="日曜日" scope="col" style="font-size:8pt;font-weight:bold;">日</th><th align="center" abbr="月曜日" scope="col" style="font-size:8pt;font-weight:bold;">月</th><th align="center" abbr="火曜日" scope="col" style="font-size:8pt;font-weight:bold;">火</th><th align="center" abbr="水曜日" scope="col" style="font-size:8pt;font-weight:bold;">水</th><th align="center" abbr="木曜日" scope="col" style="font-size:8pt;font-weight:bold;">木</th><th align="center" abbr="金曜日" scope="col" style="font-size:8pt;font-weight:bold;">金</th><th align="center" abbr="土曜日" scope="col" style="font-size:8pt;font-weight:bold;">土</th></tr><tr><td align="center" style="color:#999999;background-color:White;width:14%;"><span>25</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>26</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>27</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>28</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>29</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>30</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>1</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>2</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>3</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>4</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>5</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>6</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>7</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>8</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>9</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>10</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>11</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>12</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>13</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>14</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>15</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>16</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>17</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>18</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.18" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                                        <span>09:15<br>|<br>18:15</span>
+                                    </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>19</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>20</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.20" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                                    <span>05:45<br>|<br>22:15</span>
+                                </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>21</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.21" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                                <span>09:30<br>|<br>16:15</span>
+                            </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>22</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>23</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.23" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                            <span>03:15<br>|<br>12:15</span><!--end calendar mobile-->
+                            ss
+
+                        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>24</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.24" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                        <span>05:15<br>|<br>13:30</span>
+                    </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>25</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.25" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                    <span>09:15<br>|<br>18:15</span>
+                </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>26</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>27</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.27" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                <span>05:45<br>|<br>22:15</span>
+            </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>28</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.28" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+            <span>09:30<br>|<br>16:15</span>
+        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>29</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>30</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.30" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+        <span>03:15<br>|<br>12:15</span>
+    </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>31</span><span><br><table class="calendar_size" style="width: 36.7px; height: 36.7px;"><tbody><tr><td align="center"><div id="2016.10.31" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+    <span>05:15<br>|<br>13:30</span>
+</div><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>1</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>2</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>3</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>4</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>5</span><span><br><table class="calendar_size" style="width: 40.7778px; height: 40.7778px;"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr>
 </tbody>
 
 </table>
 </div>
 </td>
-</tr><!---End calendar-->
+</tr><!---End calendar mobile-->
+<tr id="color_sub_mobile">
+    <td height="50px" class="style1">
+        <img alt="" src="./Date_Calendar.aspx_files/color_img.png" width="15px" height="15px">&nbsp;
+        <span id="Label4" style="color:#999999;">予約可能</span>
+        &nbsp;
+        <img alt="" src="./Date_Calendar.aspx_files/color_img1.PNG" width="15px" height="15px">&nbsp;
+        <span id="Label5" style="color:#999999;">一部の時間帯で可能</span>
+        &nbsp;
+    </td>
+</tr><!---End calendar mobile color sub-->
+<tr id="calendar_button_mobile">  
+    <td>
+
+        <button type="button" onclick="noselectdate()" style="width: 100%;cursor: pointer;text-align: center;" class="file-upload">いますぐ予約する</button>
+    </td>
+</tr><!---End calendar mobile button-->
+
 
 
 
@@ -1001,7 +1078,7 @@ Sys.WebForms.PageRequestManager._initialize('ScriptManager1', 'form1', ['tUpdate
 <tr><td align="center"><span style="color:#FF9797;font-size:20pt;">サポーター所在地</span></td></tr>
 
 <tr><td align="center"><script type="text/javascript" src="./Date_Calendar.aspx_files/js"></script>
-   <script>
+ <script>
     $(function () {
             //定義經緯度位置: 以政大校園的八角亭為例
             var latlng = new google.maps.LatLng(35.4491321, 139.6401835);
@@ -1024,113 +1101,77 @@ Sys.WebForms.PageRequestManager._initialize('ScriptManager1', 'form1', ['tUpdate
     </script>
     <div id="map_for_user" style="width: 100%; height: 500px; position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 116px 133px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; position: absolute; left: -14px; top: 25px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 242px; top: 25px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -14px; top: -231px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -14px; top: 281px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 242px; top: -231px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 242px; top: 281px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -14px; top: 25px;"><canvas draggable="false" height="256" width="256" style="-webkit-user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 242px; top: 25px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -14px; top: -231px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -14px; top: 281px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 242px; top: -231px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 242px; top: 281px;"></div></div></div></div><div style="position: absolute; z-index: 0; left: 0px; top: 0px;"><div style="overflow: hidden; width: 354px; height: 500px;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0; transform-origin: 116px 133px 0px; transform: matrix(2, 0, 0, 2, 23, -241);"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0; transform-origin: 116px 133px 0px; transform: matrix(1, 0, 0, 1, 6, 62);"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0; transform-origin: 116px 133px 0px; transform: matrix(0.5, 0, 0, 0.5, 0, 0);"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"></div></div></div><div class="gm-style-pbc" style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%; transition-duration: 0.3s; opacity: 0; display: none;"><p class="gm-style-pbt">2 本の指で地図を移動してください</p></div><div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 116px 133px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div><div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a target="_blank" href="https://maps.google.com/maps?ll=35.447786,139.640334&amp;z=16&amp;t=m&amp;hl=ja&amp;gl=US&amp;mapclient=apiv3" title="クリックすると Google マップでこの地域を表示します" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 66px; height: 26px; cursor: pointer;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/google4.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div></a></div><div style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 27px; top: 160px;"><div style="padding: 0px 0px 10px; font-size: 16px;">地図データ</div><div style="font-size: 13px;"></div><div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/mapcnt6.png" draggable="false" style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 52px; bottom: 0px; width: 12px;"><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a style="color: rgb(68, 68, 68); text-decoration: none; cursor: pointer; display: none;">地図データ</a><span style="display: none;"></span></div></div></div><div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;"><div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);"></div></div><div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; -webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a href="https://www.google.com/intl/ja_US/help/terms_maps.html" target="_blank" style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">利用規約</a></div></div><div style="width: 25px; height: 25px; overflow: hidden; display: none; margin: 10px 14px; position: absolute; top: 0px; right: 0px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/sv9.png" draggable="false" class="gm-fullscreen-control" style="position: absolute; left: -52px; top: -86px; width: 164px; height: 175px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px; display: none; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a target="_new" title="Google に地図や画像のエラーを報告する" href="https://www.google.com/maps/@35.4477861,139.6403337,16z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3" style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">地図の誤りを報告する</a></div></div><div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false" controlwidth="28" controlheight="93" style="margin: 10px; -webkit-user-select: none; position: absolute; bottom: 107px; right: 28px;"><div class="gmnoprint" controlwidth="28" controlheight="55" style="position: absolute; left: 0px; top: 38px;"><div draggable="false" style="-webkit-user-select: none; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; background-color: rgb(255, 255, 255); width: 28px; height: 55px;"><div title="ズームイン" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl.png" draggable="false" style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></div><div style="position: relative; overflow: hidden; width: 67%; height: 1px; left: 16%; background-color: rgb(230, 230, 230); top: 0px;"></div><div title="ズームアウト" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl.png" draggable="false" style="position: absolute; left: 0px; top: -15px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></div></div></div><div class="gm-svpc" controlwidth="28" controlheight="28" style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; width: 28px; height: 28px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default; position: absolute; left: 0px; top: 0px;"><div style="position: absolute; left: 1px; top: 1px;"></div><div style="position: absolute; left: 1px; top: 1px;"><div aria-label="ストリートビュー ペグマン コントロール" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -26px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="ペグマンが地図の上部に表示されています" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -52px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="ストリートビュー ペグマン コントロール" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -78px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" controlwidth="28" controlheight="0" style="display: none; position: absolute;"><div title="地図を 90 度回転します" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; cursor: pointer; background-color: rgb(255, 255, 255); display: none;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4.png" draggable="false" style="position: absolute; left: -141px; top: 6px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div class="gm-tilt" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; top: 0px; cursor: pointer; background-color: rgb(255, 255, 255);"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4.png" draggable="false" style="position: absolute; left: -141px; top: -13px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" style="margin: 10px; z-index: 0; position: absolute; cursor: pointer; left: 0px; top: 0px;"><div class="gm-style-mtc" style="float: left;"><div draggable="false" title="市街地図を見る" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 8px; border-bottom-left-radius: 2px; border-top-left-radius: 2px; -webkit-background-clip: padding-box; background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; min-width: 22px; font-weight: 500;">地図</div><div style="background-color: white; z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; left: 0px; top: 33px; text-align: left; display: none;"><div draggable="false" title="地形を見る" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap;"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle;"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;"><img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">地形</label></div></div></div><div class="gm-style-mtc" style="float: left;"><div draggable="false" title="航空写真を見る" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(86, 86, 86); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 8px; border-bottom-right-radius: 2px; border-top-right-radius: 2px; -webkit-background-clip: padding-box; background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-left: 0px; min-width: 44px;">航空写真</div><div style="background-color: white; z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; right: 0px; top: 33px; text-align: left; display: none;"><div draggable="false" title="航空写真に道路名を表示" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap;"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle;"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden;"><img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">ラベル</label></div></div></div></div></div></div></div></td></tr></tbody></table></td></tr></tbody></table>
 </div></td>
-
-
-
 <td class="calendar">
-    
 
-    <div id="middle_view">
+
+ <div id="middle_view">
         <table style="border: thin solid #C0C0C0">
-        <tbody><tr>
-        <td class="style1">
-                    
-<div id="UpdatePanel1"> 
-    <table id="Calendar1" cellspacing="0" cellpadding="2" rules="all" title="月曆" style="width:100%;height:190px;font-size:9pt;font-family:Verdana;color:Black;border-width:1px;border-style:solid;border-color:Silver;background-color:White;border-collapse:collapse;">
-        <tbody><tr><td colspan="7" style="background-color:White;border-color:Black;border-width:4px;border-style:solid;"><table cellspacing="0" style="color:#333399;font-family:Verdana;font-size:16pt;font-weight:bold;width:100%;border-collapse:collapse;">
-            <tbody><tr><td valign="bottom" style="color:#333333;font-size:8pt;font-weight:bold;width:15%;"><a href="javascript:__doPostBack('Calendar1','V6088')" style="color:#333333" title="移至上個月">9月</a></td><td align="center" style="width:70%;">2016年10月</td><td align="right" valign="bottom" style="color:#333333;font-size:8pt;font-weight:bold;width:15%;"><a href="javascript:__doPostBack('Calendar1','V6149')" style="color:#333333" title="移至下個月">11月</a></td></tr>
-        </tbody></table></td></tr><tr><th align="center" abbr="日曜日" scope="col" style="font-size:8pt;font-weight:bold;">日</th><th align="center" abbr="月曜日" scope="col" style="font-size:8pt;font-weight:bold;">月</th><th align="center" abbr="火曜日" scope="col" style="font-size:8pt;font-weight:bold;">火</th><th align="center" abbr="水曜日" scope="col" style="font-size:8pt;font-weight:bold;">水</th><th align="center" abbr="木曜日" scope="col" style="font-size:8pt;font-weight:bold;">木</th><th align="center" abbr="金曜日" scope="col" style="font-size:8pt;font-weight:bold;">金</th><th align="center" abbr="土曜日" scope="col" style="font-size:8pt;font-weight:bold;">土</th></tr><tr><td align="center" style="color:#999999;background-color:White;width:14%;"><span>25</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>26</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>27</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>28</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>29</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>30</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>1</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>2</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>3</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>4</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>5</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>6</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>7</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>8</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>9</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>10</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>11</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>12</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>13</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>14</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>15</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>16</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>17</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>18</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.18" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+            <tbody><tr>
+                <td class="style1">
+
+                    <div id="UpdatePanel1"> 
+                        <table id="Calendar1" cellspacing="0" cellpadding="2" rules="all" title="月曆" style="width:350px;height:190px;font-size:9pt;font-family:Verdana;color:Black;border-width:1px;border-style:solid;border-color:Silver;background-color:White;border-collapse:collapse;">
+                            <tbody><tr><td colspan="7" style="background-color:White;border-color:Black;border-width:4px;border-style:solid;"><table cellspacing="0" style="color:#333399;font-family:Verdana;font-size:16pt;font-weight:bold;width:100%;border-collapse:collapse;">
+                                <tbody><tr><td valign="bottom" style="color:#333333;font-size:8pt;font-weight:bold;width:15%;"><a href="javascript:__doPostBack('Calendar1','V6088')" style="color:#333333" title="移至上個月">9月</a></td><td align="center" style="width:70%;">2016年10月</td><td align="right" valign="bottom" style="color:#333333;font-size:8pt;font-weight:bold;width:15%;"><a href="javascript:__doPostBack('Calendar1','V6149')" style="color:#333333" title="移至下個月">11月</a></td></tr>
+                                </tbody></table></td></tr><tr><th align="center" abbr="日曜日" scope="col" style="font-size:8pt;font-weight:bold;">日</th><th align="center" abbr="月曜日" scope="col" style="font-size:8pt;font-weight:bold;">月</th><th align="center" abbr="火曜日" scope="col" style="font-size:8pt;font-weight:bold;">火</th><th align="center" abbr="水曜日" scope="col" style="font-size:8pt;font-weight:bold;">水</th><th align="center" abbr="木曜日" scope="col" style="font-size:8pt;font-weight:bold;">木</th><th align="center" abbr="金曜日" scope="col" style="font-size:8pt;font-weight:bold;">金</th><th align="center" abbr="土曜日" scope="col" style="font-size:8pt;font-weight:bold;">土</th></tr><tr><td align="center" style="color:#999999;background-color:White;width:14%;"><span>25</span><span><br>
+                                <table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>26</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>27</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>28</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>29</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>30</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>1</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>2</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>3</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>4</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>5</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>6</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>7</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>8</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>9</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>10</span><span><br><table class="calendar_size_pc"><tbody><tr><td></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>11</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>12</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>13</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>14</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>15</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>16</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>17</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>18</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.18" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                                <span>09:15<br>|<br>18:15</span>
+                            </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>19</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>20</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.20" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                            <span>05:45<br>|<br>22:15</span>
+                        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>21</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.21" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                        <span>09:30<br>|<br>16:15</span>
+                    </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>22</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>23</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.23" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                    <span>03:15<br>|<br>12:15</span><!--end calendar mobile-->
+
+
+                </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>24</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.24" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+                <span>05:15<br>|<br>13:30</span>
+            </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>25</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.25" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
             <span>09:15<br>|<br>18:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>19</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>20</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.20" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>05:45<br>|<br>22:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>21</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.21" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>09:30<br>|<br>16:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>22</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>23</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.23" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>03:15<br>|<br>12:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>24</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.24" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>05:15<br>|<br>13:30</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>25</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.25" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>09:15<br>|<br>18:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>26</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>27</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.27" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>05:45<br>|<br>22:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>28</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.28" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>09:30<br>|<br>16:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>29</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>30</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.30" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>03:15<br>|<br>12:15</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>31</span><span><br><table width="50px" height="50px"><tbody><tr><td align="center"><div id="2016.10.31" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
-            <span>05:15<br>|<br>13:30</span>
-        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>1</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>2</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>3</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>4</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>5</span><span><br><table width="70px" height="70px"><tbody><tr><td><img src="./Date_Calendar.aspx_files/weekend.PNG"><span></span></td></tr></tbody></table></span></td></tr>
+        </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>26</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>27</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.27" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+        <span>05:45<br>|<br>22:15</span>
+    </div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>28</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.28" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+    <span>09:30<br>|<br>16:15</span>
+</div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>29</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><span class="button_no button_no_day" style="padding: 6px 11px; margin: 0px;">X</span><span></span></td></tr></tbody></table></span></td></tr><tr><td align="center" style="background-color:White;width:14%;"><span>30</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.30" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+<span>03:15<br>|<br>12:15</span>
+</div><span></span></td></tr></tbody></table></span></td><td align="center" style="background-color:White;width:14%;"><span>31</span><span><br><table class="calendar_size_pc"><tbody><tr><td align="center"><div id="2016.10.31" class="button button_yes" onclick="selectdate(this.id)" style="padding: 2px 3px; margin: 0px;">
+<span>05:15<br>|<br>13:30</span>
+</div><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>1</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>2</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>3</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>4</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td><td align="center" style="color:#999999;background-color:White;width:14%;"><span>5</span><span><br><table class="calendar_size_pc"><tbody><tr><td><span></span></td></tr></tbody></table></span></td></tr>
 </tbody>
 
 </table>
-</div><!---End calendar-->
-
-                </td>
-            </tr>
-             <tr>
-                <td height="50px" class="style1">
-                    <img alt="" src="./Date_Calendar.aspx_files/color_img.png" width="15px" height="15px">&nbsp;
-                    <span id="Label4" style="color:#999999;">予約可能</span>
-                    &nbsp;
-                    <img alt="" src="./Date_Calendar.aspx_files/color_img1.PNG" width="15px" height="15px">&nbsp;
-                    <span id="Label5" style="color:#999999;">一部の時間帯で可能</span>
-                    &nbsp;
-                </td>
-            </tr>
-        </tbody></table>
-    <table width="100%">
-            <tbody><tr>
-                <td>
-                    
-                    <button type="button" onclick="noselectdate()" style="width: 100%;cursor: pointer;text-align: center;" class="file-upload">いますぐ予約する</button>
-                </td>
-                </tr>
-        </tbody></table>
 </div>
+</td></tr></tbody>
 
-            </td>
+</table>
+</div>
+<div><table width="100%"><tbody><tr id="color_sub">
+    <td height="50px" class="style1">
+        <img alt="" src="./Date_Calendar.aspx_files/color_img.png" width="15px" height="15px">&nbsp;
+        <span id="Label4" style="color:#999999;">予約可能</span>
+        &nbsp;
+        <img alt="" src="./Date_Calendar.aspx_files/color_img1.PNG" width="15px" height="15px">&nbsp;
+        <span id="Label5" style="color:#999999;">一部の時間帯で可能</span>
+        &nbsp;
+    </td>
+</tr><!---End calendar  color sub-->
+<tr id="calendar_button">  
+    <td>
+
+        <button type="button" onclick="noselectdate()" style="width: 100%;cursor: pointer;text-align: center;" class="file-upload">いますぐ予約する</button>
+    </td>
+</tr><!---End calendar  button--></tbody></table></div>
+</td>
+
+
+
 </tr></tbody></table>
-
-
-
-
-
-
-
-
-    
-        
-
-
-
-
-
-   
-
-       
-   
-   
-       
-       
-       
-       
-       
-   
-
-
-
-
-
 </form>
-
-
-
-
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><div class="selection_bubble_root" style="display: none;"></div>
 
 
 <script>
- function ShowSidebarRight(){
+   function ShowSidebarRight(){
     var div = document.getElementById('div_sidebar_right');
     if (div.style.display == 'block') {
         div.setAttribute("style", "display:none");
@@ -1141,43 +1182,50 @@ Sys.WebForms.PageRequestManager._initialize('ScriptManager1', 'form1', ['tUpdate
     }
 }
 $('.calendar_size').css({
-    "width": $(window).width()/7,
-    "height": $(window).width()/7
-});
-$('.calendar_button_size').css({
-    "width": $(window).width()/10,
-    "height": $(window).width()/10
-});
-$('.button').css({
-    padding: '0 0',
-    margin: '0 0'
+            "width": $(window).width()/8,
+            "height": $(window).width()/8
+        });
 
-});
-$('.button_yes').css({
-    padding: '2 3',
-    margin: '0 0'
-
-});
-$('.button_no').css({
-    padding: '6px 11px',
-    margin: '0 0'
-
-});
+$('.calendar_size_pc').css({
+            "width": $(window).width()/25,
+            "height": $(window).width()/25
+        });
 
 if ( $(window).width() < 680)  {
     $(window).resize(function () {
-    var w = $(window).width();
-    $('.calendar_size').css({
-        "width": w/9,
-        "height": w/9
-    });
+        var w = $(window).width();
+        $('.calendar_size').css({
+            "width": w/8,
+            "height": w/8
+        });
 
-    $('.button').css({
-        padding: 'w/70 w/70',
+        $('.button').css({
+            padding: 'w/80 w/80',
 
+        });
     });
-});
+    
+
 }
+if ( $(window).width() > 680)  {
+    $(window).resize(function () {
+        var w = $(window).width();
+        $('.calendar_size_pc').css({
+            "width": w/25,
+            "height": w/25
+        });
+
+        $('.button').css({
+            padding: 'w/80 w/80',
+
+        });
+    });
+    
+
+}
+
+
+
 
 
 </script>

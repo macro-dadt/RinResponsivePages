@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://localhost:57516/Date_Calendar_success.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+
+</title>
+    <!-- jQuery -->
+    <script src="./Date_Calendar_success.aspx_files/jquery-1.12.4.js.download"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./Date_Calendar_success.aspx_files/bootstrap.min.js.download"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="./Date_Calendar_success.aspx_files/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="./Date_Calendar_success.aspx_files/file-upload.css" type="text/css">
+    <style type="text/css">
+        #header{
+background-color:#ea9494;
+height:80px;
+text-align:center;
+line-height:70px;
+}
+        .text1
+        {
+            color: #848484;
+        }
+        </style>
+    <script type="text/javascript">
+     // 顯示讀取遮罩
+    function ShowProgressBar() {
+        displayProgress();
+        displayMaskFrame();
+    }
+
+    // 隱藏讀取遮罩
+    function HideProgressBar() {
+        var progress = $('#divProgress');
+        var maskFrame = $("#divMaskFrame");
+        progress.hide();
+        maskFrame.hide();
+    }
+    // 顯示讀取畫面
+    function displayProgress() {
+        var w = $(document).width();
+        var h = $(window).height();
+        var progress = $('#divProgress');
+        progress.css({ "z-index": 999999, "top": (h / 2) - (progress.height() / 2), "left": (w / 2) - (progress.width() / 2) });
+        progress.show();
+    }
+    // 顯示遮罩畫面
+    function displayMaskFrame() {
+        var w = $(window).width();
+        var h = $(document).height();
+        var maskFrame = $("#divMaskFrame");
+        maskFrame.css({ "z-index": 999998, "opacity": 0.7, "width": w, "height": h });
+        maskFrame.show();
+    }
+        </script>
+</head>
+<body>
+    <form method="post" action="http://localhost:57516/Date_Calendar_success.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="6vVNmFqLRIAk10AKJRXN3/jL3Wj5udHwO36lR9BKaErunOEuAOnTQnaQFs6Hc9oPwvnv6dgwdvss20FbtitBb2Mc6jhDCnOUmPyYgDrJ8xo=">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6007791C">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="3HxmwlmcApIpwq3gvnBNOaG2MYDttymJiKnwO0RebndPRiCVMf8QftnHUeZ032TrBXspzSnuusJ1Wi49EW0X9wzHTh4h+UqNOv020yGOGP4ka2l6THlHROJsO3mlvC+1">
+</div>
+                　<div id="header">
+                    <table style="width:100%;">
+                        <tbody><tr>
+                            <td align="left" width="15%">
+                                
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td width="5%">&nbsp;</td>
+                                        <td><span id="Label_logo" style="color:White;font-family:Arial Black;font-size:XX-Large;font-weight:bold;">RiN</span></td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                            <td width="55%">
+                                &nbsp;</td>
+                            <td width="30%">
+                                <table style="width:100%;">
+                                    <tbody><tr>
+                                        <td>
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">マイへ一ン</button>
+                                        </td>
+                                        <td>
+
+                                            <button type="button" onclick="showDialog()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">メッセ一ジ</button>
+
+                                        </td>
+                                        <td>
+
+                                            <button type="button" onclick="showDialog_m()" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">お知らせ</button>
+
+                                        </td>
+                                        <td>
+
+                                            <button type="button" style="border-style: none; background-color: #ea9494; color: #FFFFFF; cursor: pointer;">ヘルプ</button>
+
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    </div>
+    <div>
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <br><br><br><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                        <h4 class="text1"></h4>
+                        <br><br>
+                </div>
+                <div class="col-sm-4 text-center">
+                        <h4 class="text1">ご予約ありがとうございます!</h4>
+                    <h4 class="text1">メッセージをご確認のうえ</h4>
+                    <h4 class="text1">サポーターからのご連絡をお待ちください。</h4>
+                        <br><br>
+                    <input type="submit" name="Button2" value="戻る" onclick="ShowProgressBar();" id="Button2" class="file-upload" style="width: 70%; height: 50px;">
+                </div>
+                <div class="col-sm-4 text-center">
+                        <h4 class="text1"></h4>
+                        <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+                 <div id="divProgress" style="text-align:center; display: none; position: fixed; top: 50%;  left: 50%;">
+    <img id="imgLoading" src="./Date_Calendar_success.aspx_files/loading.gif">
+    <br>
+    <font color="#1B3563" size="2px">資料処理中</font>
+</div>
+<div id="divMaskFrame" style="background-color: #F2F4F7; display: none; left: 0px;
+    position: absolute; top: 0px;">
+</div>
+    </form>
+
+
+<div class="selection_bubble_root" style="display: none;"></div></body></html>
